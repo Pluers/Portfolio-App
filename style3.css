@@ -56,7 +56,7 @@ header searchbox button {
 main {
     display: grid;
     grid-template-columns: 24vw auto;
-    gap: 32px;
+    gap: 16px;
     margin: auto 10px;
 }
 
