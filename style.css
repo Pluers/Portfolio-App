@@ -60,7 +60,7 @@ aside {
     grid-auto-rows: 1fr;
     display: grid;
     position: fixed;
-    width: 28%;
+    width: 18%;
     height: calc(100vh - 50%);
     top: calc(100vh - 75%);
     margin: 0 10px;
@@ -69,20 +69,18 @@ aside {
 
 aside button {
     height: 100%;
+    padding-left: 2rem;
     border: none;
-    text-align: left;
-    padding-left: 10%;
     font-weight: bold;
     background: transparent;
     display: flex;
-    align-self: center;
     align-items: center;
-    transition: background 1s ease-in-out;
+    transition: background 0.5s ease-in-out;
     border-radius: calc(var(--borRad)*2);
 }
 
 aside button:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: calc(var(--borRad)*2);
 }
 
