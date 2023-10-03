@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="nl">
 <link rel="stylesheet" href="style3.css">
 
 <head>

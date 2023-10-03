@@ -35,6 +35,7 @@ header nav button {
     background: var(--buttonBackground);
     border: none;
     border-radius: var(--borRad);
+    cursor: pointer;
 }
 
 header searchbox input {
@@ -77,6 +78,7 @@ article {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 sidebar {
@@ -103,6 +105,7 @@ sidebar nav a {
     align-items: center;
     transition: 0.2s ease-in-out;
     border-radius: calc(var(--borRad)*2);
+    cursor: pointer;
 }
 
 sidebar nav a:hover {
