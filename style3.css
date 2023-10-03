@@ -1,0 +1,123 @@
+:root {
+    font-family: system-ui;
+    --borRad: 6px;
+    --buttonHeight: 28px;
+    --inputHeight: 28px;
+    --headerBackground: lightblue;
+    --footerBackground: lightgreen;
+    --sidebarBackground: lightcoral;
+    --buttonBackground: transparent;
+    --searchButtonBackground: white;
+}
+
+* {
+    box-sizing: border-box;
+    /* box-shadow: black 3px 3px; */
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    grid-gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: var(--headerBackground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav button {
+    height: var(--buttonHeight);
+    background: var(--buttonBackground);
+    border: none;
+    border-radius: var(--borRad);
+}
+
+header searchbox input {
+    border: none;
+    color: black;
+    height: var(--inputHeight);
+    padding: 10px;
+    border-radius: var(--borRad);
+}
+
+header searchbox button {
+    border: none;
+    background: var(--searchButtonBackground);
+    height: var(--buttonHeight);
+    padding: 0 10px;
+    border-radius: var(--borRad);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 24vw auto;
+    gap: 32px;
+    margin: auto 10px;
+}
+
+main content {
+    overflow: scroll;
+    height: calc(100vh - 12rem);
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+    grid-auto-rows: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border: lightgray 3px solid;
+}
+
+
+article {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+sidebar {
+    background: var(--sidebarBackground);
+    border-radius: calc(var(--borRad)*2);
+    display: flex;
+    align-items: center;
+}
+
+sidebar nav {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%;
+}
+
+sidebar nav a {
+    height: 28px;
+    padding: 3rem 2rem;
+    border: none;
+    font-weight: bold;
+    font-size: x-large;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    border-radius: calc(var(--borRad)*2);
+}
+
+sidebar nav a:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: calc(var(--borRad)*2);
+}
+
+footer {
+    background: var(--footerBackground);
+    padding: 10px;
+    text-align: center;
+}
+
+/* TEST */
+.square {
+    height: 20rem;
+    background-color: #555;
+}

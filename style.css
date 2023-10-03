@@ -1,4 +1,5 @@
 :root {
+    font-family: system-ui;
     margin: 0;
     padding: 0;
     --borRad: 6px;
@@ -11,6 +12,7 @@ header {
     position: fixed;
     width: 100%;
     padding: 10px;
+    grid-area: header;
 }
 
 header container {
@@ -18,8 +20,6 @@ header container {
     justify-content: center;
     gap: 10px;
 }
-
-header container button {}
 
 header container input {
     border: none;
@@ -33,6 +33,7 @@ header container input {
 header container button:last-child {
     border: none;
     background: white;
+    height: 100%;
     padding: 0 10px;
     border-radius: var(--borRad);
 }
@@ -40,18 +41,18 @@ header container button:last-child {
 body {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    font-family: system-ui;
     margin: 0;
 }
 
 main {
+    margin-top: 5rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px;
+    grid-area: main;
 }
 
 article {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -59,6 +60,7 @@ aside {
     background: lightgray;
     grid-auto-rows: 1fr;
     display: grid;
+    grid-area: sidebar;
     position: fixed;
     width: 18%;
     height: calc(100vh - 50%);
@@ -94,6 +96,7 @@ gridl {
 }
 
 footer {
+    grid-area: footer;
     background: lightgray;
     width: 100%;
     padding: 10px;
