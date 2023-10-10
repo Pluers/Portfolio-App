@@ -3,9 +3,9 @@
     --borRad: 6px;
     --buttonHeight: 28px;
     --inputHeight: 28px;
-    --headerBackground: lightblue;
+    --headerBackground: lightcoral;
     --footerBackground: lightgreen;
-    --sidebarBackground: lightcoral;
+    --sidebarBackground: lightblue;
     --buttonBackground: transparent;
     --searchButtonBackground: white;
 }
@@ -15,9 +15,13 @@
     /* box-shadow: black 3px 3px; */
 }
 
+i.material-icons {
+    display: none;
+}
+
 body {
     display: grid;
-    grid-template-rows: 1fr auto 1fr;
+    grid-template-rows: 48px auto 24px;
     grid-gap: 10px;
     margin: 0;
     padding: 0;
@@ -55,24 +59,24 @@ header searchbox button {
 }
 
 main {
-    display: grid;
-    grid-template-columns: 24vw auto;
-    gap: 16px;
-    margin: auto 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 main content {
     overflow: scroll;
-    height: calc(100vh - 12rem);
+    height: calc(100vh - 6rem);
     grid-column: 2 / 4;
     grid-row: 1 / 2;
-    grid-auto-rows: 1fr;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    border: lightgray 3px solid;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+    display: grid;
+    width: 100%;
 }
-
 
 article {
     display: flex;
@@ -86,20 +90,24 @@ sidebar {
     border-radius: calc(var(--borRad)*2);
     display: flex;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
 }
 
 sidebar nav {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    width: 100%;
+    display: flex;
+    align-self: center;
 }
 
 sidebar nav a {
     height: 28px;
-    padding: 3rem 2rem;
+    padding: 3rem 1.5rem;
+    color: black;
+    text-decoration: none;
     border: none;
     font-weight: bold;
-    font-size: x-large;
+    font-size: large;
     background: transparent;
     display: flex;
     align-items: center;
@@ -115,12 +123,54 @@ sidebar nav a:hover {
 
 footer {
     background: var(--footerBackground);
-    padding: 10px;
+    padding: 0;
     text-align: center;
+}
+
+footer p {
+    margin: 0;
 }
 
 /* TEST */
 .square {
-    height: 20rem;
+    height: 10rem;
     background-color: #555;
+}
+
+@media screen and (max-width: 426px) {}
+
+@media screen and (min-width: 769px) {
+    i.material-icons {
+        display: unset;
+        margin: 0 2rem 0 0;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        margin: auto 16rem;
+    }
+
+    sidebar:hover {
+        width: 20%;
+        overflow: unset;
+        transition: all 0.1s ease-in-out;
+    }
+
+    sidebar:hover > nav a {
+        padding: 3rem 2rem;
+    }
+
+    sidebar {
+        align-items: center;
+        width: 5rem;
+        justify-content: unset;
+    }
+
+    sidebar nav {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        align-self: unset;
+    }
 }

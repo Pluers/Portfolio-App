@@ -1,149 +1,24 @@
-<html lang="nl">
-<link rel="stylesheet" href="style3.css">
+<?php
 
-<head>
-    <title>ProfielPlus</title>
-</head>
+$App = require "private.php";
+$dbconn = $App['database'];
 
-<body>
-    <header>
-        <nav>
-            <button>category</button>
-            <button>category</button>
-            <button>category</button>
-            <button>category</button>
-            <searchbox>
-                <input type="text" placeholder="Search">
-                <button>Search</button>
-            </searchbox>
-        </nav>
-    </header>
-    <main>
-        <sidebar>
-            <nav>
-                <a>Home</a>
-                <a>About</a>
-                <a>Profile</a>
-            </nav>
-        </sidebar>
-        <content>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-            <article>
-                <img src="" alt="" class="square">
-                <p>Person</p>
-            </article>
-        </content>
-    </main>
-    <footer>
-        <p>text</p>
-    </footer>
-</body>
+switch ($_SERVER['REQUEST_URI']) {
+    case '':
+    case '/':
+        require __DIR__ . '/views/index.view.html';
+        break;
+    case '/about':
+        require __DIR__ . '/views/about.view.php';
+        break;
+    case '/profile':
+        require __DIR__ . '/views/profile.view.php';
+        break;
+    default:
+        http_response_code(404);
+        require __DIR__ . '/404.php';
+        break;
+}
+?>
 
-</html>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
