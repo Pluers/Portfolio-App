@@ -9,10 +9,10 @@ switch ($_SERVER['REQUEST_URI']) {
         require __DIR__ . '/views/index.view.html';
         break;
     case '/about':
-        require __DIR__ . '/views/about.view.php';
+        require __DIR__ . '/views/about.view.html';
         break;
     case '/profile':
-        require __DIR__ . '/views/profile.view.php';
+        require __DIR__ . '/views/profile.view.html';
         break;
     default:
         http_response_code(404);

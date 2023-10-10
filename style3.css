@@ -149,7 +149,7 @@ footer p {
         display: flex;
         flex-direction: row;
         gap: 16px;
-        margin: auto 16rem;
+        margin: auto 1rem;
     }
 
     sidebar:hover {
