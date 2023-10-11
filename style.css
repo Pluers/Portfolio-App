@@ -184,7 +184,9 @@ sidebar {
 
 sidebar nav {
     display: flex;
+    width: 100%;
     align-self: center;
+    justify-content: space-evenly;
 }
 
 sidebar nav a {
