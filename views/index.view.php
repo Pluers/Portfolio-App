@@ -21,6 +21,7 @@
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
+                    <a href="#">Link 4 is a very long word</a>
                 </dropdownlist>
             </dropdown>
             <dropdown>
@@ -30,6 +31,12 @@
                         arrow_drop_down
                     </span>
                 </button>
+                <dropdownlist>
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                    <a href="#">Link 4 is a very long word</a>
+                </dropdownlist>
             </dropdown>
             <dropdown>
                 <button>
@@ -38,6 +45,12 @@
                         arrow_drop_down
                     </span>
                 </button>
+                <dropdownlist>
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                    <a href="#">Link 4 is a very long word</a>
+                </dropdownlist>
             </dropdown>
 
             <searchbox>
@@ -91,7 +104,6 @@
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
-            <!-- de layout aanpassen naar de 2x2 layout en margin links en rechts -->
             <section>
                 <?php
                 $users = sqlStatement($conn, "SELECT users.username FROM users");
