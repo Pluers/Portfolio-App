@@ -8,11 +8,12 @@
 
 <body>
     <header>
-        <nav id="menuToggle">
+        <input type="checkbox" name="" id="">
+        <nav>
             <dropdown>
                 <button>
                     category
-                    <span class=" material-symbols-rounded">
+                    <span class="material-symbols-rounded">
                         arrow_drop_down
                     </span>
                 </button>
@@ -89,129 +90,19 @@
                 $stmt->execute();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
-            // Get users from the database
-            $result = sqlStatement($conn, "SELECT modules.modules, users.username, modules_has_users.grade FROM modules_has_users JOIN users, modules WHERE users.id = modules_has_users.userId AND modules.id = modules_has_users.moduleId");
-            foreach ($result as $user) {
-                echo $user['modules'] . " " . $user['username'] . " " . $user['grade'] . '<br>';
-            }
             ?>
             <!-- de layout aanpassen naar de 2x2 layout en margin links en rechts -->
             <section>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
-                <article>
-                    <img src="" alt="" class="square">
-                    <p>Person</p>
-                </article>
+                <?php
+                $users = sqlStatement($conn, "SELECT users.username FROM users");
+                foreach ($users as $user) {
+                    echo
+                    "<article><img class='square'><p>" . $user['username'] . "</p><br></article>";
+                }
+                ?>
             </section>
             <footer>
-                <p>text</p>
+                <p>FOOTER</p>
             </footer>
         </content>
     </main>

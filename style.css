@@ -1,19 +1,27 @@
 :root {
     font-family: system-ui;
     --borRad: 6px;
-    --buttonHeight: 28px;
-    --inputHeight: 28px;
-    --buttonBackground: transparent;
-    --searchButtonBackground: white;
     --neutralColor: #ffe9c3;
     --complimentaryColor: #ccba9c;
     --accentColor: #655c4d;
     --complimentaryAccentColor: #8b7e6a;
+    --sidebarHeight: 4rem;
 }
 
 * {
     box-sizing: border-box;
     color: var(--accentColor);
+}
+
+header *,
+main sidebar *,
+footer * {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .material-symbols-rounded {
@@ -24,10 +32,6 @@
         'opsz' 24
 }
 
-sidebar nav a *:not(span.material-symbols-rounded) {
-    display: none;
-}
-
 body {
     background: var(--complimentaryColor);
     display: grid;
@@ -36,24 +40,66 @@ body {
     padding: 0;
 }
 
+header input[type="checkbox"] {
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
+    z-index: 2;
+    appearance: none;
+    margin: 0;
+    background: var(--accentColor);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    transition: all 0.2s ease;
+    clip-path: polygon(0% 5%, 100% 5%, 100% 25%, 0% 25%, 0% 40%, 100% 40%, 100% 60%, 0% 60%, 0% 75%, 100% 75%, 100% 95%, 0% 95%);
+}
 
+header input[type="checkbox"]:checked {
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
 
+/* to make the menu move */
+header input[type="checkbox"]:checked ~ nav {
+    z-index: 1;
+    transform: translate(0, 0);
+}
 
+header nav {
+    height: calc(100vh - var(--sidebarHeight));
+    background: var(--complimentaryColor);
+    transform: translate(0, -100%);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    gap: 1rem;
+    overflow: scroll;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+header nav dropdown {
+    padding: 1rem 0;
+}
 
+header nav dropdown button {
+    height: var(--buttonHeight);
+    background: var(--buttonBackground);
+    border: none;
+    border-radius: var(--borRad);
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
 
-
-
-
-
-
-
-
-
+header nav dropdown button .material-symbols-rounded {
+    font-size: 2rem;
+}
 
 dropdownlist a {
     float: none;
-    color: var(--accentColor);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -68,47 +114,6 @@ dropdown:hover dropdownlist {
     display: block;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-header {
-    background: var(--complimentaryColor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header nav {
-    display: flex;
-    overflow: hidden;
-}
-
-header nav button {
-    height: var(--buttonHeight);
-    background: var(--buttonBackground);
-    border: none;
-    border-radius: var(--borRad);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-
-header nav dropdown {
-    float: left;
-    overflow: hidden;
-}
-
 header nav dropdown dropdownlist {
     display: none;
     position: absolute;
@@ -117,102 +122,83 @@ header nav dropdown dropdownlist {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-header nav dropdown:hover,
-header nav dropdown dropdownlist:hover dropdown button {
-    background: rgba(0, 0, 0, 0.1);
-}
-
 header nav searchbox {
     display: flex;
+    position: absolute;
+    bottom: 5rem;
+    background: var(--neutralColor);
+    border-radius: var(--borRad);
+    box-shadow: var(--accentColor) 0px 2px;
 }
 
 header nav searchbox input {
-    display: none;
     border: none;
-    height: var(--inputHeight);
-    background: var(--neutralColor);
+    background: transparent;
     padding: 10px;
-    border-radius: var(--borRad) 0 0 var(--borRad);
+    width: 60vw;
+    font-size: 1rem;
+    text-align: center;
 }
 
+/* remove default outline */
 header nav searchbox input:focus {
     outline: none;
-}
-
-header nav searchbox:focus-within {
-    outline-color: var(--accentColor);
-    outline-style: auto;
-    outline-width: initial;
-    border-radius: var(--borRad)
-}
-
-header nav searchbox button .material-symbols-rounded {
-    color: var(--accentColor);
 }
 
 header nav searchbox button {
     border: none;
     background: transparent;
-    height: var(--buttonHeight);
-    border-radius: 0 var(--borRad) var(--borRad) 0;
 }
 
 main {
     display: flex;
     flex-direction: column-reverse;
-    margin: 0;
+}
+
+main sidebar {
+    height: var(--sidebarHeight);
+    display: flex;
+    align-items: center;
+}
+
+/* display the sidebar buttons in rows */
+main sidebar nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+main sidebar nav a {
+    height: 48px;
+    padding: 1rem 1.5rem;
+    /* color: var(--accentColor); */
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+}
+
+/* remove text for navbar items for mobile*/
+main sidebar nav a *:not(span.material-symbols-rounded) {
+    display: none;
+}
+
+/* icon size for both mobile and PC */
+main sidebar nav a span.material-symbols-rounded {
+    font-size: 2rem;
 }
 
 main content {
     overflow-y: scroll;
     height: calc(100vh - 8rem);
-    width: 100%;
     border-radius: calc(var(--borRad)*2);
     background: var(--neutralColor);
 }
 
-sidebar {
-    height: 4rem;
-    background: var(--complimentaryColor);
-    border-radius: 0 0 calc(var(--borRad)*2) calc(var(--borRad)*2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: all 0.1s ease-in-out;
-}
-
-sidebar nav {
-    display: flex;
-    width: 100%;
-    align-self: center;
-    justify-content: space-evenly;
-}
-
-sidebar nav a {
-    height: 28px;
-    padding: 1rem 1.5rem;
-    color: var(--accentColor);
-    text-decoration: none;
-    border: none;
-    font-weight: bold;
-    font-size: large;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    transition: 0.2s ease-in-out;
-    border-radius: calc(var(--borRad)*2);
-    cursor: pointer;
-}
-
-sidebar nav a:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: calc(var(--borRad)*2);
-}
-
-sidebar nav a span.material-symbols-rounded {
-    /* ICON SIZE */
-    font-size: 2rem;
+/* left and right spacing for the content */
+main content section {
+    padding: 1rem;
 }
 
 footer {
@@ -227,9 +213,9 @@ footer p {
 
 /* TEST FOR IMAGE */
 .square {
-    height: 20rem;
+    height: 12rem;
     width: 100%;
-    background-color: var(--accentColor);
+    background: var(--accentColor);
     border-radius: calc(var(--borRad)*2);
 }
 
@@ -237,4 +223,126 @@ footer p {
 @media screen and (min-width: 426px) {}
 
 /* DESKTOP */
-@media screen and (min-width: 769px) {}
+@media screen and (min-width: 769px) {
+
+    /* default not filled icons */
+    .material-symbols-rounded {
+        transition: all 0.2s ease-in-out;
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+    }
+
+    /* header nav dropdown {
+        float: left;
+        overflow: hidden;
+        padding: 1rem 0;
+    }
+
+    header nav dropdown button {
+        height: var(--buttonHeight);
+        background: var(--buttonBackground);
+        border: none;
+        border-radius: var(--borRad);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    header nav dropdown button .material-symbols-rounded {
+        font-size: larger;
+    }
+
+    dropdownlist a {
+        float: none;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    dropdownlist a:hover {
+        background-color: #ddd;
+    }
+
+    dropdown:hover dropdownlist {
+        display: block;
+    }
+
+    header nav dropdown dropdownlist {
+        display: none;
+        position: absolute;
+        background-color: var(--neutralColor);
+        min-width: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    } */
+
+    header nav dropdown:hover,
+    header nav dropdown dropdownlist:hover dropdown button {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: var(--borRad);
+        padding: 1rem;
+    }
+
+    header nav searchbox input {}
+
+    header nav searchbox:focus-within {
+        /* border-radius: var(--borRad); */
+        outline-color: var(--accentColor);
+        outline-style: solid;
+        outline-offset: -4px;
+        outline-width: 2px;
+    }
+
+    header nav searchbox button {
+        /* height: var(--searchHeight); */
+    }
+
+    main {
+        margin: 0;
+    }
+
+    main sidebar {
+        background: var(--complimentaryColor);
+        border-radius: 0 0 calc(var(--borRad)*2) calc(var(--borRad)*2);
+        justify-content: center;
+        overflow: hidden;
+        transition: all 0.2s ease-in-out;
+    }
+
+    main sidebar nav {
+        align-self: center;
+    }
+
+    main sidebar nav a {
+        border: none;
+        font-size: large;
+        background: transparent;
+        border-radius: calc(var(--borRad)*2);
+        cursor: pointer;
+    }
+
+    /* hover state for the navbar buttons */
+    main sidebar nav a:hover {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: calc(var(--borRad)*2);
+    }
+
+    /* make filled icons when hovered over navbar */
+    main sidebar nav a:hover .material-symbols-rounded,
+    .material-symbols-rounded:hover {
+        font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+    }
+
+    main content {
+        width: 100%;
+    }
+}
