@@ -5,15 +5,7 @@ create table if not exists users (
     users_id int not null auto_increment primary key unique,
     username varchar(32) not null,
     drowsapp varchar(64) not null,
-    created_at timestamp default current_timestamp,
-    updated_at timestamp default current_timestamp on update current_timestamp
-);
-
-create table if not exists roles (
-    roles_id int not null auto_increment primary key,
-    users_id int not null,
-    constraint users_id_fk_roles foreign key(users_id) references users(users_id),
-    isAdmin bool,
+    isAdmin bool default 0,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
 );
@@ -67,10 +59,7 @@ create table if not exists jobexperiences (
     updated_at timestamp default current_timestamp on update current_timestamp
 );
 
-insert into users (username, drowsapp) value ("user", "user");
-insert into users (username, drowsapp) value ("admin", "admin");
-INSERT INTO roles (users_id, isAdmin) SELECT 2, 1 FROM users WHERE users_id = 2;
+insert into users (username, drowsapp, isAdmin) value ("admin", "admin", 1);
 
+insert into users (username, drowsapp) values ("user", "user");
 select * from users;
-
-select roles.users_id, users.users_id, users.username, roles.isAdmin from roles join users;
