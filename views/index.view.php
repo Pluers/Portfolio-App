@@ -18,9 +18,12 @@ function sqlStatement($conn, $sql)
 <section>
     <?php
     $users = sqlStatement($conn, "SELECT users.username FROM users");
+    $isAdmin = sqlStatement($conn, "SELECT roles.isAdmin FROM roles JOIN users ON users.users_id WHERE roles.users_id = users.users_id");
     foreach ($users as $user) {
-        echo
-        "<article><img class='square'><profile><img class='circle'><p>" . $user['username'] . "</p><br></article>";
+        foreach ($isAdmin as $userIsAdmin) {
+            echo
+            "<article><img class='square'><profile><img class='circle'><p>" . $user['username'] . $userIsAdmin['isAdmin'] . "</p><br></article>";
+        }
     }
     ?>
 </section>

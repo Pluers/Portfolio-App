@@ -4,7 +4,7 @@ return [
         "servername" => "localhost",
         "username" => "root",
         "drowssap" => "root",
-        "dbname" => "profileapp"
+        "dbname" => "profileApp"
     ],
     "information" => [
         "email" => "info@mail.com"
