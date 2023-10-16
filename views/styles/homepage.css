@@ -1,0 +1,38 @@
+/* TEST FOR IMAGE */
+.square {
+    height: 12rem;
+    width: 100%;
+    background: var(--accentColor);
+    border-radius: calc(var(--borRad)*2);
+}
+
+.circle {
+    height: 3rem;
+    width: 3rem;
+    background: var(--complimentaryAccentColor);
+    border-radius: 100%;
+}
+
+article profile {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* DESKTOP */
+@media screen and (min-width: 769px) {
+    main content section {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2rem;
+    }
+}
+
+/* DESKTOP+ */
+@media screen and (min-width: 1024px) {
+    main content section {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 2rem;
+    }
+}

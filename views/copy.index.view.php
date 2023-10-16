@@ -1,11 +1,9 @@
 <html lang="nl">
+<link rel="stylesheet" href="style.css">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProfielPlus</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Link the icons from Google -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -90,30 +88,31 @@
         </sidebar>
         <content>
             <?php
-            $App = require "private.php";
-            $dbconn = $App['database'];
-            $servername = $App['database']['servername'];
-            $username = $App['database']['username'];
-            $password = $App['database']['drowssap'];
-            $dbname = $App['database']['dbname'];
-            // ROUTING
-            switch ($_SERVER['REQUEST_URI']) {
-                case '':
-                case '/':
-                    require __DIR__ . '/views/index.view.php';
-                    break;
-                case '/about':
-                    require __DIR__ . '/views/about.view.php';
-                    break;
-                case '/profile':
-                    require __DIR__ . '/views/profile.view.php';
-                    break;
-                default:
-                    http_response_code(404);
-                    require __DIR__ . '/404.php';
-                    break;
+            // TEST CONNECTION
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                // set the PDO error mode to exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+            // Prepare the sql statement
+            function sqlStatement($conn, $sql)
+            {
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
+            <section>
+                <?php
+                $users = sqlStatement($conn, "SELECT users.username FROM users");
+                foreach ($users as $user) {
+                    echo
+                    "<article><img class='square'><profile><img class='circle'><p>" . $user['username'] . "</p><br></article>";
+                }
+                ?>
+            </section>
             <footer>
                 <p>FOOTER</p>
             </footer>
