@@ -215,6 +215,7 @@ main sidebar nav a span.material-symbols-rounded {
 main content {
     overflow-y: scroll;
     height: calc(100vh - 8rem);
+    width: 100vw;
     border-radius: calc(var(--borRad)*2);
     background: var(--neutralColor);
 }

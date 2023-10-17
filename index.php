@@ -1,4 +1,8 @@
 <?php
+require_once "db.php";
+
+
+
 $_SESSION['loggedIn'] = true;
 $loggedIn = $_SESSION['loggedIn'];
 if (!$loggedIn) {
@@ -120,12 +124,6 @@ if (!$loggedIn) {
             </sidebar>
             <content>
                 <?php
-                $App = require "private.php";
-                $dbconn = $App['database'];
-                $servername = $App['database']['servername'];
-                $username = $App['database']['username'];
-                $password = $App['database']['drowssap'];
-                $dbname = $App['database']['dbname'];
                 // ROUTING
                 switch ($_SERVER['REQUEST_URI']) {
                     case '':
