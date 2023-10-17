@@ -132,6 +132,7 @@ header nav dropdown dropdownlist a {
 header nav dropdown dropdownlist a:hover {
     background: var(--neutralColor);
     border-radius: var(--borRad);
+    transform: translate(0, 14px);
 }
 
 header nav searchbox {
@@ -267,6 +268,7 @@ footer p {
         height: 48px;
         transform: translate(0, 0);
         flex-direction: unset;
+        padding: 0 8rem;
     }
 
     header nav dropdown,
@@ -296,6 +298,7 @@ footer p {
         position: unset;
         padding: 4px 8px;
         grid-template-columns: auto 24px;
+        margin-left: auto;
     }
 
     header nav searchbox input {
