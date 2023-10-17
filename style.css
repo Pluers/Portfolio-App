@@ -187,7 +187,7 @@ main sidebar {
 /* display the sidebar buttons in rows */
 main sidebar nav {
     display: flex;
-    width: 100%;
+    width: 100vw;
     justify-content: space-evenly;
 }
 
