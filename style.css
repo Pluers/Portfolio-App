@@ -71,7 +71,7 @@ header input[type="checkbox"]:checked ~ nav {
 }
 
 header nav {
-    height: calc(100vh - var(--sidebarHeight));
+    height: calc(100vh - var(--sidebarHeight) + 2vh);
     background: var(--complimentaryColor);
     transform: translate(0, -100%);
     transition: transform 0.2s ease-in-out;
@@ -107,6 +107,7 @@ header nav dropdown button .material-symbols-rounded {
 header nav dropdown:hover dropdownlist {
     display: flex;
     flex-direction: column;
+    transform: translate(0, 14px);
 }
 
 header nav dropdown dropdownlist {
@@ -114,7 +115,7 @@ header nav dropdown dropdownlist {
     position: absolute;
     background: var(--complimentaryColor);
     width: 16rem;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 6px 0px var(--accentColor);
     border-radius: var(--borRad);
     z-index: 1;
 }
@@ -132,10 +133,9 @@ header nav dropdown dropdownlist a {
 header nav dropdown dropdownlist a:hover {
     background: var(--neutralColor);
     border-radius: var(--borRad);
-    transform: translate(0, 14px);
 }
 
-header nav searchbox {
+header nav form {
     display: grid;
     grid-template-columns: auto 48px;
     position: absolute;
@@ -145,7 +145,7 @@ header nav searchbox {
     box-shadow: var(--accentColor) 0px 2px;
 }
 
-header nav searchbox input {
+header nav form input {
     border: none;
     background: transparent;
     padding: 10px;
@@ -155,21 +155,21 @@ header nav searchbox input {
 }
 
 /* remove default outline */
-header nav searchbox input:focus {
+header nav form input:focus {
     outline: none;
 }
 
-header nav searchbox button {
+header nav form button {
     border: none;
     background: transparent;
 }
 
-header nav searchbox button span {
+header nav form button span {
     transition: all 0.2s ease;
     font-size: 1.5rem;
 }
 
-header nav searchbox button:active span {
+header nav form button:active span {
     transition: all 0.2s ease;
     font-size: 2rem;
 }
@@ -219,6 +219,7 @@ main content {
     width: 100vw;
     border-radius: calc(var(--borRad)*2);
     background: var(--neutralColor);
+    box-shadow: 0 0px 10px 0 var(--accentColor);
 }
 
 /* left and right spacing for the content */
@@ -269,6 +270,7 @@ footer p {
         transform: translate(0, 0);
         flex-direction: unset;
         padding: 0 8rem;
+        box-shadow: 0 2px 6px 0 var(--accentColor);
     }
 
     header nav dropdown,
@@ -294,31 +296,31 @@ footer p {
         font-size: 1rem;
     }
 
-    header nav searchbox {
+    header nav form {
         position: unset;
         padding: 4px 8px;
         grid-template-columns: auto 24px;
-        margin-left: auto;
+        margin: auto 0 auto auto;
     }
 
-    header nav searchbox input {
+    header nav form input {
         width: unset;
         text-align: unset;
         font-size: 13px;
         padding: unset;
     }
 
-    header nav searchbox button {
+    header nav form button {
         cursor: pointer;
         padding: unset;
     }
 
-    header nav searchbox button span {
+    header nav form button span {
         font-size: unset;
     }
 
     /* add outline when focused on input field */
-    header nav searchbox:focus-within {
+    header nav form:focus-within {
         /* border-radius: var(--borRad); */
         outline-color: var(--accentColor);
         outline-style: solid;
@@ -335,6 +337,7 @@ footer p {
     main content {
         height: calc(100vh - 6rem);
         width: 100%;
+        box-shadow: unset;
     }
 
     main sidebar {
@@ -346,6 +349,7 @@ footer p {
         overflow: hidden;
         border-radius: calc(var(--borRad)*2);
         transition: all 0.1s ease-in-out;
+        box-shadow: 0 2px 6px 0 var(--accentColor);
     }
 
     main sidebar:hover {

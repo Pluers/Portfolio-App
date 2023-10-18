@@ -1,8 +1,6 @@
 <?php
 require_once "db.php";
 
-
-
 $_SESSION['loggedIn'] = true;
 $loggedIn = $_SESSION['loggedIn'];
 if (!$loggedIn) {
@@ -22,7 +20,7 @@ if (!$loggedIn) {
 
     <body>
         <header>
-            <input type="checkbox" name="" id="">
+            <input type="checkbox" name="" id="toggleMenu">
             <nav>
                 <dropdown>
                     <button>
@@ -67,19 +65,20 @@ if (!$loggedIn) {
                     </dropdownlist>
                 </dropdown>
 
-                <searchbox>
-                    <input type="text" placeholder="Search">
-                    <button>
+                <form action="" method="POST">
+                    <input type="text" placeholder="Search" name="searchInput">
+                    <button type=submit>
                         <span class="material-symbols-rounded">
                             search
                         </span>
                     </button>
-                </searchbox>
+                </form>
             </nav>
         </header>
         <main>
             <sidebar>
                 <nav>
+                    <!-- REDO as input selection -->
                     <a href="/">
                         <span class="material-symbols-rounded">
                             home
