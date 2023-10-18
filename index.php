@@ -66,7 +66,7 @@ if (!$loggedIn) {
                 </dropdown>
 
                 <form method='GET' action='/search?q={{searchTerm}}'>
-                    <input type="text" placeholder="Search" name="q">
+                    <input type="text" placeholder="Search" name="q" value=<?= $_GET['q'] ?>>
                     <button type=submit>
                         <span class="material-symbols-rounded">
                             search
@@ -135,8 +135,6 @@ if (!$loggedIn) {
                     case '/profile':
                         require __DIR__ . '/views/profile.view.php';
                         break;
-                    case '/search?q=' . $_GET['q']:
-                        require __DIR__ . '/search.php';
                     case '/edit':
                         require __DIR__ . '/views/editprofile.view.php';
                         break;
@@ -144,6 +142,8 @@ if (!$loggedIn) {
                         http_response_code(404);
                         require __DIR__ . '/404.php';
                         break;
+                    case '/search?q=' . $_GET['q']:
+                        require __DIR__ . '/search.php';
                 }
                 ?>
                 <footer>
