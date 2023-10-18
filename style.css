@@ -81,6 +81,7 @@ header nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 6px 0 var(--accentColor);
 }
 
 header nav dropdown {
@@ -107,6 +108,7 @@ header nav dropdown button .material-symbols-rounded {
 header nav dropdown:hover dropdownlist {
     display: flex;
     flex-direction: column;
+    transform: translate(0, 14px);
 }
 
 header nav dropdown dropdownlist {
@@ -114,7 +116,7 @@ header nav dropdown dropdownlist {
     position: absolute;
     background: var(--complimentaryColor);
     width: 16rem;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 6px 0px var(--accentColor);
     border-radius: var(--borRad);
     z-index: 1;
 }
@@ -132,7 +134,6 @@ header nav dropdown dropdownlist a {
 header nav dropdown dropdownlist a:hover {
     background: var(--neutralColor);
     border-radius: var(--borRad);
-    transform: translate(0, 14px);
 }
 
 header nav searchbox {
@@ -183,6 +184,7 @@ main sidebar {
     height: var(--sidebarHeight);
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 6px 0 var(--accentColor);
 }
 
 /* display the sidebar buttons in rows */
