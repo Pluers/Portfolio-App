@@ -136,12 +136,12 @@ if (!$loggedIn) {
                     case '/profile':
                         require __DIR__ . '/views/profile.view.php';
                         break;
-                        case '/profile':
-                        require __DIR__ . '/views/profile.view.php';
+                    case '/search':
+                        require __DIR__ . '/views/search.view.php';
                         break;
-                        case '/edit':
-                            require __DIR__ . '/views/editprofile.view.php';
-                            break;
+                    case '/edit':
+                        require __DIR__ . '/views/editprofile.view.php';
+                        break;
                     default:
                         http_response_code(404);
                         require __DIR__ . '/404.php';
