@@ -51,7 +51,8 @@ create table
     if not exists hobbies (
         hobbies_id int not null auto_increment primary key unique,
         users_id int not null,
-        hobby_name varchar(64)
+        hobby_name varchar(64),
+        hobby_description varchar(128)
     );
 
 create table
@@ -84,6 +85,6 @@ where
     users.users_id = user_hobbies.users_id
     and hobbies.hobbies_id = user_hobbies.hobbies_id;
 
-select * from user_hobbies;
+select * from hobbies;
 
 insert into user_hobbies (users_id, hobbies_id) values (1,1);

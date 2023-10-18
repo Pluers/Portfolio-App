@@ -9,5 +9,11 @@ require_once dirname(__FILE__, 2) . '/db.php';
         "<article><img class='square'><profile><img class='circle'><p>" . $user['username'] . " " . $user['isAdmin'] . "</p><br></article>";
     }
     ?>
+
+    <form action="hobby%update_hobby" method="post">
+        <input type="text" name="changeHobby" placeholder="Enter hobby name">
+        <button type="submit">submit</button>
+    </form>
+
 </section>
 <link rel="stylesheet" href="/views/styles/homepage.css">

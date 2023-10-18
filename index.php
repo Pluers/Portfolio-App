@@ -136,6 +136,9 @@ if (!$loggedIn) {
                     case '/profile':
                         require __DIR__ . '/views/profile.view.php';
                         break;
+                    case '/hobby%update_hobby':
+                        require __DIR__ . '/update_hobby.php';
+                        break;
                     default:
                         http_response_code(404);
                         require __DIR__ . '/404.php';
