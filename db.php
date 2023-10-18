@@ -22,15 +22,3 @@ function sqlStatement($conn, $sql)
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-function search($conn)
-{
-    if (!empty($_POST['searchInput'])) {
-
-        $term = $_POST['searchInput'];
-
-        $sql = "SELECT * FROM users WHERE username LIKE '%" . $term . "%'";
-        $r_query = sqlStatement($conn, $sql);
-    }
-    return $r_query;
-}

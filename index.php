@@ -65,8 +65,8 @@ if (!$loggedIn) {
                     </dropdownlist>
                 </dropdown>
 
-                <form action="" method="POST">
-                    <input type="text" placeholder="Search" name="searchInput">
+                <form method='GET' action='/search?q={{searchTerm}}'>
+                    <input type="text" placeholder="Search" name="q">
                     <button type=submit>
                         <span class="material-symbols-rounded">
                             search
@@ -135,9 +135,8 @@ if (!$loggedIn) {
                     case '/profile':
                         require __DIR__ . '/views/profile.view.php';
                         break;
-                    case '/search':
-                        require __DIR__ . '/views/search.view.php';
-                        break;
+                    case '/search?q=' . $_GET['q']:
+                        require __DIR__ . '/search.php';
                     case '/edit':
                         require __DIR__ . '/views/editprofile.view.php';
                         break;
