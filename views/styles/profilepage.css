@@ -19,6 +19,7 @@ content {
 
 }
 
+/* changing profile pciture size color and border radius*/
 .squaretwo {
     width: 100%;
     height: 16rem;
@@ -27,37 +28,69 @@ content {
     min-width: 100%;
 }
 
+/* put the text and the pictures right below and besides each other using grid */
 article {
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 10px;
 }
 
+/* 
 article div {
     display: flex;
     gap: 10px;
 }
-
+/* the profile picture edit button and name displayed in flex */
 content section:first-child {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
+
 }
 
+hr {
+    background-color: black;
+    width: 95%;
+}
+
+/* both articles and text besides each other with a gap in between */
 content section:nth-child(3) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     cursor: pointer;
     margin: auto;
     max-width: 100vw;
 }
 
+/* person name and profile picture in a flex to be postioned right beside each other */
 content section div {
     display: flex;
     gap: 10px;
+    flex-direction: column;
 }
 
+/* alter anything about the "edit profile button"*/
 content section button {
-    height: 25px;
+    height: 3rem;
+    width: 6rem;
+}
+
+/* TABLET */
+@media screen and (min-width: 426px) {}
+
+/* DESKTOP */
+@media screen and (min-width: 769px) {
+    content section:nth-child(3) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    content section:first-child {
+        flex-direction: row;
+    }
+
+    content section div {
+
+        flex-direction: row;
+    }
 }
