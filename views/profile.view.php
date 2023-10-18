@@ -1,10 +1,11 @@
 <section>
     <div>
         <img src="" alt="" class="square">
-        <h1>Person Name</h1>
+       <h1>Person Name</h1> 
     </div>
     <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
 </section>
+<hr>
 <h1 id="aboutme">About me</h1>
 <section>
     <article>
