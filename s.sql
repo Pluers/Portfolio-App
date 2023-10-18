@@ -1,3 +1,5 @@
+drop schema profileApp;
+
 CREATE SCHEMA IF NOT EXISTS `profileApp` DEFAULT CHARACTER SET utf8;
 
 USE profileApp;
@@ -22,16 +24,12 @@ create table
     );
 
 create table
-    if not exists user_education (users_id int, educations_id int);
-
-create table
     if not exists educations (
         educations_id int not null auto_increment primary key unique,
+        users_id int,
         education_name varchar(64) not null,
         degree int not null,
         school varchar(64) not null,
-        edu_start timestamp not null,
-        edu_end timestamp not null,
         hasFinished bool default 0,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp
@@ -50,7 +48,7 @@ create table
 create table
     if not exists hobbies (
         hobbies_id int not null auto_increment primary key unique,
-        users_id int not null,
+        users_id int,
         hobby_name varchar(64)
     );
 
@@ -71,19 +69,21 @@ insert into
 
 insert into users (username, drowsapp) values ("user", "user");
 
-insert into hobbies (hobby_name) value ("hardlopen");
+insert into hobbies (users_id, hobby_name) value (2, "fietsen");
 
-select * from hobbies;
+select * from hobbies h join users u where h.users_id = u.users_id;
 
 select
-    users.username,
-    hobbies.hobby_name
-from users
-    join user_hobbies, hobbies
-where
-    users.users_id = user_hobbies.users_id
-    and hobbies.hobbies_id = user_hobbies.hobbies_id;
+    u.username,
+    h.hobby_name
+from users u
+    join hobbies h
+where h.users_id = u.users_id;
 
-select * from user_hobbies;
-
-insert into user_hobbies (users_id, hobbies_id) values (1,1);
+insert into educations
+select
+    u.username,
+    e.education_name
+from users u
+    join education e
+where e.users_id = u.users_id;
