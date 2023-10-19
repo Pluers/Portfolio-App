@@ -220,6 +220,8 @@ main content {
     border-radius: calc(var(--borRad)*2);
     background: var(--neutralColor);
     box-shadow: 0 0px 10px 0 var(--accentColor);
+    display: flex;
+    flex-direction: column;
 }
 
 /* left and right spacing for the content */
@@ -231,6 +233,7 @@ footer {
     background: var(--complimentaryColor);
     padding: 0;
     text-align: center;
+    margin-top: auto;
 }
 
 footer p {
