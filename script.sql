@@ -70,4 +70,11 @@ insert into
 
 insert into users (username, drowsapp) values ("user", "user");
 
-select * from users;
+insert into
+    educations (education_name, degree, school) value (
+        "software development",
+        4,
+        "windesheim"
+    )
+
+select * from educations;
