@@ -65,9 +65,9 @@ if (!$loggedIn) {
                     </dropdownlist>
                 </dropdown>
 
-                <form method='GET' action='/search?q={{searchTerm}}'>
-                    <input type="text" placeholder="Search" name="q" value=<?= $_GET['q'] ?>>
-                    <button type=submit>
+                <form method="GET" action="/?q=">
+                    <input type="text" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
+                    <button type="submit">
                         <span class="material-symbols-rounded">
                             search
                         </span>
@@ -91,41 +91,33 @@ if (!$loggedIn) {
                         </span>
                         <p>About</p>
                     </a>
-                    <?php
-                    $loggedIn = true;
-                    if ($loggedIn) {
-                    ?>
-                        <a href="/profile">
-                            <span class="material-symbols-rounded">
-                                person
-                            </span>
-                            <p>Profile</p>
-                        </a>
-                        <a href="/logout">
-                            <span class="material-symbols-rounded">
-                                logout
-                            </span>
-                            <p>Log out</p>
-                        </a>
-                    <?php
-                    } else {
-                    ?>
-                        <a href="/login">
-                            <span class="material-symbols-rounded">
-                                login
-                            </span>
-                            <p>Log in</p>
-                        </a>
-                    <?php
-                    }
-                    ?>
+                    <a href="/profile">
+                        <span class="material-symbols-rounded">
+                            person
+                        </span>
+                        <p>Profile</p>
+                    </a>
+                    <a href="/logout">
+                        <span class="material-symbols-rounded">
+                            logout
+                        </span>
+                        <p>Log out</p>
+                    </a>
                 </nav>
             </sidebar>
             <content>
                 <?php
+                if (isset($_GET['q'])) {
+                    $searchq = $_GET['q'];
+                } else {
+                    $searchq = '';
+                }
                 // ROUTING
                 switch ($_SERVER['REQUEST_URI']) {
                     case '':
+                    case '/?q=' . $searchq:
+                        require __DIR__ . '/search.php';
+                        break;
                     case '/':
                         require __DIR__ . '/views/index.view.php';
                         break;
@@ -142,8 +134,6 @@ if (!$loggedIn) {
                         http_response_code(404);
                         require __DIR__ . '/404.php';
                         break;
-                    case '/search?q=' . $_GET['q']:
-                        require __DIR__ . '/search.php';
                 }
                 ?>
                 <footer>

@@ -1,6 +1,4 @@
 <?php
-
-$searchTerm = $_GET['q'];
 function search($conn)
 {
     if (!empty($_GET['q'])) {
@@ -9,11 +7,11 @@ function search($conn)
 
         $users = sqlStatement($conn, "SELECT username FROM users WHERE username LIKE '%" . $term . "%'");
         $hobbies = sqlStatement($conn, "SELECT hobby_name FROM hobbies WHERE hobby_name LIKE '%" . $term . "%'");
-    }
-    return $returninfo = [
-        "users" => $users,
-        "hobbies" => $hobbies
-    ];
+        return [
+            "users" => $users,
+            "hobbies" => $hobbies
+        ];
+    } else return " ";
 }
 if (!empty($_GET['q'])) {
     echo "<h1>Users</h1>";
