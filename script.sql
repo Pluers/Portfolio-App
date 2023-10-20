@@ -19,19 +19,21 @@ create table
     if not exists educations (
         educations_id int not null auto_increment primary key unique,
         education_name varchar(64) not null,
-        degree int not null,
+        degree int,
         school varchar(64) not null,
         hasFinished bool default 0,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp
     );
 
+-- misschien weglaten?
+
 create table
     if not exists subjects (
         subjects_id int not null auto_increment primary key unique,
         educations_id int not null,
         subject_name varchar(64) not null,
-        grade float not null,
+        grade float,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp
     );
@@ -75,6 +77,20 @@ insert into
         "software development",
         4,
         "windesheim"
-    )
+    );
 
-select * from educations;
+insert into
+    jobexperiences (
+        company_name,
+        function_name,
+        job_start,
+        job_end
+    )
+values (
+        "supermarkt",
+        "vakken vullen",
+        NOW(),
+        NOW()
+    );
+
+select * from jobexperiences;

@@ -115,8 +115,8 @@ header nav dropdown dropdownlist {
     position: absolute;
     background: var(--complimentaryColor);
     width: 16rem;
-    box-shadow: 0px 2px 6px 0px var(--accentColor);
     border-radius: var(--borRad);
+    box-shadow: 0px 2px 6px 0px var(--accentColor);
     z-index: 1;
 }
 
@@ -193,6 +193,9 @@ header nav a {
     width: 16rem;
     justify-content: center;
     text-decoration: none;
+}
+
+header nav > a {
     background: var(--accentColor);
     border-radius: var(--borRad);
 }
@@ -315,6 +318,11 @@ footer p {
     header nav dropdown dropdownlist {
         width: 6rem;
         padding: 0;
+    }
+
+    header nav dropdown dropdownlist {
+        border-radius: var(--borRad);
+        box-shadow: unset;
     }
 
     header nav dropdown dropdownlist a {
