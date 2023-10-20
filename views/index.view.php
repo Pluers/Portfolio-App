@@ -1,6 +1,4 @@
-<?php
-require_once dirname(__FILE__, 2) . '/db.php';
-?>
+<link rel="stylesheet" href="/views/styles/homepage.css">
 <section>
     <?php
     $users = sqlStatement($conn, "SELECT users.username, users.isAdmin FROM users");
@@ -10,4 +8,3 @@ require_once dirname(__FILE__, 2) . '/db.php';
     }
     ?>
 </section>
-<link rel="stylesheet" href="/views/styles/homepage.css">
