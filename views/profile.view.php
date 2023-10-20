@@ -1,6 +1,6 @@
 <section>
     <div>
-        <img src="" alt="" class="square">
+        <img src="" alt="" class="circle">
        <h1>Person Name</h1> 
     </div>
     <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>

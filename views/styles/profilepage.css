@@ -12,7 +12,7 @@ content {
 }
 
 /* TEST */
-.square {
+.circle {
     height: 10rem;
     background-color: #555;
     border-radius: 100px;
@@ -22,10 +22,9 @@ content {
 /* changing profile pciture size color and border radius*/
 .squaretwo {
     width: 100%;
-    height: 16rem;
+    height: 20rem;
     background-color: #555;
     border-radius: 30px;
-    min-width: 100%;
 }
 
 /* put the text and the pictures right below and besides each other using grid */
@@ -55,7 +54,7 @@ hr {
 }
 
 /* both articles and text besides each other with a gap in between */
-content section:nth-child(3) {
+main content section:nth-child(4) {
     display: grid;
     gap: 2rem;
     cursor: pointer;
@@ -64,14 +63,14 @@ content section:nth-child(3) {
 }
 
 /* person name and profile picture in a flex to be postioned right beside each other */
-content section div {
+main content section div {
     display: flex;
     gap: 10px;
     flex-direction: column;
 }
 
 /* alter anything about the "edit profile button"*/
-content section button {
+main content section button {
     height: 3rem;
     width: 6rem;
 }
@@ -81,15 +80,16 @@ content section button {
 
 /* DESKTOP */
 @media screen and (min-width: 769px) {
-    content section:nth-child(3) {
-        grid-template-columns: 1fr 1fr;
+    main content section:nth-child(4) {
+        gap: 12px;
+        grid-template-columns: auto auto;
     }
 
-    content section:first-child {
+    main content section:first-child {
         flex-direction: row;
     }
 
-    content section div {
+    main content section div {
 
         flex-direction: row;
     }

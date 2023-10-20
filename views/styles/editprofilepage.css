@@ -1,8 +1,37 @@
 /* wat moet er in de edit profile pagina staan
-- email
--wachtwoord
--voor en achternaam
+- email (input field)
+- wachtwoord (input field)
+-voor en achternaam ( input fields onder elkaar)
 - content op je profile (foto's tekst en profielfoto)
-- hobbies
-- job experience
-- educations
+- hobbies (input field met bewerk knop zoals de rest)
+- job experience (groot inout field varchar(255)
+- educations input field */
+
+.circle {
+    border-radius: 100px;
+    height: 10rem;
+    background-color: #555;
+}
+
+.square {
+    height: 20rem;
+    background-color: #555;
+    width: 20rem;
+    border-radius: 30px;
+
+}
+
+section div {
+    display: grid;
+    grid-template-columns: auto;
+
+
+}
+
+textarea {
+    resize: none;
+}
+
+hr {
+    background-color: black;
+}
