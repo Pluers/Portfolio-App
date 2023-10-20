@@ -3,7 +3,7 @@
 
 function sqlStatement($conn, $sql)
 {
-    $devmode = true;
+    $devmode = parse_ini_file("env.ini", true)['settings']['developer_mode'];
     if ($devmode) echo "conn = " . var_export($conn, true);
 
     if ($conn == null) {

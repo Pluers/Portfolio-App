@@ -14,7 +14,9 @@ $routes = [
     "/details" => "views/details.view.php",
     "/contact" => "views/contact.view.php",
     "/skills" => "views/skills.view.php",
-    "/?q=" . urlencode($searchq) => "views/search.php"
+    "/profile" => "views/profile.view.php",
+    "/editprofile" => "views/editprofile.view.php",
+    "/?q=" . urlencode($searchq) => "modules/search.php"
 ];
 if (!$loggedIn) {
     header('Location: http://www.google.com');
