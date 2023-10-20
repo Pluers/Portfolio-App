@@ -1,24 +1,20 @@
 <?php
 require "core/db.php";
 require "modules/query_builder.php";
-$loggedIn = ($_SESSION['loggedIn'] = true);
 
 if (isset($_GET['q'])) {
     $searchq = $_GET['q'];
 } else {
     $searchq = '';
 }
-$wb = new QueryBuilder(new dbConnection());
 $routes = [
     "/" => "views/index.view.php",
     "/about" => "views/about.view.php",
-    "/details" => "views/details.view.php",
-    "/contact" => "views/contact.view.php",
-    "/skills" => "views/skills.view.php",
     "/profile" => "views/profile.view.php",
     "/editprofile" => "views/editprofile.view.php",
     "/?q=" . urlencode($searchq) => "modules/search.php"
 ];
+$loggedIn = ($_SESSION['loggedIn'] = true);
 if (!$loggedIn) {
     header('Location: http://www.google.com');
 } else {
