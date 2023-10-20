@@ -1,8 +1,6 @@
 <?php
 require_once "db.php";
 
-
-
 $_SESSION['loggedIn'] = true;
 $loggedIn = $_SESSION['loggedIn'];
 if (!$loggedIn) {
@@ -22,7 +20,7 @@ if (!$loggedIn) {
 
     <body>
         <header>
-            <input type="checkbox" name="" id="">
+            <input type="checkbox" name="">
             <nav>
                 <dropdown>
                     <button>
@@ -67,19 +65,20 @@ if (!$loggedIn) {
                     </dropdownlist>
                 </dropdown>
 
-                <searchbox>
-                    <input type="text" placeholder="Search">
-                    <button>
+                <form method="GET" action="/?q=">
+                    <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
+                    <button type="submit">
                         <span class="material-symbols-rounded">
                             search
                         </span>
                     </button>
-                </searchbox>
+                </form>
             </nav>
         </header>
         <main>
             <sidebar>
                 <nav>
+                    <!-- REDO as input selection -->
                     <a href="/">
                         <span class="material-symbols-rounded">
                             home
@@ -92,41 +91,33 @@ if (!$loggedIn) {
                         </span>
                         <p>About</p>
                     </a>
-                    <?php
-                    $loggedIn = true;
-                    if ($loggedIn) {
-                    ?>
-                        <a href="/profile">
-                            <span class="material-symbols-rounded">
-                                person
-                            </span>
-                            <p>Profile</p>
-                        </a>
-                        <a href="/logout">
-                            <span class="material-symbols-rounded">
-                                logout
-                            </span>
-                            <p>Log out</p>
-                        </a>
-                    <?php
-                    } else {
-                    ?>
-                        <a href="/login">
-                            <span class="material-symbols-rounded">
-                                login
-                            </span>
-                            <p>Log in</p>
-                        </a>
-                    <?php
-                    }
-                    ?>
+                    <a href="/profile">
+                        <span class="material-symbols-rounded">
+                            person
+                        </span>
+                        <p>Profile</p>
+                    </a>
+                    <a href="/logout">
+                        <span class="material-symbols-rounded">
+                            logout
+                        </span>
+                        <p>Log out</p>
+                    </a>
                 </nav>
             </sidebar>
             <content>
                 <?php
+                if (isset($_GET['q'])) {
+                    $searchq = $_GET['q'];
+                } else {
+                    $searchq = '';
+                }
                 // ROUTING
                 switch ($_SERVER['REQUEST_URI']) {
                     case '':
+                    case '/?q=' . urlencode($searchq):
+                        require __DIR__ . '/search.php';
+                        break;
                     case '/':
                         require __DIR__ . '/views/index.view.php';
                         break;
@@ -136,12 +127,9 @@ if (!$loggedIn) {
                     case '/profile':
                         require __DIR__ . '/views/profile.view.php';
                         break;
-                        case '/profile':
-                        require __DIR__ . '/views/profile.view.php';
+                    case '/edit':
+                        require __DIR__ . '/views/editprofile.view.php';
                         break;
-                        case '/edit':
-                            require __DIR__ . '/views/editprofile.view.php';
-                            break;
                     default:
                         http_response_code(404);
                         require __DIR__ . '/404.php';
