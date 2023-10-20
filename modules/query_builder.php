@@ -47,7 +47,7 @@ function select($table, $cond = '')
     }
 }
 
-function delete($table, $cond = '')
+function harddel($table, $cond = '')
 {
     global $devmode, $conn;
     if ($devmode) {
