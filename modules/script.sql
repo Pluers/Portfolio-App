@@ -79,6 +79,8 @@ insert into
         "windesheim"
     );
 
+-- for testing purposes
+
 insert into
     jobexperiences (
         company_name,
