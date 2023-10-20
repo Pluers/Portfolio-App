@@ -181,7 +181,7 @@
 
     header nav form button:active span {
         transition: all 0.2s ease;
-        font-size: 2rem;
+        font-size: 28px;
     }
 
     header nav a {
