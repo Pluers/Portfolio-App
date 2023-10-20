@@ -66,7 +66,7 @@ if (!$loggedIn) {
                 </dropdown>
 
                 <form method="GET" action="/?q=">
-                    <input type="text" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
+                    <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
                     <button type="submit">
                         <span class="material-symbols-rounded">
                             search
@@ -115,7 +115,7 @@ if (!$loggedIn) {
                 // ROUTING
                 switch ($_SERVER['REQUEST_URI']) {
                     case '':
-                    case '/?q=' . $searchq:
+                    case '/?q=' . urlencode($searchq):
                         require __DIR__ . '/search.php';
                         break;
                     case '/':
