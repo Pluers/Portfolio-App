@@ -140,6 +140,7 @@ header nav form {
     grid-template-columns: auto 48px;
     position: absolute;
     bottom: 3rem;
+    width: 16rem;
     background: var(--neutralColor);
     border-radius: var(--borRad);
     box-shadow: var(--accentColor) 0px 2px;
@@ -149,7 +150,7 @@ header nav form input {
     border: none;
     background: transparent;
     padding: 10px;
-    width: 60vw;
+    width: 100%;
     font-size: 1rem;
     text-align: center;
 }
@@ -173,8 +174,6 @@ header nav form button {
     background: transparent;
 }
 
-
-
 header nav form button span {
     transition: all 0.2s ease;
     font-size: 1.5rem;
@@ -182,6 +181,27 @@ header nav form button span {
 
 header nav form button:active span {
     transition: all 0.2s ease;
+    font-size: 2rem;
+}
+
+header nav a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 16rem;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--accentColor);
+    border-radius: var(--borRad);
+}
+
+header nav a * {
+    color: var(--complimentaryColor);
+}
+
+header nav a .material-symbols-rounded {
     font-size: 2rem;
 }
 
@@ -212,6 +232,10 @@ main sidebar nav a {
     display: flex;
     align-items: center;
     transition: 0.2s ease-in-out;
+}
+
+main sidebar nav a:last-child {
+    display: none;
 }
 
 /* remove text for navbar items for mobile*/
@@ -310,6 +334,10 @@ footer p {
         font-size: 1rem;
     }
 
+    header nav a {
+        display: none;
+    }
+
     header nav form {
         position: unset;
         padding: 4px 8px;
@@ -392,6 +420,10 @@ footer p {
 
     main sidebar nav a {
         padding: 3rem 1.3rem;
+    }
+
+    main sidebar nav a:last-child {
+        display: flex;
     }
 
     /* hover state for the navbar buttons */

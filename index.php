@@ -65,6 +65,13 @@ if (!$loggedIn) {
                     </dropdownlist>
                 </dropdown>
 
+                <a href="/logout">
+                    <span class="material-symbols-rounded">
+                        logout
+                    </span>
+                    <p>Log out</p>
+                </a>
+
                 <form method="GET" action="/?q=">
                     <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
                     <button type="submit">
