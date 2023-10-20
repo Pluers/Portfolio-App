@@ -15,7 +15,7 @@ function search($conn)
             "jobexperiences" => $jobexp,
             "educations" => $edu
         ];
-    } else return " ";
+    } else return "";
 }
 if (!empty($_GET['q'])) {
     if (!empty(search($conn)["users"])) {
@@ -51,4 +51,6 @@ if (!empty($_GET['q'])) {
             echo "<br>";
         }
     }
+} else {
+    echo "No Results";
 }

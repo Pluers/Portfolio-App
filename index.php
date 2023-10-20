@@ -20,7 +20,7 @@ if (!$loggedIn) {
 
     <body>
         <header>
-            <input type="checkbox" name="" id="toggleMenu">
+            <input type="checkbox" name="">
             <nav>
                 <dropdown>
                     <button>

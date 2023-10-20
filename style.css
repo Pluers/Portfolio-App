@@ -139,7 +139,7 @@ header nav form {
     display: grid;
     grid-template-columns: auto 48px;
     position: absolute;
-    bottom: 5rem;
+    bottom: 3rem;
     background: var(--neutralColor);
     border-radius: var(--borRad);
     box-shadow: var(--accentColor) 0px 2px;
