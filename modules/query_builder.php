@@ -1,17 +1,23 @@
 <?php
-// Prepare the sql statement
-
-function sqlStatement($conn, $sql)
+class QueryBuilder
 {
-    $devmode = parse_ini_file("env.ini", true)['settings']['developer_mode'];
-    if ($devmode) echo "conn = " . var_export($conn, true);
-
-    if ($conn == null) {
-        echo "Error: database connection is null";
-        return null;
+    // Start connection
+    public $conn;
+    public function __construct($conn)
+    {
+        $this->conn = $conn->conn;
     }
+    // Prepare the sql statement
+    function customStatement($sql)
+    {
+        // if ($devmode) echo "conn = " . var_export($this->conn, true);
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
 }

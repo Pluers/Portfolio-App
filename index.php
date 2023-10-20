@@ -8,6 +8,7 @@ if (isset($_GET['q'])) {
 } else {
     $searchq = '';
 }
+$wb = new QueryBuilder(new dbConnection());
 $routes = [
     "/" => "views/index.view.php",
     "/about" => "views/about.view.php",
