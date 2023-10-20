@@ -11,13 +11,6 @@ $devmode = $info['settings']['developer_mode'];
 $dbenabled = $info['settings']['database_enabled'];
 $loggedIn = ($_SESSION['loggedIn'] = $info['settings']['logged_in']);
 
-// checks if the user is logged in, if not redirect to 'loginpage'
-if (!$loggedIn) {
-    header('Location: https://google.com/');
-} else {
-    require 'views/base.view.php';
-}
-
 // REQUIREMENTS
 if ($dbenabled) require "core/db.php";
 require "modules/query_builder.php";
@@ -35,3 +28,10 @@ $routes = [
     "/editprofile" => "views/editprofile.view.php",
     "/?q=" . urlencode($searchq) => "modules/search.php"
 ];
+
+// checks if the user is logged in, if not redirect to 'loginpage'
+if (!$loggedIn) {
+    header('Location: https://google.com/');
+} else {
+    require 'views/base.view.php';
+}
