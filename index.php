@@ -1,158 +1,37 @@
 <?php
-require_once "db.php";
 
-$_SESSION['loggedIn'] = true;
-$loggedIn = $_SESSION['loggedIn'];
+// VARIABLES
+$info = parse_ini_file("env.ini", true);
+$dbconn = $info['database'];
+$servername = $info['database']['servername'];
+$username = $info['database']['username'];
+$password = $info['database']['drowssap'];
+$dbname = $info['database']['dbname'];
+$devmode = $info['settings']['developer_mode'];
+$dbenabled = $info['settings']['database_enabled'];
+$loggedIn = ($_SESSION['loggedIn'] = $info['settings']['logged_in']);
+
+// checks if the user is logged in, if not redirect to 'loginpage'
 if (!$loggedIn) {
-    header('Location: http://www.google.com');
+    header('Location: https://google.com/');
 } else {
-?>
-    <html lang="nl">
+    require 'views/base.view.php';
+}
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ProfielPlus</title>
-        <link rel="icon" type="image/x-icon" href="https://twinery.org/cookbook/stylesheets/logo.svg">
-        <!-- CSS for the index -->
-        <link rel="stylesheet" href="style.css">
-        <!-- Link the icons from Google -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    </head>
+// REQUIREMENTS
+if ($dbenabled) require "core/db.php";
+require "modules/query_builder.php";
 
-    <body>
-        <header>
-            <input type="checkbox" name="">
-            <nav>
-                <dropdown>
-                    <button>
-                        category
-                        <span class="material-symbols-rounded">
-                            arrow_drop_down
-                        </span>
-                    </button>
-                    <dropdownlist>
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                        <a href="#">Link 4 is a very long word</a>
-                    </dropdownlist>
-                </dropdown>
-                <dropdown>
-                    <button>
-                        category
-                        <span class="material-symbols-rounded">
-                            arrow_drop_down
-                        </span>
-                    </button>
-                    <dropdownlist>
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                        <a href="#">Link 4 is a very long word</a>
-                    </dropdownlist>
-                </dropdown>
-                <dropdown>
-                    <button>
-                        category
-                        <span class="material-symbols-rounded">
-                            arrow_drop_down
-                        </span>
-                    </button>
-                    <dropdownlist>
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                        <a href="#">Link 4 is a very long word</a>
-                    </dropdownlist>
-                </dropdown>
+// sets the searchq variable to whatever is in the input field or in the url if it isn't empty, if it is then leave it blank
+if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
-                <a href="/logout">
-                    <span class="material-symbols-rounded">
-                        logout
-                    </span>
-                    <p>Log out</p>
-                </a>
-
-                <form method="GET" action="/?q=">
-                    <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
-                    <button type="submit">
-                        <span class="material-symbols-rounded">
-                            search
-                        </span>
-                    </button>
-                </form>
-            </nav>
-        </header>
-        <main>
-            <sidebar>
-                <nav>
-                    <!-- REDO as input selection -->
-                    <a href="/">
-                        <span class="material-symbols-rounded">
-                            home
-                        </span>
-                        <p>Home</p>
-                    </a>
-                    <a href="/about">
-                        <span class="material-symbols-rounded">
-                            help
-                        </span>
-                        <p>About</p>
-                    </a>
-                    <a href="/profile">
-                        <span class="material-symbols-rounded">
-                            person
-                        </span>
-                        <p>Profile</p>
-                    </a>
-                    <a href="/logout">
-                        <span class="material-symbols-rounded">
-                            logout
-                        </span>
-                        <p>Log out</p>
-                    </a>
-                </nav>
-            </sidebar>
-            <content>
-                <?php
-                if (isset($_GET['q'])) {
-                    $searchq = $_GET['q'];
-                } else {
-                    $searchq = '';
-                }
-                // ROUTING
-                switch ($_SERVER['REQUEST_URI']) {
-                    case '':
-                    case '/?q=' . urlencode($searchq):
-                        require __DIR__ . '/search.php';
-                        break;
-                    case '/':
-                        require __DIR__ . '/views/index.view.php';
-                        break;
-                    case '/about':
-                        require __DIR__ . '/views/about.view.php';
-                        break;
-                    case '/profile':
-                        require __DIR__ . '/views/profile.view.php';
-                        break;
-                    case '/edit':
-                        require __DIR__ . '/views/editprofile.view.php';
-                        break;
-                    default:
-                        http_response_code(404);
-                        require __DIR__ . '/404.php';
-                        break;
-                }
-                ?>
-                <footer>
-                    <p>&copy;Jerrican</p>
-                </footer>
-            </content>
-        </main>
-    </body>
-
-    </html>
-
-<?php
-};
-?>
+// EXEPTIONS
+$routes = [
+    "/" => "views/index.view.php",
+    "/about" => "views/about.view.php",
+    "/login" => "views/login.view.php",
+    "/logout" => "modules/logout.php",
+    "/profile" => "views/profile.view.php",
+    "/editprofile" => "views/editprofile.view.php",
+    "/?q=" . urlencode($searchq) => "modules/search.php"
+];
