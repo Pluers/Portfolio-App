@@ -14,55 +14,60 @@
     <header>
         <input type="checkbox" name="">
         <nav>
-            <dropdown>
-                <button>
-                    category
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                    <a href="#">Link 4 is a very long word</a>
-                </dropdownlist>
-            </dropdown>
-            <dropdown>
-                <button>
-                    category
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                    <a href="#">Link 4 is a very long word</a>
-                </dropdownlist>
-            </dropdown>
-            <dropdown>
-                <button>
-                    category
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                    <a href="#">Link 4 is a very long word</a>
-                </dropdownlist>
-            </dropdown>
-
             <a href="/logout">
                 <span class="material-symbols-rounded">
                     logout
                 </span>
                 <p>Log out</p>
             </a>
+            <dropdown>
+                <button>
+                    Hobbies
+                    <span class="material-symbols-rounded">
+                        arrow_drop_down
+                    </span>
+                </button>
+                <dropdownlist>
+                    <?php
+                    $hobbies = customStatement("SELECT hobby_name FROM hobbies");
+                    foreach ($hobbies as $hobby) {
+                        echo "<a href='#'>" . $hobby['hobby_name'] . "</a>";
+                    }
+                    ?>
+                </dropdownlist>
+            </dropdown>
+            <dropdown>
+                <button>
+                    Educations
+                    <span class="material-symbols-rounded">
+                        arrow_drop_down
+                    </span>
+                </button>
+                <dropdownlist>
+                    <?php
+                    $educations = customStatement("SELECT education_name FROM educations");
+                    foreach ($educations as $education) {
+                        echo "<a href='#'>" . $education['education_name'] . "</a>";
+                    }
+                    ?>
+                </dropdownlist>
+            </dropdown>
+            <dropdown>
+                <button>
+                    Job Experiences
+                    <span class="material-symbols-rounded">
+                        arrow_drop_down
+                    </span>
+                </button>
+                <dropdownlist>
+                    <?php
+                    $jobexperiences = customStatement("SELECT company_name, function_name FROM jobexperiences");
+                    foreach ($jobexperiences as $jobexperience) {
+                        echo "<a href='#'>" . $jobexperience['company_name'] . " - " . $jobexperience['function_name'] . "</a>";
+                    }
+                    ?>
+                </dropdownlist>
+            </dropdown>
 
             <form method="GET" action="/?q=">
                 <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
