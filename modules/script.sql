@@ -21,7 +21,8 @@ create table
         education_name varchar(64) not null,
         degree int,
         school varchar(64) not null,
-        hasFinished bool default 0,
+        edu_start timestamp,
+        edu_end timestamp,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp
     );
@@ -61,8 +62,8 @@ create table
         jobexperiences_id int not null auto_increment primary key unique,
         company_name varchar(64) not null,
         function_name varchar(128) not null,
-        job_start timestamp not null,
-        job_end timestamp not null,
+        job_start timestamp,
+        job_end timestamp,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp
     );
@@ -71,6 +72,8 @@ insert into
     users (username, drowsapp, isAdmin) value ("admin", "admin", 1);
 
 insert into users (username, drowsapp) values ("user", "user");
+
+insert into hobbies (users_id, hobby_name) values (1, "gamen");
 
 insert into
     educations (education_name, degree, school) value (
@@ -82,17 +85,10 @@ insert into
 -- for testing purposes
 
 insert into
-    jobexperiences (
-        company_name,
-        function_name,
-        job_start,
-        job_end
-    )
+    jobexperiences (company_name, function_name,)
 values (
         "supermarkt",
         "vakken vullen",
-        NOW(),
-        NOW()
     );
 
 select * from jobexperiences;
