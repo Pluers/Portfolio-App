@@ -72,3 +72,11 @@ body {
 .button > input:hover{
     background: #655c4d;
 }
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}

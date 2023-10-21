@@ -96,3 +96,5 @@ values (
     );
 
 select * from jobexperiences;
+
+alter table users ADD UNIQUE (username);
