@@ -1,3 +1,8 @@
+<?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
+    <div class="alert">
+        Username wordt al gebruikt!
+    </div>
+<?php } ?>
 <div class="container">
     <form action="/controllers/register.php" method="post">
         <div class="form-info">

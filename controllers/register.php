@@ -22,7 +22,7 @@ $stmt->execute();
 $number_of_rows = $stmt->fetchColumn();
 
 if ($number_of_rows > 0) {
-    redirect('/register');
+    redirect('/register?error=1'); // gebruiker bestaat al
 }
 
 $sql = "INSERT INTO users (username, drowsapp) VALUE (:username, :passwordHashed)";
