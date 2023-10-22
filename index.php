@@ -45,5 +45,5 @@ if (!$loggedIn) {
 } else if (array_key_exists(getSanitizedUri(), $routesUnAuthorised)) {
     require 'views/unauthorised/base.view.php';
 } else {
-    require 'views/base.view.php';
+    require 'controllers/base.php';
 }
