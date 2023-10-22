@@ -24,11 +24,11 @@ global $conn;
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
 $routes = [
-    '/' => 'views/index.view.php',
-    '/about' => 'views/about.view.php',
+    '/' => 'controllers/index.php',
+    '/about' => 'controllers/about.php',
     '/logout' => 'modules/logout.php',
-    '/profile' => 'views/profile.view.php',
-    '/editprofile' => 'views/editprofile.view.php',
+    '/profile' => 'controllers/profile.php',
+    '/edit' => 'controllers/edit_profile.php',
     '/?q=' . urlencode($searchq) => 'modules/search.php'
 ];
 
@@ -45,5 +45,5 @@ if (!$loggedIn) {
 } else if (array_key_exists(getSanitizedUri(), $routesUnAuthorised)) {
     require 'views/unauthorised/base.view.php';
 } else {
-    require 'views/base.view.php';
+    require 'controllers/base.php';
 }
