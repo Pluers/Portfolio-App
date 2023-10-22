@@ -34,7 +34,7 @@
                     <p>Register</p>
                 </a>
             <?php } ?>
-            <a href="/logout" style="background:<?= $devmode ? "red" : "unset" ?>">
+            <a href="/logout" <?= $devmode ? "style='background:red'" : "" ?>>
                 <span class="material-symbols-rounded">
                     logout
                 </span>
