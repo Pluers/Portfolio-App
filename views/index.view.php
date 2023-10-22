@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/views/styles/homepage.css">
+<link rel="stylesheet" href="/views/public/styles/homepage.css">
 <section>
     <?php
     $users = customStatement("SELECT users.username, users.isAdmin FROM users");

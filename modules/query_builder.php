@@ -23,17 +23,18 @@ function customStatement($sql)
 /* Select Method
  * SELECT based on table and condition provided
  * */
-function select($table, $cond = '')
+function select($var, $table, $cond = '')
 {
     global $devmode, $conn;
     if ($devmode) {
+        echo "variable = " . var_export($var, true) . "<br>";
         echo "tablename = " . var_export($table, true) . "<br>";
         echo "condition = " . var_export($cond, true) . "<br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
     }
-    $sql = "SELECT * FROM $table";
+    $sql = "SELECT $var FROM $table";
     if ($cond != '') {
         $sql .= " WHERE $cond";
     }

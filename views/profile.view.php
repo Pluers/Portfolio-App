@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="/views/public/styles/profilepage.css">
 <section>
     <div>
         <img src="" alt="" class="square">
-       <h1>Person Name</h1> 
+        <h1>Person Name</h1>
     </div>
     <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
 </section>
@@ -25,4 +26,3 @@
         </p>
     </article>
 </section>
-<link rel="stylesheet" href="/views/styles/profilepage.css">

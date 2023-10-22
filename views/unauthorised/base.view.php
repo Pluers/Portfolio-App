@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="/views/styles/unauthorizedbase.css"/>
+    <link rel="stylesheet" href="/views/public/styles/unauthorizedbase.css" />
     <meta charset="UTF-8">
     <title>Login/Register</title>
 </head>
+
 <body>
     <main>
         <content>
