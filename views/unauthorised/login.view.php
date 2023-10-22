@@ -1,4 +1,4 @@
-<?php if (isset($_GET['error']) && (int) $_GET['error'] === 1) { ?>
+<?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         Invalid credentials
     </div>
@@ -20,6 +20,6 @@
             </div>
         </div>
         <input class="button" type="submit" value="Login"/>
-            <a href="/register" class="button" type="submit" value="Register">Register page</a>
+        <a href="/register" class="button" type="submit" value="Register">Register page</a>
     </form>
 </div>

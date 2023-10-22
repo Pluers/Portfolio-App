@@ -1,5 +1,5 @@
 <?php
-require  '../core/functions.php';
+require '../core/functions.php';
 require_once '../core/db.php';
 
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
@@ -13,16 +13,21 @@ $conn = new Connection(
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "select count(*) from users where username = '$username'";
-$result = $conn->conn->prepare($sql);
-$result->execute();
-$number_of_rows = $result->fetchColumn();
+$passwordHashed = password_hash($password, PASSWORD_ARGON2I);
+
+$sql = "SELECT count(*) FROM users WHERE username = :username";
+$stmt = $conn->conn->prepare($sql);
+$stmt->bindParam(':username', $username);
+$stmt->execute();
+$number_of_rows = $stmt->fetchColumn();
+
 if ($number_of_rows > 0) {
     redirect('/register');
 }
 
-$sql = "insert into users (username, drowsapp) value ('$username', '$password')";
-
+$sql = "INSERT INTO users (username, drowsapp) VALUE (:username, :passwordHashed)";
 $stmt = $conn->conn->prepare($sql);
+$stmt->bindParam(':username', $username);
+$stmt->bindParam(':passwordHashed', $passwordHashed);
 $stmt->execute();
 redirect('/login');
