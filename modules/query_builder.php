@@ -5,7 +5,7 @@ function customStatement($sql)
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "sql = " . var_export($sql, true) . "<br>";
+        echo "<dev>sql = " . var_export($sql, true) . "</dev>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
@@ -27,9 +27,9 @@ function select($var, $table, $cond = '')
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "variable = " . var_export($var, true) . "<br>";
-        echo "tablename = " . var_export($table, true) . "<br>";
-        echo "condition = " . var_export($cond, true) . "<br>";
+        echo "<dev>variable = " . var_export($var, true) . "</dev><br>";
+        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
+        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
@@ -52,8 +52,8 @@ function harddel($table, $cond = '')
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "tablename = " . var_export($table, true) . "<br>";
-        echo "condition = " . var_export($cond, true) . "<br>";
+        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
+        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
@@ -76,8 +76,8 @@ function insert($table, $array)
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "tablename = " . var_export($table, true) . "<br>";
-        echo "array = " . var_export($array, true) . "<br>";
+        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
+        echo "<dev>array = " . var_export($array, true) . "</dev><br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
@@ -110,9 +110,9 @@ function update($table, $array, $cond)
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "tablename = " . var_export($table, true) . "<br>";
-        echo "array = " . var_export($array, true) . "<br>";
-        echo "condition = " . var_export($cond, true) . "<br>";
+        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
+        echo "<dev>array = " . var_export($array, true) . "</dev><br>";
+        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }
@@ -140,8 +140,8 @@ function softdel($table, $cond)
 {
     global $devmode, $conn;
     if ($devmode) {
-        echo "tablename = " . var_export($table, true) . "<br>";
-        echo "condition = " . var_export($cond, true) . "<br>";
+        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
+        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
         if ($conn == null) {
             echo "Error: database connection is null";
         }

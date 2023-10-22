@@ -1,15 +1,3 @@
-<html lang="nl">
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProfielPlus</title>
-    <link rel="icon" type="image/x-icon" href="https://twinery.org/cookbook/stylesheets/logo.svg">
-    <!-- CSS for the index -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Link the icons from Google -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
-
 <body>
     <header>
         <input type="checkbox" name="">
@@ -76,50 +64,3 @@
             </form>
         </nav>
     </header>
-    <main>
-        <sidebar>
-            <nav>
-                <!-- REDO as input selection -->
-                <a href="/">
-                    <span class="material-symbols-rounded">
-                        home
-                    </span>
-                    <p>Home</p>
-                </a>
-                <a href="/about">
-                    <span class="material-symbols-rounded">
-                        help
-                    </span>
-                    <p>About</p>
-                </a>
-                <a href="/profile">
-                    <span class="material-symbols-rounded">
-                        person
-                    </span>
-                    <p>Profile</p>
-                </a>
-                <a href="/logout">
-                    <span class="material-symbols-rounded">
-                        logout
-                    </span>
-                    <p>Log out</p>
-                </a>
-            </nav>
-        </sidebar>
-        <content>
-            <?php
-            global $routes;
-            if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
-                require $routes[$_SERVER['REQUEST_URI']];
-            } else {
-                require 'core/404.php';
-            }
-            ?>
-            <footer>
-                <p>&copy;Jerrican</p>
-            </footer>
-        </content>
-    </main>
-</body>
-
-</html>
