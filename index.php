@@ -24,7 +24,7 @@ global $conn;
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
 $routes = [
-    '/' => 'views/index.view.php',
+    '/' => 'controllers/index.php',
     '/about' => 'views/about.view.php',
     '/logout' => 'modules/logout.php',
     '/profile' => 'views/profile.view.php',
