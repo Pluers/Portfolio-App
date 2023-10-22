@@ -7,12 +7,17 @@
         --complimentaryColor: #ccba9c;
         --accentColor: #655c4d;
         --complimentaryAccentColor: #8b7e6a;
+        --headerHeight: 64px;
         --sidebarHeight: 4rem;
     }
 
     * {
         box-sizing: border-box;
         color: var(--accentColor);
+    }
+
+    dev {
+        display: none;
     }
 
     header *,
@@ -37,9 +42,14 @@
     body {
         background: var(--complimentaryColor);
         display: grid;
-        grid-template-rows: 32px auto;
+        grid-template-rows: var(--headerHeight) auto;
         margin: 0;
         padding: 0;
+        height: 100vh;
+    }
+
+    header {
+        height: var(--headerHeight);
     }
 
     header input[type="checkbox"] {
@@ -237,7 +247,7 @@
         transition: 0.2s ease-in-out;
     }
 
-    main sidebar nav a:last-child {
+    main sidebar nav a:nth-child(1n+4) {
         display: none;
     }
 
@@ -285,6 +295,10 @@
 /* DESKTOP */
 @media screen and (min-width: 769px) {
 
+    :root {
+        --headerHeight: 48px;
+    }
+
     /* default not filled icons */
     .material-symbols-rounded {
         transition: all 0.2s ease-in-out;
@@ -295,9 +309,15 @@
             'opsz' 24
     }
 
+    dev {
+        display: unset;
+    }
+
     body {
         /* is deze nodig? */
+        /* het ligt eraan of we een andere background voor mobile willen */
         background: var(--neutralColor);
+        grid-template-rows: var(--headerHeight) auto;
     }
 
     /* hide mobile icon */
@@ -432,7 +452,7 @@
         padding: 3rem 1.3rem;
     }
 
-    main sidebar nav a:last-child {
+    main sidebar nav a:nth-child(1n+4) {
         display: flex;
     }
 

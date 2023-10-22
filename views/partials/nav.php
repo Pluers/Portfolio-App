@@ -31,10 +31,10 @@
                     <span class="material-symbols-rounded">
                         person_add
                     </span>
-                    <p>register</p>
+                    <p>Register</p>
                 </a>
             <?php } ?>
-            <a href="/logout">
+            <a href="/logout" style="background:<?= $devmode ? "red" : "unset" ?>">
                 <span class="material-symbols-rounded">
                     logout
                 </span>
