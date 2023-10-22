@@ -17,7 +17,6 @@
                 </button>
                 <dropdownlist>
                     <?php
-                    $hobbies = customStatement("SELECT hobby_name FROM hobbies");
                     foreach ($hobbies as $hobby) {
                         echo "<a href='#'>" . $hobby['hobby_name'] . "</a>";
                     }
@@ -33,7 +32,6 @@
                 </button>
                 <dropdownlist>
                     <?php
-                    $educations = customStatement("SELECT education_name FROM educations");
                     foreach ($educations as $education) {
                         echo "<a href='#'>" . $education['education_name'] . "</a>";
                     }
@@ -49,7 +47,6 @@
                 </button>
                 <dropdownlist>
                     <?php
-                    $jobexperiences = customStatement("SELECT company_name, function_name FROM jobexperiences");
                     foreach ($jobexperiences as $jobexperience) {
                         echo "<a href='#'>" . $jobexperience['company_name'] . " - " . $jobexperience['function_name'] . "</a>";
                     }
@@ -103,7 +100,7 @@
             if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
                 require $routes[$_SERVER['REQUEST_URI']];
             } else {
-                echo "404";
+                require 'core/404.php';
             }
             ?>
             <footer>
