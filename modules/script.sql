@@ -92,3 +92,5 @@ values (
     );
 
 select * from jobexperiences;
+
+alter table users modify column drowsapp varchar(255) not null;

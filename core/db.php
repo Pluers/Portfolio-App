@@ -1,12 +1,17 @@
 <?php
-global $servername, $username, $password, $dbname, $devmode;
+class Connection
+{
+    public PDO $conn;
 
-// START CONNECTION
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // prints a connected successful message if devmode is true
-    if ($devmode) echo "Connection successful";
-} catch (PDOException $e) {
-    if ($devmode) echo "Connection failed: " . $e->getMessage();
+    function __construct($servername, $dbname, $username, $drowssap) {
+        try {
+            $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $drowssap);
+            $this->conn->setAttribute( PDO::ERRMODE_EXCEPTION, PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+
+        return $this->conn;
+    }
 }
