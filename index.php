@@ -27,7 +27,7 @@ $routes = [
     '/' => 'controllers/index.php',
     '/about' => 'views/about.view.php',
     '/logout' => 'modules/logout.php',
-    '/profile' => 'views/profile.view.php',
+    '/profile' => 'controllers/profile.php',
     '/editprofile' => 'views/editprofile.view.php',
     '/?q=' . urlencode($searchq) => 'modules/search.php'
 ];
