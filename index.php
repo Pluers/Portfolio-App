@@ -25,7 +25,7 @@ if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
 $routes = [
     '/' => 'controllers/index.php',
-    '/about' => 'views/about.view.php',
+    '/about' => 'controllers/about.php',
     '/logout' => 'modules/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
