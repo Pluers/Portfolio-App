@@ -29,21 +29,17 @@ $routes = [
     '/logout' => 'modules/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
-    '/?q=' . urlencode($searchq) => 'modules/search.php'
-];
-
-// Match all the uri's with a seperated base.view.php to not show a dashboard when logging in or registering
-$routesUnAuthorised = [
     '/login' => 'views/unauthorised/login.view.php',
     '/register' => 'views/unauthorised/register.view.php',
     // forget password
+    '/?q=' . urlencode($searchq) => 'modules/search.php'
 ];
 
 // checks if the user is logged in, if not redirect to 'loginpage'
 if (!$loggedIn) {
     throw new Exception('You are not logged in!');
-} else if (array_key_exists(getSanitizedUri(), $routesUnAuthorised)) {
-    require 'views/unauthorised/base.view.php';
+} else if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
+    require $routes[$_SERVER['REQUEST_URI']];
 } else {
-    require 'controllers/base.php';
+    require 'core/404.php';
 }
