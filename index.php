@@ -1,5 +1,5 @@
 <?php
-require_once 'core/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 // VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
 $settingsInfo = retrieveConfigurationSettingsFromIni('settings');
@@ -12,8 +12,10 @@ $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
 $loggedIn = ($_SESSION['loggedIn'] = $settingsInfo['logged_in']);
 
-if ($dbenabled) require_once 'core/db.php';
-require 'modules/query_builder.php';
+if ($dbenabled) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
+}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/query_builder.php';
 
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
 global $conn;
@@ -27,23 +29,17 @@ $routes = [
     '/logout' => 'modules/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
-    // forget password
+    '/login' => 'controllers/login.php',
+    '/register' => 'controllers/register.php',
+    // Todo: forget password
     '/?q=' . urlencode($searchq) => 'controllers/search.php'
-];
-$routesUnAuthorised = [
-    '/login' => 'views/unauthorised/login.view.php',
-    '/register' => 'views/unauthorised/register.view.php',
-    // forget password
 ];
 
 // checks if the user is logged in, if not redirect to 'loginpage'
 if (!$loggedIn) {
     throw new Exception('You are not logged in!');
-} else if (array_key_exists(getSanitizedUri(), $routesUnAuthorised)) {
-    require 'views/unauthorised/base.view.php';
-}
-else if (array_key_exists(getSanitizedUri(), $routes)) {
+} else if (array_key_exists(getSanitizedUri(), $routes)) {
     require $routes[getSanitizedUri()];
 } else {
-    require './core/404.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }
