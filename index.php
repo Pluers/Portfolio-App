@@ -1,10 +1,8 @@
 <?php
 require_once 'core/functions.php';
-
+// VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
 $settingsInfo = retrieveConfigurationSettingsFromIni('settings');
-
-// VARIABLES
 $dbconn = $databaseInfo;
 $servername = $databaseInfo['servername'];
 $username = $databaseInfo['username'];
@@ -14,7 +12,7 @@ $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
 $loggedIn = ($_SESSION['loggedIn'] = $settingsInfo['logged_in']);
 
-if ($dbenabled) require 'core/db.php';
+if ($dbenabled) require_once 'core/db.php';
 require 'modules/query_builder.php';
 
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
@@ -32,7 +30,7 @@ $routes = [
     '/login' => 'views/unauthorised/login.view.php',
     '/register' => 'views/unauthorised/register.view.php',
     // forget password
-    '/?q=' . urlencode($searchq) => 'modules/search.php'
+    '/?q=' . urlencode($searchq) => 'controllers/search.php'
 ];
 
 // checks if the user is logged in, if not redirect to 'loginpage'
