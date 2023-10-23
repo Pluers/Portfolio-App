@@ -27,6 +27,3 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
         <a href="/register" class="button" type="submit" value="Register">Register page</a>
     </form>
 </div>
-<?php
-require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php';
-?>

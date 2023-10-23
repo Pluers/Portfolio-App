@@ -20,7 +20,7 @@ function retrieveConfigurationSettingsFromIni($subject)
     return $info[$subject];
 }
 
-// Remove all the parameters from the URI (all the '?' and '&' symbols)
+// Remove all the parameters from the URI (all the '?' and '&' symbols).
 // and return just /login without the '?error=1'
 function getSanitizedUri(): string
 {
