@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorizedbase.css" />
+<link rel="stylesheet" href="/views/public/styles/unauthorized.css" />
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 

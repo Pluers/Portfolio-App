@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorized.css" />
+<link rel="stylesheet" href="views/public/styles/unauthorized.css" />
 <?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         Invalid credentials
@@ -28,5 +28,5 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
     </form>
 </div>
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php';
+//require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php';
 ?>

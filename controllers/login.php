@@ -12,9 +12,11 @@ $conn = new Connection(
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+
 // is there any record of this user & password combination?
 $sql = "SELECT drowsapp FROM users WHERE username = :username";
 $stmt = $conn->conn->prepare($sql);
+
 // sql injection prevention https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/
 $stmt->bindParam(':username', $username);
 $stmt->execute();
@@ -28,3 +30,4 @@ if (password_verify($password, $result['drowsapp']) === true) {
 }
 
 redirect('/login?error=1'); // wachtwoord incorrect
+

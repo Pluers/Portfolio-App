@@ -27,17 +27,23 @@ $routes = [
     '/logout' => 'modules/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
+    // forget password
+    '/?q=' . urlencode($searchq) => 'controllers/search.php'
+];
+$routesUnAuthorised = [
     '/login' => 'views/unauthorised/login.view.php',
     '/register' => 'views/unauthorised/register.view.php',
     // forget password
-    '/?q=' . urlencode($searchq) => 'controllers/search.php'
 ];
 
 // checks if the user is logged in, if not redirect to 'loginpage'
 if (!$loggedIn) {
     throw new Exception('You are not logged in!');
-} else if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
-    require $routes[$_SERVER['REQUEST_URI']];
+} else if (array_key_exists(getSanitizedUri(), $routesUnAuthorised)) {
+    require 'views/unauthorised/base.view.php';
+}
+else if (array_key_exists(getSanitizedUri(), $routes)) {
+    require $routes[getSanitizedUri()];
 } else {
-    require 'core/404.php';
+    require './core/404.php';
 }
