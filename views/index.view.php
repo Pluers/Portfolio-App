@@ -14,7 +14,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             <profile>
                 <img class='circle'>
                 <p>
-                    <?= $user['username'] . " " . $user['isAdmin']; ?>
+                    <?= $devmode ? $user['username'] . " " . $user['isAdmin'] : $user['username']; ?>
                 </p>
                 <br>
             </profile>
