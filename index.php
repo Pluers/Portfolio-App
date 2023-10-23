@@ -32,7 +32,7 @@ $routes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
     // Todo: forget password
-    '/?q=' . urlencode($searchq) => 'controllers/search.php'
+    '/search' => 'controllers/search.php'
 ];
 
 // checks if the user is logged in, if not redirect to 'loginpage'

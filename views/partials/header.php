@@ -57,7 +57,7 @@
                 </dropdownlist>
             </dropdown>
 
-            <form method="GET" action="/?q=">
+            <form method="GET" action="/search?q=">
                 <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
                 <button type="submit">
                     <span class="material-symbols-rounded">
