@@ -9,7 +9,7 @@ if (!empty(search())) {
         die;
     }
     foreach (search() as $title => $statementresults) {
-        if (!empty($title)) {
+        if (!empty($statementresults)) {
             echo "<h1>" . $title . "</h1>";
             foreach ($statementresults as $results) {
                 foreach ($results as $result) {
