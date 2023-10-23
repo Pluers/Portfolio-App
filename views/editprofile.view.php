@@ -25,8 +25,17 @@
 <input type="text"> 
 <label for="Achternaam">Achternaam:</label>
 <input type="text">
+
+<form action="/placeholder">
+<textarea name="" id="" cols="30" rows="2" Placeholder="Hobbies"></textarea>
+
+
+<form action="/placeholder">
+<textarea name="" id="" cols="30" rows="2" Placeholder="Werkervaringen"></textarea>
+<textarea name="" id="" cols="30" rows="2" Placeholder="Opleidingen"></textarea>
 <input type="submit" value="Bewerk">
 </form>
+
 <hr>
 </section>
  
@@ -48,20 +57,11 @@
 <input type="submit" value="Bewerk">
 <hr>
 
-<section>
-<h1>Mijn skills</h1>
-<form action="/placeholder">
-<textarea name="" id="" cols="30" rows="2" Placeholder="Hobbies"></textarea>
 
 
-<form action="/placeholder">
-<textarea name="" id="" cols="30" rows="2" Placeholder="Werkervaringen"></textarea>
-<textarea name="" id="" cols="30" rows="2" Placeholder="Opleidingen"></textarea>
-<input type="submit" value="Bewerk">
-</form>
 
 
-</section>
+
 
 
 
