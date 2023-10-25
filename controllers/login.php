@@ -19,7 +19,7 @@ $username = strtolower($_POST['username']);
 $password = $_POST['password'];
 
 // is there any record of this user & password combination?
-$sql = 'SELECT drowsapp FROM users WHERE username = :username';
+$sql = 'SELECT drowssap FROM users WHERE username = :username';
 $stmt = $conn->conn->prepare($sql);
 
 // sql injection prevention https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/
@@ -30,7 +30,7 @@ if ($result === false) {
     redirect('/login?error=1'); // gebruiker onbekend
 }
 
-if (password_verify($password, $result['drowsapp']) === true) {
+if (password_verify($password, $result['drowssap']) === true) {
     redirect('/'); // ingelogd!
 }
 
