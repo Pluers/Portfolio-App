@@ -8,67 +8,66 @@
     <title>EditProfile</title>
 </head>
 <body>
+    <main>
     <!-- input fields and edit buttons for all categories below -->
-    <h1> Bewerk Profiel</h1>
+    <h1> Edit Profile</h1>
     
     <section>
-    <h1>Persoonlijke Informatie</h1> 
+    <h1>Personal Information</h1> 
     <form action="/placeholder">
-    <label for="email">Email:</label>
-    <input type="text">
-    <label for="wachtwoord">Wachtwoord:</label>
-    <input type="text">
+    <label for="email">First name:</label>
+    <input type="text" placeholder="John"> <br>
+    <label for="wachtwoord">Last name:</label>
+    <input type="text" placeholder="Van den Berg"> <br>
 
 
 <form action="/placeholder">
-<label for="Voornaam">Voornaam:</label>
-<input type="text"> 
-<label for="Achternaam">Achternaam:</label>
-<input type="text">
+<label for="Voornaam">Email:</label>
+<input type="text" Placeholder="JohnvanDenBerg@gmail.com"> <br>
+<label for="Achternaam">Password:</label>
+<input type="text" placeholder="**********"> <br>
+<label for="Achternaam"> Confirm Password:</label>
+<input type="text" Placeholder="**********"> <br>
 
 <form action="/placeholder">
-<textarea name="" id="" cols="30" rows="2" Placeholder="Hobbies"></textarea>
+<textarea name="" id="" cols="30" rows="2" Placeholder="Hobbies"></textarea> <br>
 
 
 <form action="/placeholder">
-<textarea name="" id="" cols="30" rows="2" Placeholder="Werkervaringen"></textarea>
-<textarea name="" id="" cols="30" rows="2" Placeholder="Opleidingen"></textarea>
-<input type="submit" value="Bewerk">
+<textarea name="" id="" cols="30" rows="2" Placeholder="Job Experiences"></textarea> <br>
+<textarea name="" id="" cols="30" rows="2" Placeholder="Educations"></textarea> <br>
+<input type="submit" value="Submit">
 </form>
 
-<hr>
+
 </section>
  
 <section>
-<h1>Jouw Profiel</h1>
+<h1>Your Profile</h1>
 <div>
-<img src="" alt="" class="circle">
+
 <p>druk op de "Bestand Kiezen" knop om een bestand te uploaden</p>  
 <form action="/placeholder">
+
+<circles>
+<img src="" alt="" class="circle">
+<p>preview of profile picture</p>
+<img src="" alt="" class="circle">
+</circles>
+
 <input type="file" id="" name="">
-<input type="submit" Value="Werk bij"> 
+<input type="submit" Value="Submit"> 
+
+<about>
 <img src="" alt="" class="square">
- <img src="" alt="" class="square"> 
+<form action="/placeholder">
+<textarea name="" id="" cols="30" rows="2" placeholder="  Edit Text"></textarea>
+
+</about>
+<input type="submit" value="Submit">
 </div>
 
- <h2>Over mij</h2>
-<form action="/placeholder">
-<textarea name="" id="" cols="30" rows="2"></textarea>
-<input type="submit" value="Bewerk">
-<hr>
-
-
-
-
-
-
-
-
-
-
-
-
-</form>
+ </form>
 
 
 
@@ -97,7 +96,7 @@
    
    
    
-    <main>
+    
 
 
 

@@ -30,8 +30,49 @@ section div {
 
 textarea {
     resize: none;
+    height: 7rem;
+    margin: 4px;
+    margin-left: 75px;
+
+
 }
 
 hr {
     background-color: black;
 }
+
+label {
+    display: inline-block;
+    width: 100px;
+}
+
+input {
+    padding: 4px;
+    margin: 5px;
+    width: 13rem;
+
+}
+
+div about {
+    display: flex;
+    margin: 10px;
+}
+
+about textarea {
+    height: 20rem;
+    border-radius: 30px;
+}
+
+circles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/* TABLET */
+@media screen and (min-width: 426px) {}
+
+/* DESKTOP */
+@media screen and (min-width: 769px) {}
