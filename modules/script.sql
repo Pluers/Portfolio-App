@@ -1,7 +1,3 @@
-CREATE SCHEMA IF NOT EXISTS `profileApp` DEFAULT CHARACTER SET utf8;
-
-USE profileApp;
-
 create table
     if not exists users (
         users_id int not null auto_increment primary key unique,
