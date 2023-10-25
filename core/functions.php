@@ -26,3 +26,8 @@ function getSanitizedUri(): string
 {
     return explode('?', $_SERVER['REQUEST_URI'])[0];
 }
+
+function getSanitizedStr($string)
+{
+    return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
+}
