@@ -94,3 +94,7 @@ values (
 select * from jobexperiences;
 
 alter table users modify column drowsapp varchar(255) not null;
+select * from users;
+select * from educations;
+delete from users where users_id = 4;
+

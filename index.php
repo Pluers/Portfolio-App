@@ -23,6 +23,9 @@ global $conn;
 // sets the searchq variable to whatever is in the input field or in the url if it isn't empty, if it is then leave it blank
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
+session_start();
+
+
 $routes = [
     '/' => 'controllers/index.php',
     '/about' => 'controllers/about.php',
@@ -35,6 +38,8 @@ $routes = [
     '/search' => 'controllers/search.php'
 ];
 
+
+
 // checks if the user is logged in, if not redirect to 'loginpage'
 if (!$loggedIn) {
     throw new Exception('You are not logged in!');
@@ -43,3 +48,5 @@ if (!$loggedIn) {
 } else {
     require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }
+
+
