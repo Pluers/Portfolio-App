@@ -11,7 +11,7 @@ function redirect($url, $permanent = false)
 function retrieveConfigurationSettingsFromIni($subject)
 {
     // SERVER['document_root'] is the projectroot.
-    $info = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/env.ini', true);
+    $info = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/env.ini', true, INI_SCANNER_TYPED);
 
     if ($info === false) {
         throw new Exception('Could not read the ini file!');

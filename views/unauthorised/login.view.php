@@ -26,4 +26,5 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
         <input class="button" type="submit" value="Login" />
         <a href="/register" class="button" type="submit" value="Register">Register page</a>
     </form>
+    <a href="/forgot" class="button" type="submit" value="forgot_password">forgot password?</a>
 </div>
