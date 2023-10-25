@@ -2,8 +2,7 @@
 function search()
 {
     if (!empty($_GET['q'])) {
-
-        $term = $_GET['q'];
+        $term = getSanitizedStr($_GET['q']);
 
         $users = customStatement("SELECT username FROM users WHERE username LIKE '%" . $term . "%'");
         $hobbies = customStatement("SELECT hobby_name FROM hobbies WHERE hobby_name LIKE '%" . $term . "%'");
@@ -15,6 +14,6 @@ function search()
             "Jobs" => $jobexp,
             "Educations" => $edu
         ];
-    } else return "";
+    }
 }
 require $_SERVER['DOCUMENT_ROOT'] . '/views/search.view.php';

@@ -4,12 +4,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 
 if (!empty(search())) {
-    if (preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $_GET['q'])) {
-        echo "No Results";
-        die;
-    }
+    $hasResults = false;
     foreach (search() as $title => $statementresults) {
         if (!empty($statementresults)) {
+            $hasResults = true;
             echo "<h1>" . $title . "</h1>";
             foreach ($statementresults as $results) {
                 foreach ($results as $result) {
@@ -17,6 +15,9 @@ if (!empty(search())) {
                 }
             }
         }
+    }
+    if (!$hasResults) {
+        echo "No Results";
     }
 } else {
     echo "No Results";
