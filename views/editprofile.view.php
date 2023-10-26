@@ -12,8 +12,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <h1> Edit Profile</h1>
     <section>
         <h1>Personal Information</h1>
-        <form action= " <?php edituserinfo() ?>"  method="post">
-            <input type="text" name="username" value="<?= customStatement(" SELECT username from users where users_id = " .  $_SESSION['users_id']); ?>">
+        <form action=" <?php edituserinfo() ?>" method="post">
+            <input type="text" name="username" value="<?= $_SESSION['username'] ?>">
 
             <label for="email">First name:</label>
 
@@ -48,8 +48,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     <div class="preview">
                         <p>preview</p>
                         <span class="material-symbols-rounded">
-arrow_forward
-</span></div>
+                            arrow_forward
+                        </span>
+                    </div>
                     <img src="" alt="" class="circle">
                 </circles>
                 <submit>
