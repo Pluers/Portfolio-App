@@ -9,7 +9,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
     <h1> Edit Profile</h1>
     <h2>Personal Information</h2>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         <img src="/views/public/images/<?= $profileimg ?>" alt="">
         <label for="fileToUpload" id="uploadImage">
             <span>Select Image <span class="material-symbols-rounded">
@@ -20,20 +20,20 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         </label>
         <input type="submit" value="Upload" name="uploadpfp">
     </form>
-    <form action="" method="post">
+    <form method="post">
         <label for="FirstName">First name:</label>
-        <input type="text" placeholder="First Name" name="firstName" value="<?= updateUserInfo()["firstName"] ?>"> <br>
+        <input type="text" placeholder="First Name" name="firstName" value="<?= getUserInfo()["firstName"] ?>"> <br>
         <label for="LastName">Last name:</label>
-        <input type="text" placeholder="Last Name" name="lastName" value="<?= updateUserInfo()["lastName"] ?>"> <br>
+        <input type="text" placeholder="Last Name" name="lastName" value="<?= getUserInfo()["lastName"] ?>"> <br>
         <label for="Email">Email:</label>
-        <input type="text" Placeholder="Email" name="email" value="<?= updateUserInfo()["email"] ?>"> <br>
+        <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>"> <br>
         <a href="/forgot">Change Password</a>
 
         <button>Add hobby</button>
         <br>
         <button>Add Job Experience</button>
         <br>
-        <button> <a href=" /about"> Add education</a></button>
+        <button> Add education </button>
         <br>
         <input type="submit" value="Submit" name="edituser">
     </form>

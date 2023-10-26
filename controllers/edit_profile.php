@@ -7,12 +7,12 @@ function loopGetinfo($sql)
         }
     }
 }
-function updateUserInfo()
+function getUserInfo()
 {
     return [
-        "firstName" => loopGetinfo(customStatement("SELECT first_name FROM users WHERE " . $_SESSION['users_id'] . " = users.users_id")),
-        "lastName" => loopGetinfo(customStatement("SELECT last_name FROM users WHERE " . $_SESSION['users_id'] . " = users.users_id")),
-        "email" => loopGetinfo(customStatement("SELECT email FROM users WHERE " . $_SESSION['users_id'] . " = users.users_id")),
+        "firstName" => loopGetinfo(customStatement("SELECT first_name FROM users WHERE users_id = " . $_SESSION['users_id'])),
+        "lastName" => loopGetinfo(customStatement("SELECT last_name FROM users WHERE users_id = " . $_SESSION['users_id'])),
+        "email" => loopGetinfo(customStatement("SELECT email FROM users WHERE users_id = " . $_SESSION['users_id'])),
     ];
 }
 
@@ -20,9 +20,7 @@ $_SESSION['users_id'] = 1;
 $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 $user_id = $_SESSION['users_id'];
 if (isset($_POST['edituser'])) {
-    customStatement("UPDATE users SET first_name = '" . $_POST['firstName'] . "' WHERE " . $user_id . " = users.users_id");
-    customStatement("UPDATE users SET last_name = '" . $_POST['lastName'] . "' WHERE " . $user_id . " = users.users_id");
-    customStatement("UPDATE users SET email = '" . $_POST['email'] . "' WHERE " . $user_id . " = users.users_id");
+    customStatement("UPDATE users SET first_name = '" . $_POST['firstName'] . "', last_name = '" . $_POST['lastName'] . "', email= '" . $_POST['email'] . "' WHERE users_id = '.$user_id.'");
 }
 // check if profile picture exists
 if (file_exists($target_dir . "profile_picture_" . $user_id . ".jpg")) {
