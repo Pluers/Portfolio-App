@@ -28,10 +28,10 @@ section div {
 
 }
 
-textarea {
+button {
     resize: none;
-    height: 7rem;
-    margin: 4px;
+    height: 20px;
+    margin: 7px;
     margin-left: 75px;
 
 
@@ -56,6 +56,10 @@ input {
 div about {
     display: flex;
     margin: 10px;
+    gap: 10px;
+}
+textarea {
+    resize: none;
 }
 
 about textarea {
@@ -65,8 +69,22 @@ about textarea {
 
 circles {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.preview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+submit {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
 }
 
 
