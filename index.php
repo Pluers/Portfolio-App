@@ -32,7 +32,7 @@ $routes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
     '/forgot' => 'controllers/forgot_password.php',
-    '/reset-password' => 'controllers/reset_password.php',
+    '/reset' => 'controllers/reset_password.php',
     '/search' => 'controllers/search.php'
 ];
 

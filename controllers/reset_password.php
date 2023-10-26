@@ -8,15 +8,33 @@ $conn = new Connection(
     $databaseInfo['username'],
     $databaseInfo['drowssap']
 );
+
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     $token = $_GET['token'];
-    $sql = 'SELECT email FROM users WHERE reset_token = :reset_token';
+    $sql = 'SELECT email, reset_token_expires_at FROM users WHERE reset_token = :reset_token';
     $stmt = $conn->conn->prepare($sql);
     $stmt->bindParam(':reset_token', $token);
     $stmt->execute();
-    $email = $stmt->fetchColumn();
-
+    $result = $stmt->fetch();
+    if ($result === false) {
+        redirect('/forgot?error=1');
+    }
+    if (isset($result['reset_token_expires_at']) && (strtotime($result['reset_token_expires_at']) < time())) {
+        redirect('/forgot?error=2');
+        return;
+    }
+    $email = $result['email'];
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/reset_password.view.php';
+    return;
+}
+
+$sql = 'SELECT reset_token_expires_at FROM users WHERE reset_token = :reset_token';
+$stmt = $conn->conn->prepare($sql);
+$stmt->bindParam(':reset_token', $_POST['reset_token']);
+$stmt->execute();
+$expiresAt = $stmt->fetchColumn();
+if (isset($expiresAt) && (strtotime($expiresAt) < time())) {
+    echo "Token has expired.";
     return;
 }
 
