@@ -34,7 +34,8 @@ $routes = [
     '/edit' => 'controllers/edit_profile.php',
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
-    // Todo: forget password
+    '/forgot' => 'controllers/forgot_password.php',
+    '/reset-password' => 'controllers/reset_password.php',
     '/search' => 'controllers/search.php'
 ];
 
