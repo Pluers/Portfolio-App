@@ -69,9 +69,38 @@ create table
         updated_at timestamp default current_timestamp on update current_timestamp
     );
 
-insert into users (username, first_name, last_name, email, drowssap, isAdmin) value ('admin','','','example1@example.net', '$argon2i$v=19$m=65536,t=4,p=1$VXo5ekRnWjNjMVc5T1FqeQ$T1na0ngG4fOILtapKbiv5dT9lFhDux/vQ3QE+NeqOWw', 1);
+insert into
+    users (
+        username,
+        first_name,
+        last_name,
+        email,
+        drowssap,
+        isAdmin
+    ) value (
+        'admin',
+        '',
+        '',
+        'example1@example.net',
+        '$argon2i$v=19$m=65536,t=4,p=1$VXo5ekRnWjNjMVc5T1FqeQ$T1na0ngG4fOILtapKbiv5dT9lFhDux/vQ3QE+NeqOWw',
+        1
+    );
 
-insert into users (username, first_name, last_name, email, drowssap) values ('user','','','example2@example.net', '$argon2i$v=19$m=65536,t=4,p=1$NEF6R3FuSjRFUkYzSEo4RQ$TGOUC2057pOTjxstOWELcCzOMLanJWpYkZDJaSCEOfs');
+insert into
+    users (
+        username,
+        first_name,
+        last_name,
+        email,
+        drowssap
+    )
+values (
+        'user',
+        '',
+        '',
+        'example2@example.net',
+        '$argon2i$v=19$m=65536,t=4,p=1$NEF6R3FuSjRFUkYzSEo4RQ$TGOUC2057pOTjxstOWELcCzOMLanJWpYkZDJaSCEOfs'
+    );
 
 insert into hobbies (hobbies_id, hobby_name) values (1, 'gamen');
 
@@ -86,10 +115,4 @@ insert into
 
 insert into
     jobexperiences (company_name, function_name)
-values (
-        'supermarkt',
-        'vakken vullen'
-    );
-
-
-alter table users modify column drowsapp varchar(255) not null;
+values ('supermarkt', 'vakken vullen');
