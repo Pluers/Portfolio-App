@@ -16,7 +16,7 @@ function updateUserInfo()
     ];
 }
 
-$_SESSION['users_id'] = 2;
+$_SESSION['users_id'] = 1;
 $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 $user_id = $_SESSION['users_id'];
 if (isset($_POST['edituser'])) {
@@ -30,7 +30,7 @@ if (file_exists($target_dir . "profile_picture_" . $user_id . ".jpg")) {
 } else {
     $profileimg = "default.png";
 }
-if (isset($_POST['upload'])) {
+if (isset($_POST['uploadpfp'])) {
     $target_file = $target_dir . "profile_picture_" . $user_id . ".jpg";
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $extensions_arr = array("jpg", "jpeg", "png", "gif");
