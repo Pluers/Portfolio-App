@@ -13,24 +13,18 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <section>
         <h1>Personal Information</h1>
         <form action=" <?php editUserInfo() ?>" method="post">
-            <input type="text" name="username" value="<?= getUserInfo() ?>">
+            <input type="text" name="username" value="<?= updateUserInfo()["username"] ?>"> <br>
 
-            <label for="email">First name:</label>
+            <label for="FirstName">First name:</label>
+            <input type="text" placeholder="First Name" name="firstName" value="<?= updateUserInfo()["firstName"] ?>"> <br>
+            <label for="LastName">Last name:</label>
+            <input type="text" placeholder="Last Name" name="lastName" value="<?= updateUserInfo()["lastName"] ?>"> <br>
 
-            <input type="text" placeholder="John" name="FirstName"> <br>
-            <label for="wachtwoord">Last name:</label>
-            <input type="text" placeholder="Van den Berg" name="LastName"> <br>
-
-            <label for="Voornaam">Email:</label>
-            <input type="text" Placeholder="JohnvanDenBerg@gmail.com" name="Email"> <br>
-            <label for="Achternaam">Password:</label>
-            <input type="text" placeholder="**********" name="Password"> <br>
-            <label for="Achternaam"> Confirm Password:</label>
-            <input type="text" Placeholder="**********" name="confirmpassword"> <br>
+            <label for="Email">Email:</label>
+            <input type="text" Placeholder="Email" name="email" value="<?= updateUserInfo()["email"] ?>"> <br>
 
             <button>Add hobby</button>
             <br>
-
             <button>Add Job Experience</button>
             <br>
             <button> <a href="/about"> Add education</a></button>
