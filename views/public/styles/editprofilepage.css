@@ -30,6 +30,13 @@
         background: blue;
     }
 
+    dev {
+        display: none;
+    }
+
+    img {
+        max-height: 200px;
+    }
 
 
     .square {

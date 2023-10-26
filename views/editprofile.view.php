@@ -9,14 +9,12 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
     <h1> Edit Profile</h1>
     <h2>Personal Information</h2>
-
-
     <form action="" method="post" enctype="multipart/form-data">
-        <img src="/views/public/images/<?= $_SESSION['profile_picture'] ?>" alt="">
+        <img src="/views/public/images/<?= $profileimg ?>" alt="">
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="upload">
     </form>
-    <form action=" <?php editUserInfo() ?>" method="post">
+    <form action="" method="post">
         <label for="FirstName">First name:</label>
         <input type="text" placeholder="First Name" name="firstName" value="<?= updateUserInfo()["firstName"] ?>"> <br>
         <label for="LastName">Last name:</label>
@@ -35,7 +33,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     </form>
 </section>
 <section>
-    <h1>Your Profile</h1>
+    <h1>Your Portfolio</h1>
     <div>
         <p>druk op de "Bestand Kiezen" knop om een bestand te uploaden</p>
         <form action="">

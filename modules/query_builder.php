@@ -3,13 +3,7 @@
 
 function customStatement($sql)
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>sql = " . var_export($sql, true) . "</dev>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
 
     try {
         $stmt = $conn->prepare($sql);
@@ -25,15 +19,7 @@ function customStatement($sql)
  * */
 function select($var, $table, $cond = '')
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>variable = " . var_export($var, true) . "</dev><br>";
-        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
-        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
     $sql = "SELECT $var FROM $table";
     if ($cond != '') {
         $sql .= " WHERE $cond";
@@ -50,14 +36,7 @@ function select($var, $table, $cond = '')
 
 function harddel($table, $cond = '')
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
-        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
     $sql = "DELETE FROM $table";
     if ($cond != '') {
         $sql .= " WHERE $cond ";
@@ -74,14 +53,7 @@ function harddel($table, $cond = '')
 
 function insert($table, $array)
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
-        echo "<dev>array = " . var_export($array, true) . "</dev><br>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
     $sql = "INSERT INTO $table (`";
     $key = array_keys($array);
     $val = array_values($array);
@@ -108,15 +80,7 @@ function insert($table, $array)
  * */
 function update($table, $array, $cond)
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
-        echo "<dev>array = " . var_export($array, true) . "</dev><br>";
-        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
     $sql = "UPDATE $table SET ";
     $fld = array();
     foreach ($array as $k => $v) {
@@ -138,14 +102,7 @@ function update($table, $array, $cond)
  * */
 function softdel($table, $cond)
 {
-    global $devmode, $conn;
-    if ($devmode) {
-        echo "<dev>tablename = " . var_export($table, true) . "</dev><br>";
-        echo "<dev>condition = " . var_export($cond, true) . "</dev><br>";
-        if ($conn == null) {
-            echo "Error: database connection is null";
-        }
-    }
+    global $conn;
 
     $sql = "UPDATE $table SET created_at IS NULL WHERE " . $cond;
     try {
