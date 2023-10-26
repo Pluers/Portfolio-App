@@ -23,11 +23,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             <label for="Email">Email:</label>
             <input type="text" Placeholder="Email" name="email" value="<?= updateUserInfo()["email"] ?>"> <br>
 
+            <a href="/forgot">Change Password</a>
+
             <button>Add hobby</button>
             <br>
             <button>Add Job Experience</button>
             <br>
-            <button> <a href="/about"> Add education</a></button>
+            <button> <a href=" /about"> Add education</a></button>
             <br>
             <input type="submit" value="Submit" name="edituser">
         </form>
