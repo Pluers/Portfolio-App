@@ -73,6 +73,8 @@ insert into
 
 insert into users (username, drowsapp) values ("user", "user");
 
+insert into users (username, drowsapp) values ("user2", "user2");
+
 insert into hobbies (users_id, hobby_name) values (1, "gamen");
 
 insert into
@@ -94,7 +96,9 @@ values (
 select * from jobexperiences;
 
 alter table users modify column drowsapp varchar(255) not null;
-select * from users;
-select * from educations;
-delete from users where users_id = 4;
 
+select * from users;
+
+select * from educations;
+
+delete from users where users_id = 4;

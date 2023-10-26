@@ -12,8 +12,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <h1> Edit Profile</h1>
     <section>
         <h1>Personal Information</h1>
-        <form action=" <?php edituserinfo() ?>" method="post">
-            <input type="text" name="username" value="<?= $_SESSION['username'] ?>">
+        <form action=" <?php editUserInfo() ?>" method="post">
+            <input type="text" name="username" value="<?= getUserInfo() ?>">
 
             <label for="email">First name:</label>
 
