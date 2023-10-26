@@ -8,17 +8,18 @@
 
             <input type="hidden" name="reset_token" value="<?= $_GET['token']; ?>"/>
 
+<!-- hier word meteen de email meegenomen vanaf de forgot password pagina en de input wordt disabled zodat hij niet veranderd kan worden door de user.-->
             <div class="input-field">
                 <label for="email">Email adress</label>
                 <input disabled type="email" id="email" name="email" placeholder="Enter your email" value="<?= $email; ?>" />
             </div>
 
             <div class="input-field">
-                <label for="password">password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" />
+                <label for="password"> New password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your new password" />
             </div>
         </div>
-        <input class="button" type="submit" value="Reset my password" />
+        <input class="button" type="submit" value="Create new password" />
     </form>
 </div>
 
