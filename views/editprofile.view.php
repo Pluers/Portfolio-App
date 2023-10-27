@@ -9,9 +9,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
     <h1> Edit Profile</h1>
     <h2>Personal Information</h2>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="setprofilepicture">
         <img src="/views/public/images/<?= $profileimg ?>" />
-        <label for="fileToUpload" id="uploadImage">
+        <label for="fileToUpload">
             <!-- hidden file input that gets replaced by the span -->
             <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" /><br>
             <span>Select Image

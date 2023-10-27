@@ -82,6 +82,19 @@
         align-items: center;
     }
 
+    .setprofilepicture {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        /* set two rows */
+        grid-gap: 10px;
+    }
+
+    .setprofilepicture img {
+        grid-row: 1 / span 2;
+        /* span both rows */
+    }
+
     main content section:first-child {
         border-right: var(--complimentaryColor) 2px solid;
     }
