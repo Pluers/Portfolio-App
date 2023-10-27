@@ -10,13 +10,15 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <h1> Edit Profile</h1>
     <h2>Personal Information</h2>
     <form method="post" enctype="multipart/form-data">
-        <img src="/views/public/images/<?= $profileimg ?>" alt="">
+        <img src="/views/public/images/<?= $profileimg ?>" />
         <label for="fileToUpload" id="uploadImage">
-            <span>Select Image <span class="material-symbols-rounded">
-                    add_photo_alternate
-                </span></span>
             <!-- hidden file input that gets replaced by the span -->
-            <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">
+            <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" /><br>
+            <span>Select Image
+                <span class="material-symbols-rounded">
+                    add_photo_alternate
+                </span>
+            </span>
         </label>
         <input type="submit" value="Upload" name="uploadpfp">
     </form>

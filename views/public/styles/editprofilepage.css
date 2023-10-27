@@ -42,9 +42,8 @@
     }
 
     input[type='file'] {
-        color: transparent;
-        font-size: 2rem;
-        width: 200px;
+        text-align-last: center;
+        font-size: 1rem;
     }
 
     input[type='file']::-webkit-file-upload-button {
@@ -53,17 +52,17 @@
         border: none;
         padding: 6px;
         margin: 6px;
+        display: none;
         border-radius: var(--borRad);
     }
 
-    form label {
+    section form label {
         padding: 10px;
         cursor: pointer;
+        text-align: center;
     }
 
-    form label input[type="file"] {
-        display: none;
-    }
+    /* form label input[type="file"] {} */
 }
 
 
