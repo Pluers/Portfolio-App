@@ -116,3 +116,6 @@ insert into
 insert into
     jobexperiences (company_name, function_name)
 values ('supermarkt', 'vakken vullen');
+
+
+

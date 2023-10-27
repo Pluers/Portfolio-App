@@ -76,6 +76,11 @@ main content section button {
     width: 6rem;
 }
 
+img {
+    height: 10rem;
+    border-radius: 100px;
+}
+
 /* TABLET */
 @media screen and (min-width: 426px) {}
 
