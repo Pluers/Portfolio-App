@@ -1,20 +1,23 @@
 <?php
 function getUserInfo()
 {
-    echo $_SESSION['user_id'] = 1;
-    // return var_dump(customStatement("SELECT first_name, last_name, email from users WHERE users_id = '" . $_SESSION['user_id'] . "'", ""));
-    return [
-        "first_name" => customStatement("SELECT first_name FROM users WHERE users_id = " . $_SESSION['users_id'], ""),
-        "last_name" => customStatement("SELECT last_name FROM users WHERE users_id = " . $_SESSION['users_id'], ""),
-        "email" => customStatement("SELECT email FROM users WHERE users_id = " . $_SESSION['users_id'], ""),
-    ];
+    global $conn;
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT * FROM users WHERE users_id = :user_id");
+    $stmt->execute([':user_id' => $user_id]);
+    $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user_info) {
+        return $user_info;
+    } else {
+        // handle the case where no rows are returned by the SQL statement
+    }
 }
 
 $_SESSION['user_id'] = 1;
 $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 $user_id = $_SESSION['user_id'];
 if (isset($_POST['edituser'])) {
-    customStatement("UPDATE users SET first_name = '" . $_POST['firstName'] . "', last_name = '" . $_POST['lastName'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
+    customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
 }
 // check if profile picture exists
 if (file_exists($target_dir . "profile_picture_" . $user_id . ".jpg")) {
