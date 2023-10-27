@@ -16,10 +16,7 @@
         color: var(--accentColor);
     }
 
-    dev {
-        display: none;
-    }
-
+    /* remove default scrollbar */
     header *,
     main sidebar *,
     footer * {
@@ -37,6 +34,15 @@
             'wght' 400,
             'GRAD' 0,
             'opsz' 24
+    }
+
+    /* styling of submit buttons */
+    input[type="submit"] {
+        font-size: 2rem;
+        background: var(--complimentaryColor);
+        border: none;
+        border-radius: var(--borRad);
+        padding: 10px 16px;
     }
 
     body {
@@ -156,7 +162,7 @@
         box-shadow: var(--accentColor) 0px 2px;
     }
 
-    header nav form input {
+    input[type=search] {
         border: none;
         background: transparent;
         padding: 10px;
@@ -166,11 +172,11 @@
     }
 
     /* remove default outline */
-    header nav form input:focus {
+    input[type=search]:focus {
         outline: none;
     }
 
-    header nav form input[type=search]::-webkit-search-cancel-button {
+    input[type=search]::-webkit-search-cancel-button {
         -webkit-appearance: none;
         appearance: none;
         height: 10px;
@@ -309,13 +315,16 @@
             'opsz' 24
     }
 
-    dev {
-        display: unset;
+    /* Input field for searchbar */
+    input[type=search] {
+        padding: 0 6px;
+        text-align: unset;
+        width: unset;
+        font-size: 13px;
+        padding: unset;
     }
 
     body {
-        /* is deze nodig? */
-        /* het ligt eraan of we een andere background voor mobile willen */
         background: var(--neutralColor);
         grid-template-rows: var(--headerHeight) auto;
     }
@@ -367,19 +376,14 @@
         display: none;
     }
 
+    /* SEARCHBAR */
+
     header nav form {
         position: unset;
-        height: unset;
+        height: 75%;
         padding: 4px 8px;
         grid-template-columns: auto 24px;
         margin: auto 0 auto auto;
-    }
-
-    header nav form input {
-        width: unset;
-        text-align: unset;
-        font-size: 13px;
-        padding: unset;
     }
 
     header nav form button {
@@ -393,12 +397,13 @@
 
     /* add outline when focused on input field */
     header nav form:focus-within {
-        /* border-radius: var(--borRad); */
         outline-color: var(--accentColor);
         outline-style: solid;
         outline-offset: -4px;
         outline-width: 2px;
     }
+
+    /* END SEARCHBAR */
 
     main {
         flex-direction: row;
