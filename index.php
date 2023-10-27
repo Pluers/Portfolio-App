@@ -11,6 +11,7 @@ $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
 $loggedIn = ($_SESSION['loggedIn'] = $settingsInfo['logged_in']);
+$target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
 if ($dbenabled) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
