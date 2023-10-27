@@ -8,7 +8,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 
 <section>
     <h1> Edit Profile</h1>
-    <h2>Personal Information</h2>
     <form method="post" enctype="multipart/form-data" class="setprofilepicture">
         <img src="/views/public/images/<?= $profileimg ?>" />
         <label for="fileToUpload">
@@ -22,43 +21,47 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         </label>
         <input type="submit" value="Upload" name="uploadpfp">
     </form>
-    <form method="post">
-        <label for="FirstName">First name:</label>
-        <input type="text" placeholder="First Name" name="first_name" value="<?= getUserInfo()["first_name"] ?>"> <br>
-        <label for="LastName">Last name:</label>
-        <input type="text" placeholder="Last Name" name="last_name" value="<?= getUserInfo()["last_name"] ?>"> <br>
-        <label for="Email">Email:</label>
-        <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>"> <br>
-        <a href="/forgot">Change Password</a>
-
-        <button>Add hobby</button>
-        <br>
-        <button>Add Job Experience</button>
-        <br>
-        <button> Add education </button>
-        <br>
+    <form method="post" class="editprofile">
+        <label for="first_name">First name:</label>
+        <input type="text" placeholder="First Name" name="first_name" value="<?= getUserInfo()["first_name"] ?>">
+        <label for="last_name">Last name:</label>
+        <input type="text" placeholder="Last Name" name="last_name" value="<?= getUserInfo()["last_name"] ?>">
+        <label for="email">Email:</label>
+        <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>">
+        <label for="change_password">Password: </label>
+        <a href="/forgot" target="_blank">Change Password
+            <span class="material-symbols-rounded">
+                open_in_new
+            </span>
+        </a>
         <input type="submit" value="Submit" name="edituser">
     </form>
 </section>
 <section>
-    <h1>Your Portfolio</h1>
-    <div>
-        <p>druk op de "Bestand Kiezen" knop om een bestand te uploaden</p>
-        <form action="">
-
-            <submit>
-
-                <input type="submit" Value="Submit">
-            </submit>
-        </form>
-        <about>
-            <img src="" alt="" class="square">
-            <form action="/placeholder">
-                <textarea name="" id="" cols="30" rows="2" placeholder="  Edit Text"></textarea>
-            </form>
-        </about>
-
-    </div>
+    <form action="">
+        <select name="hobbies" id="">
+            <option value="hobby1">Hobby 1</option>
+            <option value="hobby2">Hobby 2</option>
+            <option value="hobby3">Hobby 3</option>
+        </select>
+        <input type="submit" value="Add Hobby"></input>
+    </form>
+    <form action="">
+        <select name="job experiences" id="">
+            <option value="job">Hobby 1</option>
+            <option value="job">Hobby 2</option>
+            <option value="job">Hobby 3</option>
+        </select>
+        <input type="submit" value="Add Hobby"></input>
+    </form>
+    <form action="">
+        <select name="educations" id="">
+            <option value="educations">Hobby 1</option>
+            <option value="educations">Hobby 2</option>
+            <option value="educations">Hobby 3</option>
+        </select>
+        <input type="submit" value="Add Hobby"></input>
+    </form>
 </section>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php'; ?>

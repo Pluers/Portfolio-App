@@ -10,11 +10,17 @@
 /* MOBILE */
 @media screen and (min-width: 0) {
 
+    h1 {
+        font-size: 3rem;
+        margin: 10px;
+    }
+
     main content section,
     main content section form {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
     main content section form {
@@ -58,8 +64,11 @@
 
     section form label {
         padding: 10px;
-        cursor: pointer;
         text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        min-width: fit-content;
     }
 
     /* form label input[type="file"] {} */
@@ -76,18 +85,24 @@
         align-items: center;
     }
 
-    main content section {
+    body main content section {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0 2rem;
+    }
+
+    main content section form {
+        display: grid;
+        grid-template-columns: auto auto;
     }
 
     .setprofilepicture {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
         /* set two rows */
-        grid-gap: 10px;
+        grid-gap: 20px;
     }
 
     .setprofilepicture img {
@@ -95,10 +110,32 @@
         /* span both rows */
     }
 
+    .editprofile input[type='submit'] {
+        grid-column: 1 / span 2;
+    }
+
+    input[type='text'] {
+        font-size: 1rem;
+        width: 80%;
+        background: var(--complimentaryColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+    }
+
+    main content section form input[type='submit'] {
+        display: flex;
+        margin-bottom: auto;
+        justify-content: center;
+    }
+
     main content section:first-child {
         border-right: var(--complimentaryColor) 2px solid;
     }
 
+    a {
+        font-size: 24px;
+    }
 
     footer {
         grid-column: 1 / span 2;
