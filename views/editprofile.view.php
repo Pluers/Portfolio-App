@@ -22,7 +22,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     </form>
     <form method="post">
         <label for="FirstName">First name:</label>
-        <input type="text" placeholder="First Name" name="firstName" value="<?php var_dump(getUserInfo()["first_name"])  ?>"> <br>
+        <input type="text" placeholder="First Name" name="firstName" value="<?= getUserInfo()["first_name"]["first_name"] ?>"> <br>
         <label for="LastName">Last name:</label>
         <input type="text" placeholder="Last Name" name="lastName" value="<?= getUserInfo()["last_name"] ?>"> <br>
         <label for="Email">Email:</label>
