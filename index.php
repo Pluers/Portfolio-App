@@ -49,5 +49,3 @@ if (!$loggedIn) {
 } else {
     require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }
-
-

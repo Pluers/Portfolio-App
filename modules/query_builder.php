@@ -1,12 +1,17 @@
 <?php
 // Prepare the sql statement
 
-function customStatement($sql)
+function customStatement($sql, $params)
 {
     global $conn;
 
     try {
         $stmt = $conn->prepare($sql);
+        if ($params != '') {
+            foreach ($params as $key => $value) {
+                $stmt->bindParam($key, $value);
+            }
+        }
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
