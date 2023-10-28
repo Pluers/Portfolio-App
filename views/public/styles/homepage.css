@@ -1,22 +1,17 @@
-/* TEST FOR IMAGE */
-.square {
+article {
     height: 12rem;
     width: 100%;
-    background: var(--accentColor);
+    background: var(--complimentaryColor);
     border-radius: calc(var(--borRad)*2);
-}
-
-.circle {
-    height: 3rem;
-    width: 3rem;
-    background: var(--complimentaryAccentColor);
-    border-radius: 100%;
-}
-
-article profile {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
+    padding: 10px;
+}
+
+article img {
+    height: 100%;
+    border-radius: 100%;
 }
 
 /* DESKTOP */
@@ -29,10 +24,4 @@ article profile {
 }
 
 /* DESKTOP+ */
-@media screen and (min-width: 1024px) {
-    main content section {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        gap: 2rem;
-    }
-}
+@media screen and (min-width: 1024px) {}
