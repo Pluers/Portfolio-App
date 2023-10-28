@@ -13,7 +13,7 @@ $password = $databaseInfo['drowssap'];
 $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
-$loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]);
+$loggedIn = isset($_SESSION['user_id']) || $devmode ? $settingsInfo['logged_in'] : null;
 $target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
 $dbenabled ? require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php' : '';
