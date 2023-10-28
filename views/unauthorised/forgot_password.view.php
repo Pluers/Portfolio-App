@@ -11,7 +11,7 @@
 <?php } ?>
 <div class="container">
 
-    <form action="/controllers/forgot_password.php" method="post">
+    <form action="/forgot" method="post">
         <div class="form-info">
             <div class="title">Forgot password</div>
 

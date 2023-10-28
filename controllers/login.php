@@ -15,15 +15,14 @@ $conn = new Connection(
     $databaseInfo['drowssap']
 );
 
-$username = strtolower($_POST['username']);
+$email = strtolower($_POST['email']);
 $password = $_POST['password'];
 
 // is there any record of this user & password combination?
-$sql = 'SELECT drowssap FROM users WHERE username = :username';
+$sql = 'SELECT drowssap, users_id FROM users WHERE email = :email';
 $stmt = $conn->conn->prepare($sql);
-
 // sql injection prevention https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/
-$stmt->bindParam(':username', $username);
+$stmt->bindParam(':email', $email);
 $stmt->execute();
 $result = $stmt->fetch();
 if ($result === false) {
@@ -31,8 +30,8 @@ if ($result === false) {
 }
 
 if (password_verify($password, $result['drowssap']) === true) {
+    $_SESSION[SESSION_KEY_USER_ID] = $result['users_id'];
     redirect('/'); // ingelogd!
 }
 
 redirect('/login?error=1'); // wachtwoord incorrect
-

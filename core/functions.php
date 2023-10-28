@@ -31,3 +31,5 @@ function getSanitizedStr($string)
 {
     return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
 }
+
+const SESSION_KEY_USER_ID = 'user_id';
