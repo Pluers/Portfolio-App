@@ -26,8 +26,8 @@ global $conn;
 // zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
-if (isset($_SESSION[SESSION_KEY_USER_ID])) {
-    echo $_SESSION[SESSION_KEY_USER_ID];
+if (isset($_SESSION[SESSION_KEY_USER_ID]) && $devmode) {
+    echo "Current user id: " . $_SESSION[SESSION_KEY_USER_ID];
 }
 
 //routes voor paginas
