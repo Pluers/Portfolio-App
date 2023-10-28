@@ -1,4 +1,36 @@
 <?php
+function aboutPage()
+{
+?>
+    <section>
+        <form action="">
+            <select name="hobbies" id="">
+                <option value="hobby1">Hobby 1</option>
+                <option value="hobby2">Hobby 2</option>
+                <option value="hobby3">Hobby 3</option>
+            </select>
+            <input type="submit" value="Add Hobby"></input>
+        </form>
+        <form action="">
+            <select name="job experiences" id="">
+                <option value="job">Hobby 1</option>
+                <option value="job">Hobby 2</option>
+                <option value="job">Hobby 3</option>
+            </select>
+            <input type="submit" value="Add Hobby"></input>
+        </form>
+        <form action="">
+            <select name="educations" id="">
+                <option value="educations">Hobby 1</option>
+                <option value="educations">Hobby 2</option>
+                <option value="educations">Hobby 3</option>
+            </select>
+            <input type="submit" value="Add Hobby"></input>
+        </form>
+    </section>
+<?php
+}
+
 function getUserInfo()
 {
     global $conn;

@@ -38,30 +38,35 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     </form>
 </section>
 <section>
-    <form action="">
-        <select name="hobbies" id="">
-            <option value="hobby1">Hobby 1</option>
-            <option value="hobby2">Hobby 2</option>
-            <option value="hobby3">Hobby 3</option>
-        </select>
-        <input type="submit" value="Add Hobby"></input>
-    </form>
-    <form action="">
-        <select name="job experiences" id="">
-            <option value="job">Hobby 1</option>
-            <option value="job">Hobby 2</option>
-            <option value="job">Hobby 3</option>
-        </select>
-        <input type="submit" value="Add Hobby"></input>
-    </form>
-    <form action="">
-        <select name="educations" id="">
-            <option value="educations">Hobby 1</option>
-            <option value="educations">Hobby 2</option>
-            <option value="educations">Hobby 3</option>
-        </select>
-        <input type="submit" value="Add Hobby"></input>
-    </form>
+
+    <?php
+    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
+    ?>
+
+    <main>
+        <nav>
+            <ul>
+                <li><a href="?tab=about" <?php if ($active_tab === 'about') {
+                                                echo 'class="active"';
+                                            } ?>>About</a></li>
+                <li><a href="?tab=attributes" <?php if ($active_tab === 'attributes') {
+                                                    echo 'class="active"';
+                                                } ?>>Attributes</a></li>
+                <li><a href="?tab=more-info" <?php if ($active_tab === 'more-info') {
+                                                    echo 'class="active"';
+                                                } ?>>More Info</a></li>
+            </ul>
+        </nav>
+        <?php if ($active_tab === 'about') {
+            aboutPage();
+        } elseif ($active_tab === 'attributes') {
+            // code for the 'attributes' tab
+        } elseif ($active_tab === 'more-info') {
+            // code for the 'more-info' tab
+        } ?>
+    </main>
+
+
 </section>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php'; ?>
