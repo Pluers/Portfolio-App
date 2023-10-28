@@ -4,18 +4,22 @@
         Invalid credentials
     </div>
 <?php }
-
+if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
+    <div class="alert">
+        You must be authorized to view this page!
+    </div>
+<?php }
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 ?>
+
 <div class="container">
 
-    <form action="/controllers/login.php" method="post">
+    <form action="/login" method="post">
         <div class="form-info">
             <div class="title">Login</div>
-
             <div class="input-field">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required />
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required/>
             </div>
 
             <div class="input-field">
@@ -24,7 +28,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
             </div>
         </div>
         <input class="button" type="submit" value="Login" />
-        <a href="/register" class="button" type="submit" value="Register">Register page</a>
+        <a href="/register" class="button" type="submit" value="Register">register here!</a>
     </form>
     <a href="/forgot" class="button" type="submit" value="forgot_password">forgot password?</a>
 </div>

@@ -12,11 +12,13 @@ if (!empty(search())) {
             // display de header
             echo "<h1>" . $title . "</h1>";
             // loop door de multidimensional array
+
             foreach ($statementresults as $results) {
                 foreach ($results as $result) {
                     // display de results
-                    echo $result . "<br>";
+                    echo $result . ' ';
                 }
+                echo '<br>';
             }
         }
     }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 // VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
@@ -10,7 +11,7 @@ $password = $databaseInfo['drowssap'];
 $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
-$loggedIn = ($_SESSION['loggedIn'] = $settingsInfo['logged_in']);
+$loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]);
 $target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
 if ($dbenabled) {
@@ -24,29 +25,42 @@ global $conn;
 // sets the searchq variable to whatever is in the input field or in the url if it isn't empty, if it is then leave it blank
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
-session_start();
-
-
+if (isset($_SESSION[SESSION_KEY_USER_ID])) {
+    echo $_SESSION[SESSION_KEY_USER_ID];
+}
 $routes = [
-    '/' => 'controllers/index.php',
+    '/dashboard' => 'controllers/index.php',
     '/about' => 'controllers/about.php',
-    '/logout' => 'modules/logout.php',
+    '/logout' => 'controllers/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
+    '/search' => 'controllers/search.php'
+];
+
+$unAuthorizedRoutes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
     '/forgot' => 'controllers/forgot_password.php',
     '/reset' => 'controllers/reset_password.php',
-    '/search' => 'controllers/search.php'
 ];
 
+if (getSanitizedUri() === '/') {
+    if($loggedIn) {
+        redirect('/dashboard');
+    } else {
+        redirect('/login');
+    }
+}
 
+if (array_key_exists(getSanitizedUri(), $routes)) {
+    if (!$loggedIn) {
+        redirect('/login?error=2');
 
-// checks if the user is logged in, if not redirect to 'loginpage'
-if (!$loggedIn) {
-    throw new Exception('You are not logged in!');
-} else if (array_key_exists(getSanitizedUri(), $routes)) {
+        return;
+    }
     require $routes[getSanitizedUri()];
+} else if (array_key_exists(getSanitizedUri(), $unAuthorizedRoutes)) {
+    require $unAuthorizedRoutes[getSanitizedUri()];
 } else {
     require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }

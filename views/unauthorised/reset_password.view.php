@@ -2,7 +2,7 @@
 
 <div class="container">
 
-    <form action="/controllers/reset_password.php" method="post">
+    <form action="/reset" method="post">
         <div class="form-info">
             <div class="title">Reset password</div>
 
