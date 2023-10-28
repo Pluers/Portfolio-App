@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorized.css"/>
 <?php
 if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
     <div class="alert">
@@ -15,26 +14,26 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 
             <div class="input-field">
                 <label for="firstname">First name</label>
-                <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required/>
+                <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required />
             </div>
 
             <div class="input-field">
                 <label for="lastname">Last name</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required/>
+                <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required />
             </div>
 
             <div class="input-field">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required />
             </div>
 
             <div class="input-field">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required />
             </div>
 
         </div>
-        <input class="button" type="submit" value="Register"/>
+        <input class="button" type="submit" value="Register" />
     </form>
 </div>
 <?php

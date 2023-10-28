@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorized.css"/>
 <?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         That email does not exist!
@@ -17,10 +16,9 @@
 
             <div class="input-field">
                 <label for="email">Email adress</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required />
             </div>
         </div>
-        <input class="button" type="submit" value="Reset password"/>
+        <input class="button" type="submit" value="Reset password" />
     </form>
 </div>
-

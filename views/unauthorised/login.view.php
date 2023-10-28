@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorized.css" />
 <?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         Invalid credentials
@@ -19,7 +18,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
             <div class="title">Login</div>
             <div class="input-field">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your Email" required/>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required />
             </div>
 
             <div class="input-field">

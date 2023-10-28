@@ -4,7 +4,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 ?>
 
-<link rel="stylesheet" href="/views/public/styles/homepage.css">
 <section>
     <?php
     foreach ($users as $user) {
