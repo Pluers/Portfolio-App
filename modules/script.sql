@@ -1,11 +1,12 @@
+create schema profileapp;
+use profileapp;
 create table
     if not exists users (
         users_id int not null auto_increment primary key unique,
-        username varchar(32) not null,
+        email varchar(64) not null unique,
         drowssap varchar(255) not null,
         first_name varchar(32) not null,
         last_name varchar(32) not null,
-        email varchar(64) not null unique,
         isAdmin bool default 0,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp,
@@ -71,34 +72,30 @@ create table
 
 insert into
     users (
-        username,
+        email,
         first_name,
         last_name,
-        email,
         drowssap,
         isAdmin
     ) value (
+        'example1@example.net',
         'admin',
         '',
-        '',
-        'example1@example.net',
         '$argon2i$v=19$m=65536,t=4,p=1$VXo5ekRnWjNjMVc5T1FqeQ$T1na0ngG4fOILtapKbiv5dT9lFhDux/vQ3QE+NeqOWw',
         1
     );
 
 insert into
     users (
-        username,
+        email,
         first_name,
         last_name,
-        email,
         drowssap
     )
 values (
+        'example2@example.net',
         'user',
         '',
-        '',
-        'example2@example.net',
         '$argon2i$v=19$m=65536,t=4,p=1$NEF6R3FuSjRFUkYzSEo4RQ$TGOUC2057pOTjxstOWELcCzOMLanJWpYkZDJaSCEOfs'
     );
 

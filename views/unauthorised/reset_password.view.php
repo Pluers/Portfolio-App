@@ -1,14 +1,12 @@
-<link rel="stylesheet" href="/views/public/styles/unauthorized.css" />
-
 <div class="container">
 
-    <form action="/controllers/reset_password.php" method="post">
+    <form action="/reset" method="post">
         <div class="form-info">
             <div class="title">Reset password</div>
 
-            <input type="hidden" name="reset_token" value="<?= $_GET['token']; ?>"/>
+            <input type="hidden" name="reset_token" value="<?= $_GET['token']; ?>" />
 
-<!-- hier word meteen de email meegenomen vanaf de forgot password pagina en de input wordt disabled zodat hij niet veranderd kan worden door de user.-->
+            <!-- hier word meteen de email meegenomen vanaf de forgot password pagina en de input wordt disabled zodat hij niet veranderd kan worden door de user.-->
             <div class="input-field">
                 <label for="email">Email adress</label>
                 <input disabled type="email" id="email" name="email" placeholder="Enter your email" value="<?= $email; ?>" />
@@ -22,4 +20,3 @@
         <input class="button" type="submit" value="Create new password" />
     </form>
 </div>
-

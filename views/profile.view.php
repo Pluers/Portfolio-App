@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/views/public/styles/profilepage.css">
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';

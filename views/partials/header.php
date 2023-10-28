@@ -56,7 +56,11 @@
                     ?>
                 </dropdownlist>
             </dropdown>
-
+            <?php
+            if (isset($_SESSION[SESSION_KEY_USER_ID]) && $devmode) {
+                echo "Current user id: " . $_SESSION[SESSION_KEY_USER_ID];
+            }
+            ?>
             <form method="GET" action="/search?q=">
                 <input type="search" placeholder="Search" name="q" value="<?php if (isset($_GET['q'])) echo $_GET['q']; ?>">
                 <button type="submit">
