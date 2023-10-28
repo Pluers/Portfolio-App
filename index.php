@@ -1,6 +1,8 @@
 <?php
+// start session
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+
 // VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
 $settingsInfo = retrieveConfigurationSettingsFromIni('settings');
@@ -14,20 +16,21 @@ $dbenabled = $settingsInfo['database_enabled'];
 $loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]);
 $target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
-if ($dbenabled) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-}
+$dbenabled ? require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php' : '';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/query_builder.php';
 
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
 global $conn;
 
-// sets the searchq variable to whatever is in the input field or in the url if it isn't empty, if it is then leave it blank
+
+// zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
 if (isset($_SESSION[SESSION_KEY_USER_ID])) {
     echo $_SESSION[SESSION_KEY_USER_ID];
 }
+
+//routes voor paginas
 $routes = [
     '/dashboard' => 'controllers/index.php',
     '/about' => 'controllers/about.php',
@@ -37,6 +40,7 @@ $routes = [
     '/search' => 'controllers/search.php'
 ];
 
+//routes voor paginas die te maken hebben met authenticatie
 $unAuthorizedRoutes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
@@ -44,8 +48,9 @@ $unAuthorizedRoutes = [
     '/reset' => 'controllers/reset_password.php',
 ];
 
+// als er niks achter de / staat
 if (getSanitizedUri() === '/') {
-    if($loggedIn) {
+    if ($loggedIn) {
         redirect('/dashboard');
     } else {
         redirect('/login');
@@ -53,14 +58,16 @@ if (getSanitizedUri() === '/') {
 }
 
 if (array_key_exists(getSanitizedUri(), $routes)) {
+    // check voor de normale paginas
     if (!$loggedIn) {
         redirect('/login?error=2');
-
         return;
     }
     require $routes[getSanitizedUri()];
 } else if (array_key_exists(getSanitizedUri(), $unAuthorizedRoutes)) {
+    // check voor de paginas die te maken hebben met authenticatie
     require $unAuthorizedRoutes[getSanitizedUri()];
 } else {
+    // anders error
     require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }
