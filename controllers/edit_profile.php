@@ -31,7 +31,7 @@ function profilePage()
             <img src="/views/public/images/<?= $profileimg ?>" />
             <label for="fileToUpload">
                 <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" /><br>
+                <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" />
                 <span>Select Image
                     <span class="material-symbols-rounded">
                         add_photo_alternate

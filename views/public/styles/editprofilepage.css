@@ -1,61 +1,23 @@
-/* wat moet er in de edit profile pagina staan
-- email (input field)
-- wachtwoord (input field)
--voor en achternaam ( input fields onder elkaar)
-- content op je profile (foto's tekst en profielfoto)
-- hobbies (input field met bewerk knop zoals de rest)
-- job experience (groot inout field varchar(255)
-- educations input field */
-
 /* MOBILE */
 @media screen and (min-width: 0) {
 
-    h1 {
-        font-size: 3rem;
-        margin: 10px;
+    .setprofilepicture {
+        border-bottom: var(--complimentaryColor) 1px solid;
+        padding-bottom: 2rem;
     }
 
-    main content section,
-    main content section form {
+    .setprofilepicture label {
+        padding: 10px;
+        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        min-width: fit-content;
     }
 
-    main content section form {
-        width: 100%;
-    }
-
-    section nav {
-        background: var(--complimentaryColor);
-        padding: 0 2rem;
-        border-radius: var(--borRad);
-    }
-
-    section nav ul {
-        flex-direction: row;
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        padding: 0;
-        justify-content: center;
-    }
-
-
-    section nav ul li a {
-        text-decoration: none;
-        padding: 10px;
-    }
-
-    section nav ul li a.active {
-        background: var(--accentColor);
-        color: var(--complimentaryColor);
-        border-radius: var(--borRad);
-    }
-
-    contentsection {
-        width: 80%;
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin: 10px;
     }
 
     img {
@@ -70,11 +32,12 @@
     }
 
     input[type='text'] {
-        font-size: 5vw;
+        font-size: 2rem;
         background: var(--complimentaryColor);
         border: none;
         padding: 10px;
         border-radius: var(--borRad);
+        width: 75vw;
     }
 
     input[type='file'] {
@@ -92,14 +55,60 @@
         border-radius: var(--borRad);
     }
 
-    .setprofilepicture label {
-        padding: 10px;
-        text-align: center;
+    main content section,
+    main content section form {
         display: flex;
         flex-direction: column;
-        min-width: fit-content;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
     }
 
+    main content section form {
+        width: 100%;
+    }
+
+    main content section nav {
+        background: var(--complimentaryColor);
+        padding: 2rem;
+        border-radius: var(--borRad);
+        width: 100%;
+    }
+
+    main content section nav ul {
+        flex-direction: column;
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+        margin: 0;
+    }
+
+
+    main content section nav ul li a {
+        text-decoration: none;
+        padding: 1rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1rem;
+    }
+
+    main content section nav ul li a.active span {
+        color: var(--complimentaryColor);
+    }
+
+    main content section nav ul li a.active {
+        background: var(--accentColor);
+        color: var(--complimentaryColor);
+        border-radius: var(--borRad);
+    }
+
+    contentsection {
+        width: 80%;
+    }
 }
 
 
@@ -136,6 +145,13 @@
         height: 3rem;
     }
 
+    .editprofile {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+        width: 80%;
+    }
+
     .editprofile input[type='submit'] {
         grid-column: 1 / span 2;
         font-size: 1rem;
@@ -152,12 +168,32 @@
         border: none;
         padding: 10px;
         border-radius: var(--borRad);
+        width: unset;
     }
 
-    body main content section form {
-        display: grid;
-        grid-template-columns: auto auto;
+    main content section {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    main content section form {
         min-width: 100%;
+    }
+
+    main content section nav {
+        padding: 0 2rem;
+        width: 80%;
+    }
+
+    main content section nav ul {
+        flex-direction: row;
+        gap: unset;
+        margin: 6px 0;
+        justify-content: space-evenly;
+    }
+
+    main content section nav ul li a {
+        text-wrap: nowrap;
+        gap: 6px;
     }
 
     footer {
