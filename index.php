@@ -1,5 +1,8 @@
 <?php
+// start session
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+
 // VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
 $settingsInfo = retrieveConfigurationSettingsFromIni('settings');
@@ -10,43 +13,58 @@ $password = $databaseInfo['drowssap'];
 $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
-$loggedIn = ($_SESSION['loggedIn'] = $settingsInfo['logged_in']);
+$loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]);
 $target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
-if ($dbenabled) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-}
+$dbenabled ? require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php' : '';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/query_builder.php';
 
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
 global $conn;
 
-// sets the searchq variable to whatever is in the input field or in the url if it isn't empty, if it is then leave it blank
-if (isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '');
 
-session_start();
+// zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
+isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '';
 
 
+//routes voor paginas
 $routes = [
-    '/' => 'controllers/index.php',
+    '/dashboard' => 'controllers/dashboard.php',
     '/about' => 'controllers/about.php',
-    '/logout' => 'modules/logout.php',
+    '/logout' => 'controllers/logout.php',
     '/profile' => 'controllers/profile.php',
     '/edit' => 'controllers/edit_profile.php',
+    '/search' => 'controllers/search.php'
+];
+
+//routes voor paginas die te maken hebben met authenticatie
+$unAuthorizedRoutes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
     '/forgot' => 'controllers/forgot_password.php',
     '/reset' => 'controllers/reset_password.php',
-    '/search' => 'controllers/search.php'
 ];
 
+// als er niks achter de / staat
+if (getSanitizedUri() === '/') {
+    if ($loggedIn) {
+        redirect('/dashboard');
+    } else {
+        redirect('/login');
+    }
+}
 
-
-// checks if the user is logged in, if not redirect to 'loginpage'
-if (!$loggedIn) {
-    throw new Exception('You are not logged in!');
-} else if (array_key_exists(getSanitizedUri(), $routes)) {
+if (array_key_exists(getSanitizedUri(), $routes)) {
+    // check voor de normale paginas
+    if (!$loggedIn) {
+        redirect('/login?error=2');
+        return;
+    }
     require $routes[getSanitizedUri()];
+} else if (array_key_exists(getSanitizedUri(), $unAuthorizedRoutes)) {
+    // check voor de paginas die te maken hebben met authenticatie
+    require $unAuthorizedRoutes[getSanitizedUri()];
 } else {
+    // anders error
     require $_SERVER['DOCUMENT_ROOT'] . '/core/404.php';
 }

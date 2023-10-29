@@ -322,6 +322,12 @@
             'opsz' 24
     }
 
+    /* styling of submit buttons */
+    input[type="submit"] {
+        font-size: 1rem;
+        padding: 0;
+    }
+
     /* Input field for searchbar */
     input[type=search] {
         padding: 0 6px;

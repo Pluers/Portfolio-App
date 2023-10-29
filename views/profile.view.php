@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/views/public/styles/profilepage.css">
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
@@ -7,7 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
     <div>
         <img src="" alt="" class="circle">
-       <h1>Person Name</h1> 
+        <h1>Person Name</h1>
     </div>
     <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
 </section>
