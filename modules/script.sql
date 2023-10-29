@@ -9,6 +9,7 @@ create table
         drowssap varchar(255) not null,
         first_name varchar(32) not null,
         last_name varchar(32) not null,
+        description varchar(255),
         isAdmin bool default 0,
         created_at timestamp default current_timestamp,
         updated_at timestamp default current_timestamp on update current_timestamp,
