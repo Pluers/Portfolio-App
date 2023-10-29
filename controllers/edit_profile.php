@@ -125,7 +125,7 @@ if (isset($_POST['edituser'])) {
     $hobby_id = (int)$_POST['hobbies'];
     echo "User ID: " . $user_id . "<br>";
     echo "Hobby ID: " . $hobby_id . "<br>";
-    customStatement("INSERT INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id) ON DUPLICATE KEY UPDATE users_id = users_id", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+    customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
 } else if (isset($_POST["create_hobby"])) {
     customStatement("INSERT IGNORE INTO hobbies (hobby_name) VALUE (:hobby_name)", [':hobby_name' => ucfirst($_POST['create_hobby_name'])]);
 } else if (isset($_POST['uploadpfp'])) {
