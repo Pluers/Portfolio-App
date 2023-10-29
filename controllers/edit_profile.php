@@ -2,8 +2,7 @@
 function profilePage()
 {
     global $target_dir_img;
-    $_SESSION['user_id'] = 1;
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION[SESSION_KEY_USER_ID];
     if (isset($_POST['edituser'])) {
         customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
     }
@@ -46,7 +45,7 @@ function profilePage()
             <label for="last_name">Last name:</label>
             <input type="text" placeholder="Last Name" name="last_name" value="<?= getUserInfo()["last_name"] ?>">
             <label for="email">Email:</label>
-            <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>">
+            <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>" required>
             <label for="change_password">Password: </label>
             <a href="/forgot" target="_blank">Change Password
                 <span class="material-symbols-rounded">
@@ -113,7 +112,6 @@ function getUserInfo()
     }
 }
 
-$_SESSION[SESSION_KEY_USER_ID] = 1;
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
 if (isset($_POST['edituser'])) {
     customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
