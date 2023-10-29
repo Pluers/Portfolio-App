@@ -8,16 +8,16 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         <img src="/views/public/images/<?= $profileimg ?>">
         <h1> <?= getUserInfo()['first_name'] . " " . getUserInfo()['last_name'] ?></h1>
     </div>
-    <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
+    <button id="EditProfile" onclick="window.location.href='/editprofile';">Edit Profile</button>
 </section>
 <section>
-<?php
+    <?php
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     ?>
 
-<nav>
+    <nav>
         <ul>
-            
+
             <li>
                 <a href="?tab=about" <?php echo $active_tab === 'about' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">

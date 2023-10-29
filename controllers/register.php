@@ -14,8 +14,8 @@ $conn = new Connection(
     $databaseInfo['drowssap']
 );
 
-$firstname = strtolower($_POST['firstname']);
-$lastname = strtolower($_POST['lastname']);
+$firstname = ucfirst(strtolower($_POST['firstname']));
+$lastname = ucfirst(strtolower($_POST['lastname']));
 $email = strtolower($_POST['email']);
 $password = $_POST['password'];
 

@@ -17,7 +17,7 @@
     <!-- link the styles from separate pages -->
     <?php if (getSanitizedUri() === '/dashboard') { ?>
         <link rel="stylesheet" href="/views/public/styles/homepage.css">
-    <?php } else if (getSanitizedUri() === '/edit') { ?>
+    <?php } else if (getSanitizedUri() === '/editprofile') { ?>
         <link rel="stylesheet" href="/views/public/styles/editprofilepage.css">
     <?php } else if (getSanitizedUri() === '/profile') { ?>
         <link rel="stylesheet" href="/views/public/styles/profilepage.css">

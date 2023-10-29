@@ -4,7 +4,7 @@ function profilePage()
     global $target_dir_img;
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
     if (isset($_POST['edituser'])) {
-        customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
+        customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "', description = '" . $_POST['description'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
     }
     // check if profile picture exists
     if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
@@ -52,55 +52,46 @@ function profilePage()
                     open_in_new
                 </span>
             </a>
+            <label for="description">Description/Biography</label>
+            <textarea name="description" id="" rows="4" name="description" placeholder="Empty description"><?= getUserInfo()["description"] ?></textarea>
             <input type="submit" value="Submit" name="edituser">
-        </form>
-    </contentsection>
-<?php
-}
-function aboutPage()
-{
-    $user_id = $_SESSION[SESSION_KEY_USER_ID];
-    if (isset($_POST['editdesc'])) {
-        customStatement("UPDATE users SET description = '" . $_POST['description'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
-    }
-?>
-    <contentsection>
-        <form action="" method="post">
-            <textarea name="description" id="" cols="30" rows="10" style="resize: none" name="description"><?= getUserInfo()["description"] ?></textarea>
-            <input type="submit" name="editdesc">
         </form>
     </contentsection>
 <?php
 }
 function hobbiesPage()
 {
+    $hobbies = customStatement("SELECT * FROM hobbies");
 ?>
     <contentsection>
-        <form action="">
-            <select name=" hobbies" id="">
-                <option value="hobby1">Hobby 1</option>
-                <option value="hobby2">Hobby 2</option>
-                <option value="hobby3">Hobby 3</option>
+        <form action="" method="post" id="hobbies">
+            <select name="hobbies" id="hobbySelection">
+                <option value="<?= null ?>" name='<?= null ?>' selected disabled>Select a hobby</option>
+                <?php
+                foreach ($hobbies as $hobby) {
+                    echo "<option value='" . $hobby['hobbies_id'] . "' name='selected_hobby'>" . $hobby['hobby_name'] . "</option>";
+                }
+                ?>
+                <option value="create_new_hobby">Create new hobby</option>
             </select>
-            <input type="submit" value="Add Hobby"></input>
+            <input type="submit" value="Add hobby" name="add_hobby_to_profile"></input>
         </form>
-        <form action="">
-            <select name="job experiences" id="">
-                <option value="job">Hobby 1</option>
-                <option value="job">Hobby 2</option>
-                <option value="job">Hobby 3</option>
-            </select>
-            <input type="submit" value="Add Hobby"></input>
-        </form>
-        <form action="">
-            <select name="educations" id="">
-                <option value="educations">Hobby 1</option>
-                <option value="educations">Hobby 2</option>
-                <option value="educations">Hobby 3</option>
-            </select>
-            <input type="submit" value="Add Hobby"></input>
+        <form action="" method="post" id="createHobbyForm" style="display: none;">
+            <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
+            <input type="submit" value="Create hobby" name="create_hobby">
         </form>
     </contentsection>
+    <script>
+        let hobbiesSelect = document.getElementById('hobbySelection');
+        let createHobbySection = document.getElementById('createHobbyForm');
+        hobbiesSelect.addEventListener('change', () => {
+            if (hobbiesSelect.value === 'create_new_hobby') {
+                createHobbySection.style.display = 'flex';
+            } else {
+                createHobbySection.style.display = 'none';
+            }
+        });
+    </script>
 <?php
 }
 function getUserInfo()
@@ -117,17 +108,27 @@ function getUserInfo()
     }
 }
 
+// set user id to variable
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
-if (isset($_POST['edituser'])) {
-    customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
-}
+
 // check if profile picture exists
 if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
     $profileimg = "profile_picture_" . $user_id . ".jpg";
 } else {
     $profileimg = "default.png";
 }
-if (isset($_POST['uploadpfp'])) {
+
+// check the forms and do sql querys
+if (isset($_POST['edituser'])) {
+    customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
+} else if (isset($_POST["add_hobby_to_profile"])) {
+    $hobby_id = (int)$_POST['hobbies'];
+    echo "User ID: " . $user_id . "<br>";
+    echo "Hobby ID: " . $hobby_id . "<br>";
+    customStatement("INSERT INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id) ON DUPLICATE KEY UPDATE users_id = users_id", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+} else if (isset($_POST["create_hobby"])) {
+    customStatement("INSERT IGNORE INTO hobbies (hobby_name) VALUE (:hobby_name)", [':hobby_name' => ucfirst($_POST['create_hobby_name'])]);
+} else if (isset($_POST['uploadpfp'])) {
     $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $extensions_arr = array("jpg", "jpeg", "png", "gif");
