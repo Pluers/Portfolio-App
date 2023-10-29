@@ -1,6 +1,10 @@
 /* MOBILE */
 @media screen and (min-width: 0) {
 
+    h1 {
+        margin: 2rem;
+    }
+
     .setprofilepicture {
         border-bottom: var(--complimentaryColor) 1px solid;
         padding-bottom: 2rem;
@@ -11,13 +15,13 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        min-width: fit-content;
     }
 
     img {
         width: 16rem;
         height: 16rem;
         border-radius: 100%;
+        align-self: center;
     }
 
     label {
@@ -50,6 +54,7 @@
     }
 
     input[type='submit'] {
+        font-size: var(--mobileFontSize);
         padding: 10px 16px;
     }
 
@@ -74,6 +79,7 @@
         display: flex;
         gap: 1rem;
         padding: 1rem;
+        flex-direction: column;
     }
 
     main content section nav {
@@ -115,7 +121,7 @@
     }
 
     contentsection {
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -151,6 +157,11 @@
         padding: 10px 16px;
         width: 60%;
         height: 3rem;
+    }
+
+    .setprofilepicture input[type='submit']:hover {
+        background: var(--accentColor);
+        color: var(--complimentaryColor);
     }
 
     .editprofile {

@@ -49,9 +49,9 @@
                 </button>
                 <dropdownlist>
                     <?php
-                    $jobexperiences = customStatement("SELECT company_name, function_name FROM jobexperiences");
+                    $jobexperiences = customStatement("SELECT company_name, job_title FROM jobexperiences");
                     foreach ($jobexperiences as $jobexperience) {
-                        echo "<a href='#'>" . $jobexperience['company_name'] . " - " . $jobexperience['function_name'] . "</a>";
+                        echo "<a href='#'>" . $jobexperience['company_name'] . " - " . $jobexperience['job_title'] . "</a>";
                     }
                     ?>
                 </dropdownlist>

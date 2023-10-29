@@ -8,7 +8,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         <img src="/views/public/images/<?= $profileimg ?>">
         <h1> <?= getUserInfo()['first_name'] . " " . getUserInfo()['last_name'] ?></h1>
     </div>
-    <button id="EditProfile" onclick="window.location.href='/editprofile';">Edit Profile</button>
+    <input type="button" onclick="window.location.href='/editprofile';" name="" value="Edit Profile">
 </section>
 <section>
     <?php

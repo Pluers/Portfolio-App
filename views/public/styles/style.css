@@ -46,17 +46,32 @@
         margin: 10px;
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 2rem;
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="button"] {
+        font-size: var(--mobileFontSize);
         background: var(--complimentaryColor);
-        border: none;
         border-radius: var(--borRad);
         padding: 10px 16px;
         cursor: pointer;
+        border: 2px solid var(--neutralColor);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
     }
 
-    input[type="submit"]:disabled {
+    input[type='submit']:hover,
+    input[type="button"]:hover {
+        background: var(--accentColor);
+        color: var(--neutralColor);
+    }
+
+    input[type='submit']:active,
+    input[type="button"]:active {
+        transform: translateY(2px) scale(0.98);
+    }
+
+    input[type="submit"]:disabled,
+    input[type="button"]:disabled {
         opacity: 50%;
         cursor: default;
     }
@@ -349,10 +364,10 @@
             'opsz' 24
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 1rem;
-        padding: 0;
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="button"] {
+        font-size: var(--desktopFontSize);
     }
 
     /* Input field for searchbar */
@@ -379,8 +394,7 @@
     }
 
     header nav {
-        /* display: flex; */
-        display: none;
+        display: flex;
         overflow: unset;
         height: 48px;
         transform: translate(0, 0);

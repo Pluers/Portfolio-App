@@ -52,7 +52,7 @@ function profilePage()
                     open_in_new
                 </span>
             </a>
-            <label for="description">Description/Biography</label>
+            <label for="description">Description / Biography:</label>
             <textarea name="description" id="" rows="4" name="description" placeholder="Empty description"><?= getUserInfo()["description"] ?></textarea>
             <input type="submit" value="Submit" name="edituser">
         </form>

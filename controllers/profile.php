@@ -1,22 +1,34 @@
 <?php
 function aboutPage()
 {
- 
-
-
 ?>
     <contentsection>
         <p>
-            <?= getUserInfo ()['description'] ?>
+            <?= getUserInfo()['description'] ?>
         </p>
     </contentsection>
 <?php
 }
+function hobbiesPage()
+{
+?>
+    <contentsection>
+        <p>
+            <?php
+            $result = customStatement("SELECT hobbies.hobby_name FROM user_hobbies JOIN hobbies ON user_hobbies.users_id = :users_id", [':users_id' => $_SESSION['user_id']]);
+            if (is_array($result)) {
+                foreach ($result as $key) {
+                    echo $key['hobby_name'] . "<br>";
+                }
+            } else {
+                echo "No hobbies found.";
+            }
 
-
-
-
-
+            ?>
+        </p>
+    </contentsection>
+<?php
+}
 
 function getUserInfo()
 {
