@@ -1,3 +1,6 @@
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
+?>
 <div class="container">
 
     <form action="/reset" method="post">
