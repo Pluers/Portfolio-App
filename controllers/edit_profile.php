@@ -59,11 +59,16 @@ function profilePage()
 }
 function aboutPage()
 {
+    $user_id = $_SESSION[SESSION_KEY_USER_ID];
+    if (isset($_POST['editdesc'])) {
+        customStatement("UPDATE users SET description = '" . $_POST['description'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
+    }
 ?>
     <contentsection>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iusto obcaecati nobis possimus at ducimus sint, facere voluptatem iure, nam illum tempora assumenda hic. Voluptatum cum earum totam magni mollitia!
-        </p>
+        <form action="" method="post">
+            <textarea name="description" id="" cols="30" rows="10" style="resize: none" name="description"><?= getUserInfo()["description"] ?></textarea>
+            <input type="submit" name="editdesc">
+        </form>
     </contentsection>
 <?php
 }
@@ -72,7 +77,7 @@ function hobbiesPage()
 ?>
     <contentsection>
         <form action="">
-            <select name="hobbies" id="">
+            <select name=" hobbies" id="">
                 <option value="hobby1">Hobby 1</option>
                 <option value="hobby2">Hobby 2</option>
                 <option value="hobby3">Hobby 3</option>
