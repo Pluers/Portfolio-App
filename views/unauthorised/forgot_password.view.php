@@ -8,6 +8,10 @@
         Your token has expired!
     </div>
 <?php } ?>
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
+?>
+
 <div class="container">
 
     <form action="/forgot" method="post">
