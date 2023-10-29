@@ -132,7 +132,9 @@ if (isset($_POST['edituser'])) {
     $stmt = $conn->prepare("SELECT * FROM user_hobbies WHERE users_id = :user_id AND hobbies_id = :hobby_id");
     $stmt->execute([':user_id' => $user_id, ':hobby_id' => $hobby_id]);
     if (!$stmt->fetch()) {
-        customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+        if (!empty($stmt->fetchAll())) {
+            customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+        }
     }
 } else if (isset($_POST["create_hobby"])) {
     customStatement("INSERT IGNORE INTO hobbies (hobby_name) VALUE (:hobby_name)", [':hobby_name' => ucfirst($_POST['create_hobby_name'])]);

@@ -74,6 +74,9 @@
     input[type="button"]:disabled {
         opacity: 50%;
         cursor: default;
+        color: unset;
+        transform: unset;
+        background: var(--complimentaryColor);
     }
 
     textarea {
