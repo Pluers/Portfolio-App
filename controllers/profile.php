@@ -1,4 +1,23 @@
 <?php
+function aboutPage()
+{
+ 
+
+
+?>
+    <contentsection>
+        <p>
+            <?= getUserInfo ()['description'] ?>
+        </p>
+    </contentsection>
+<?php
+}
+
+
+
+
+
+
 function getUserInfo()
 {
     global $conn;
@@ -11,6 +30,8 @@ function getUserInfo()
         // handle the case where no rows are returned by the SQL statement
     }
 }
+
+
 
 if (file_exists($target_dir_img . "profile_picture_" . $_SESSION['user_id'] . ".jpg")) {
     $profileimg = "profile_picture_" . $_SESSION['user_id'] . ".jpg";
