@@ -66,7 +66,7 @@ function hobbiesPage()
     <contentsection>
         <form action="" method="post" id="hobbies">
             <select name="hobbies" id="hobbySelection">
-                <option value="<?= null ?>" name='<?= null ?>' selected disabled>Select a hobby</option>
+                <option value="0" name='default' selected disabled>Select a hobby</option>
                 <?php
                 foreach ($hobbies as $hobby) {
                     echo "<option value='" . $hobby['hobbies_id'] . "' name='selected_hobby'>" . $hobby['hobby_name'] . "</option>";
@@ -74,7 +74,7 @@ function hobbiesPage()
                 ?>
                 <option value="create_new_hobby">Create new hobby</option>
             </select>
-            <input type="submit" value="Add hobby" name="add_hobby_to_profile"></input>
+            <input type="submit" value="Add hobby" name="add_hobby_to_profile" disabled></input>
         </form>
         <form action="" method="post" id="createHobbyForm" style="display: none;">
             <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
@@ -84,11 +84,18 @@ function hobbiesPage()
     <script>
         let hobbiesSelect = document.getElementById('hobbySelection');
         let createHobbySection = document.getElementById('createHobbyForm');
+        let addHobbyButton = document.querySelector("input[name='add_hobby_to_profile']");
+        let createHobbyButton = document.querySelector("input[name='create_hobby']");
         hobbiesSelect.addEventListener('change', () => {
-            if (hobbiesSelect.value === 'create_new_hobby') {
+            if (hobbiesSelect.value === "0") {
+                addHobbyButton.disabled = true;
+            } else if (hobbiesSelect.value === 'create_new_hobby') {
                 createHobbySection.style.display = 'flex';
+                addHobbyButton.style.display = 'none';
             } else {
                 createHobbySection.style.display = 'none';
+                addHobbyButton.style.display = 'flex';
+                addHobbyButton.disabled = false;
             }
         });
     </script>
@@ -108,7 +115,6 @@ function getUserInfo()
     }
 }
 
-// set user id to variable
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
 
 // check if profile picture exists
@@ -123,9 +129,11 @@ if (isset($_POST['edituser'])) {
     customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
 } else if (isset($_POST["add_hobby_to_profile"])) {
     $hobby_id = (int)$_POST['hobbies'];
-    echo "User ID: " . $user_id . "<br>";
-    echo "Hobby ID: " . $hobby_id . "<br>";
-    customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+    $stmt = $conn->prepare("SELECT * FROM user_hobbies WHERE users_id = :user_id AND hobbies_id = :hobby_id");
+    $stmt->execute([':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+    if (!$stmt->fetch()) {
+        customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+    }
 } else if (isset($_POST["create_hobby"])) {
     customStatement("INSERT IGNORE INTO hobbies (hobby_name) VALUE (:hobby_name)", [':hobby_name' => ucfirst($_POST['create_hobby_name'])]);
 } else if (isset($_POST['uploadpfp'])) {

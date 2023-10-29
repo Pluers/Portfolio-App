@@ -53,6 +53,12 @@
         border: none;
         border-radius: var(--borRad);
         padding: 10px 16px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:disabled {
+        opacity: 50%;
+        cursor: default;
     }
 
     textarea {
@@ -373,7 +379,8 @@
     }
 
     header nav {
-        display: flex;
+        /* display: flex; */
+        display: none;
         overflow: unset;
         height: 48px;
         transform: translate(0, 0);
