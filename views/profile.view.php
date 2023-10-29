@@ -12,19 +12,12 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 </section>
 <section>
 <?php
-    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
+    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     ?>
 
 <nav>
         <ul>
-            <li>
-                <a href="?tab=profile" <?php echo $active_tab === 'profile' ? 'class="active"' : ''; ?>>
-                    <span class="material-symbols-rounded">
-                        manage_accounts
-                    </span>
-                    Profile
-                </a>
-            </li>
+            
             <li>
                 <a href="?tab=about" <?php echo $active_tab === 'about' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
@@ -61,9 +54,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     </nav>
 
     <?php
-    if ($active_tab === 'profile') {
-        profilePage();
-    } elseif ($active_tab === 'about') {
+    if ($active_tab === 'about') {
         aboutPage();
     } elseif ($active_tab === 'hobbies') {
         hobbiesPage();

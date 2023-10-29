@@ -1,4 +1,19 @@
 <?php
+function aboutPage()
+{
+?>
+    <contentsection>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iusto obcaecati nobis possimus at ducimus sint, facere voluptatem iure, nam illum tempora assumenda hic. Voluptatum cum earum totam magni mollitia!
+        </p>
+    </contentsection>
+<?php
+}
+
+
+
+
+
 function getUserInfo()
 {
     global $conn;
@@ -11,6 +26,8 @@ function getUserInfo()
         // handle the case where no rows are returned by the SQL statement
     }
 }
+
+
 
 if (file_exists($target_dir_img . "profile_picture_" . $_SESSION['user_id'] . ".jpg")) {
     $profileimg = "profile_picture_" . $_SESSION['user_id'] . ".jpg";
