@@ -1,14 +1,18 @@
 <?php
 function aboutPage()
 {
+ 
+
+
 ?>
     <contentsection>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus iusto obcaecati nobis possimus at ducimus sint, facere voluptatem iure, nam illum tempora assumenda hic. Voluptatum cum earum totam magni mollitia!
+            <?= getUserInfo ()['description'] ?>
         </p>
     </contentsection>
 <?php
 }
+
 
 
 
