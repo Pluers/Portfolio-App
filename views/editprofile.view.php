@@ -8,9 +8,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
 
     <?php
-    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : '';
+    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
     ?>
-
     <nav>
         <ul>
             <li>

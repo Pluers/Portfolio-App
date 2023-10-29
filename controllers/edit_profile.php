@@ -136,9 +136,4 @@ if (isset($_POST['uploadpfp'])) {
     }
 }
 
-
-
-
-
-
 require $_SERVER['DOCUMENT_ROOT'] . '/views/editprofile.view.php';

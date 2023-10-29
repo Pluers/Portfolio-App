@@ -78,7 +78,7 @@
     main content section nav ul {
         flex-direction: column;
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
         list-style: none;
         padding: 0;
         justify-content: center;
