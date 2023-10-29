@@ -37,6 +37,12 @@
             'opsz' 24
     }
 
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin: 10px;
+    }
+
     /* styling of submit buttons */
     input[type="submit"] {
         font-size: 2rem;
