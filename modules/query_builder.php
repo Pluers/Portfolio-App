@@ -1,14 +1,14 @@
 <?php
 // Prepare the sql statement
 
-function customStatement($sql, $params)
+function customStatement($sql, $params=[])
 {
     global $conn;
 
     try {
         $stmt = $conn->prepare($sql);
         if ($params != '') {
-            foreach ($params as $key => $value) {
+            foreach ($params as $key => &$value) {
                 $stmt->bindParam($key, $value);
             }
         }
