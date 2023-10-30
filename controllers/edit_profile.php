@@ -76,10 +76,28 @@ function hobbiesPage()
             </select>
             <input type="submit" value="Add hobby" name="add_hobby_to_profile" disabled></input>
         </form>
+        <form action="">
+            <label for="fileToUpload">
+                <!-- hidden file input that gets replaced by the span -->
+                <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" />
+                <span>Select Image
+                    <span class="material-symbols-rounded">
+                        add_photo_alternate
+                    </span>
+                </span>
+            </label>
+            <input type="submit">
+        </form>
         <form action="" method="post" id="createHobbyForm" style="display: none;">
-            <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
+            <input type=" text" placeholder="Enter new hobby name" name="create_hobby_name">
             <input type="submit" value="Create hobby" name="create_hobby">
         </form>
+
+        <hobbygrid>
+            <hobbyarticle>
+                <img src="" alt="">
+            </hobbyarticle>
+        </hobbygrid>
     </contentsection>
     <script>
         let hobbiesSelect = document.getElementById('hobbySelection');
