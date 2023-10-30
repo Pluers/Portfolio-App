@@ -7,12 +7,7 @@ function customStatement($sql, $params=[])
 
     try {
         $stmt = $conn->prepare($sql);
-        if ($params != '') {
-            foreach ($params as $key => &$value) {
-                $stmt->bindParam($key, $value);
-            }
-        }
-        $stmt->execute();
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();

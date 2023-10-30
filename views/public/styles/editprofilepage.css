@@ -1,6 +1,14 @@
 /* MOBILE */
 @media screen and (min-width: 0) {
 
+    :root {
+        --mobileFontSize: 16px;
+    }
+
+    h1 {
+        margin: 2rem;
+    }
+
     .setprofilepicture {
         border-bottom: var(--complimentaryColor) 1px solid;
         padding-bottom: 2rem;
@@ -11,32 +19,46 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        min-width: fit-content;
+        gap: 10px;
     }
 
-    img {
+    .setprofilepicture span {
+        display: flex;
+        margin: auto;
+        gap: 10px;
+    }
+
+    .setprofilepicture img {
         width: 16rem;
         height: 16rem;
         border-radius: 100%;
+        align-self: center;
+    }
+
+    #hobbySelection,
+    #hobbies input,
+    #createHobbyForm input {
+        text-align: center;
+        justify-content: center;
     }
 
     label {
-        font-size: 2rem;
+        font-size: var(--mobileFontSize);
         font-weight: bold;
     }
 
     input[type='text'] {
-        font-size: 2rem;
+        font-size: var(--mobileFontSize);
         background: var(--complimentaryColor);
         border: none;
         padding: 10px;
         border-radius: var(--borRad);
-        width: 75vw;
+        width: 100%;
     }
 
     input[type='file'] {
         text-align-last: center;
-        font-size: 1rem;
+        font-size: var(--mobileFontSize);
     }
 
     input[type='file']::-webkit-file-upload-button {
@@ -49,8 +71,20 @@
         border-radius: var(--borRad);
     }
 
-    main content section,
-    main content section form {
+    input[type='submit'] {
+        font-size: var(--mobileFontSize);
+        padding: 10px 16px;
+    }
+
+    select {
+        background: var(--complimentaryColor);
+        font-size: var(--mobileFontSize);
+        border: none;
+        border-radius: var(--borRad);
+        padding: 10px;
+    }
+
+    main content section {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -60,6 +94,10 @@
 
     main content section form {
         width: 100%;
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        flex-direction: column;
     }
 
     main content section nav {
@@ -87,7 +125,7 @@
         display: flex;
         align-items: center;
         gap: 2rem;
-        font-size: 1rem;
+        font-size: var(--mobileFontSize);
     }
 
     main content section nav ul li a.active span {
@@ -101,7 +139,7 @@
     }
 
     contentsection {
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -132,11 +170,16 @@
         /* margin-bottom: auto; */
         justify-content: center;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: var(--desktopFontSize);
         background: var(--neutralColor);
         padding: 10px 16px;
         width: 60%;
         height: 3rem;
+    }
+
+    .setprofilepicture input[type='submit']:hover {
+        background: var(--accentColor);
+        color: var(--complimentaryColor);
     }
 
     .editprofile {
@@ -148,8 +191,16 @@
 
     .editprofile input[type='submit'] {
         grid-column: 1 / span 2;
-        font-size: 1rem;
+        font-size: var(--desktopFontSize);
         padding: 10px;
+    }
+
+    #hobbySelection,
+    #hobbies input,
+    #createHobbyForm input {
+        text-align: unset;
+        justify-content: unset;
+        font-size: var(--desktopFontSize);
     }
 
     a {
@@ -157,7 +208,7 @@
     }
 
     input[type='text'] {
-        font-size: 1rem;
+        font-size: var(--desktopFontSize);
         background: var(--complimentaryColor);
         border: none;
         padding: 10px;
@@ -165,8 +216,14 @@
         width: unset;
     }
 
+    select {
+        font-size: var(--desktopFontSize);
+    }
+
     main content section {
         padding: 0 1rem 1rem 1rem;
+        width: 80%;
+        margin: 0 auto;
     }
 
     main content section form {
@@ -175,7 +232,6 @@
 
     main content section nav {
         padding: 0 2rem;
-        width: 80%;
     }
 
     main content section nav ul {

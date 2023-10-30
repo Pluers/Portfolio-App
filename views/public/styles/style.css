@@ -1,8 +1,9 @@
 /* MOBILE */
 @media screen and (min-width: 0) {
     :root {
-        font-family: system-ui;
+        font-family: var(--font-family);
         font-weight: bold;
+        --font-family: system-ui;
         --borRad: 6px;
         --neutralColor: #ffe9c3;
         --complimentaryColor: #ccba9c;
@@ -10,6 +11,8 @@
         --complimentaryAccentColor: #8b7e6a;
         --headerHeight: 64px;
         --sidebarHeight: 4rem;
+        --mobileFontSize: 2rem;
+        --desktopFontSize: 1rem;
     }
 
     * {
@@ -43,13 +46,48 @@
         margin: 10px;
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 2rem;
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="button"] {
+        font-size: var(--mobileFontSize);
+        background: var(--complimentaryColor);
+        border-radius: var(--borRad);
+        padding: 10px 16px;
+        cursor: pointer;
+        border: 2px solid var(--neutralColor);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    input[type='submit']:hover,
+    input[type="button"]:hover {
+        background: var(--accentColor);
+        color: var(--neutralColor);
+    }
+
+    input[type='submit']:active,
+    input[type="button"]:active {
+        transform: translateY(2px) scale(0.98);
+    }
+
+    input[type="submit"]:disabled,
+    input[type="button"]:disabled {
+        opacity: 50%;
+        cursor: default;
+        color: unset;
+        transform: unset;
+        background: var(--complimentaryColor);
+    }
+
+    textarea {
+        resize: none;
+        width: 100%;
         background: var(--complimentaryColor);
         border: none;
         border-radius: var(--borRad);
-        padding: 10px 16px;
+        font-size: var(--mobileFontSize);
+        font-family: var(--font-family);
+        padding: 10px;
     }
 
     profile img {
@@ -329,10 +367,10 @@
             'opsz' 24
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 1rem;
-        padding: 0;
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="button"] {
+        font-size: var(--desktopFontSize);
     }
 
     /* Input field for searchbar */
@@ -342,6 +380,10 @@
         width: unset;
         font-size: 13px;
         padding: unset;
+    }
+
+    textarea {
+        font-size: var(--desktopFontSize);
     }
 
     body {
