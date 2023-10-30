@@ -14,7 +14,7 @@ $password = $_POST['password'];
 
 $passwordHashed = password_hash($password, PASSWORD_ARGON2I);
 
-$sql = "SELECT  email FROM users WHERE email = :email";
+$sql = 'SELECT  email FROM users WHERE email = :email';
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->execute();
@@ -23,7 +23,7 @@ if (!empty($result['email']) && $result['email'] === $email) {
     redirect('/register?error=2'); // email bestaat al
 }
 
-$sql = "INSERT INTO users ( email, first_name, last_name, drowssap) VALUES (:email, :firstname, :lastname, :passwordHashed)";
+$sql = 'INSERT INTO users ( email, first_name, last_name, drowssap) VALUES (:email, :firstname, :lastname, :passwordHashed)';
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':firstname', $firstname);

@@ -31,5 +31,6 @@ function getSanitizedStr($string)
 {
     return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
 }
-
+// een constant is een variable die je niet aan kan passen.
 const SESSION_KEY_USER_ID = 'user_id';
+const SESSION_KEY_ADMIN = 'admin';

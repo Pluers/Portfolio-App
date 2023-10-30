@@ -23,7 +23,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
 }
 
 $sql = 'SELECT reset_token_expires_at FROM users WHERE reset_token = :reset_token';
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':reset_token', $_POST['reset_token']);
 $stmt->execute();
 $expiresAt = $stmt->fetchColumn();
