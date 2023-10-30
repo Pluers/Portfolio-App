@@ -8,7 +8,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         <img src="/views/public/images/<?= $profileimg ?>">
         <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
+    <?php if (isset($_GET['user_id']) && $_GET['user_id'] == $_SESSION[SESSION_KEY_USER_ID]){
+     ?>
     <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
+    <?php }?>
 </section>
 <hr>
 <h1 id="aboutme">About me</h1>
