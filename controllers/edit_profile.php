@@ -4,7 +4,8 @@ function profilePage()
     global $target_dir_img;
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
     if (isset($_POST['edituser'])) {
-        customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
+        customStatement('UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id',
+            [':user_id' => $user_id,':first_name'=> $_POST['first_name'],':last_name'=> $_POST['last_name'],':email'=> $_POST['email']]);
     }
     // check if profile picture exists
     if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
@@ -102,7 +103,7 @@ function getUserInfo()
 {
     global $conn;
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
-    $stmt = $conn->prepare("SELECT * FROM users WHERE users_id = :user_id");
+    $stmt = $conn->prepare('SELECT * FROM users WHERE users_id = :user_id');
     $stmt->execute([':user_id' => $user_id]);
     $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user_info) {
