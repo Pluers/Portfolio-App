@@ -21,14 +21,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </a>
             </li>
             <li>
-                <a href="?tab=about" <?php echo $active_tab === 'about' ? 'class="active"' : ''; ?>>
-                    <span class="material-symbols-rounded">
-                        person_book
-                    </span>
-                    About
-                </a>
-            </li>
-            <li>
                 <a href="?tab=hobbies" <?php echo $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         sports_and_outdoors
@@ -57,8 +49,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <?php
     if ($active_tab === 'profile') {
         profilePage();
-    } elseif ($active_tab === 'about') {
-        aboutPage();
     } elseif ($active_tab === 'hobbies') {
         hobbiesPage();
     } elseif ($active_tab === 'jobs') {

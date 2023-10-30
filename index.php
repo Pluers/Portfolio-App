@@ -13,7 +13,7 @@ $password = $databaseInfo['drowssap'];
 $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
 $dbenabled = $settingsInfo['database_enabled'];
-$loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]) || $devmode ? $settingsInfo['logged_in'] : null;
+$loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]) || $devmode = true ? $settingsInfo['logged_in'] : "";
 $target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
 $dbenabled ? require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php' : '';
@@ -32,7 +32,7 @@ $routes = [
     '/about' => 'controllers/about.php',
     '/logout' => 'controllers/logout.php',
     '/profile' => 'controllers/profile.php',
-    '/edit' => 'controllers/edit_profile.php',
+    '/editprofile' => 'controllers/edit_profile.php',
     '/search' => 'controllers/search.php'
 ];
 

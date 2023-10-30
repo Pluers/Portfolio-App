@@ -59,7 +59,7 @@
         display: flex;
         justify-content: center;
         margin-top: 12px;
-        height: 25px;
+        /* height: 25px; */
     }
 
     .button > input {

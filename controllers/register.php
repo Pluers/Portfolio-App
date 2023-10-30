@@ -7,8 +7,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
 }
 global $conn;
 
-$firstname = strtolower($_POST['firstname']);
-$lastname = strtolower($_POST['lastname']);
+$firstname = ucfirst(strtolower($_POST['firstname']));
+$lastname = ucfirst(strtolower($_POST['lastname']));
 $email = strtolower($_POST['email']);
 $password = $_POST['password'];
 
