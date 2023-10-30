@@ -15,7 +15,7 @@ $password = $_POST['password'];
 $passwordHashed = password_hash($password, PASSWORD_ARGON2I);
 
 $sql = "SELECT  email FROM users WHERE email = :email";
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 $result = $stmt->fetch();
@@ -24,7 +24,7 @@ if (!empty($result['email']) && $result['email'] === $email) {
 }
 
 $sql = "INSERT INTO users ( email, first_name, last_name, drowssap) VALUES (:email, :firstname, :lastname, :passwordHashed)";
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':firstname', $firstname);
 $stmt->bindParam(':lastname', $lastname);
