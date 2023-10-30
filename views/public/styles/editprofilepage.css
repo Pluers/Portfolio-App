@@ -222,6 +222,7 @@
         grid-template-columns: auto 1fr;
         gap: 2rem;
         width: 80%;
+        align-items: center;
     }
 
     .editprofile input[type='submit'] {
