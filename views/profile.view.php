@@ -9,7 +9,10 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
         <img src="/views/public/images/<?= $profileimg ?>">
         <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
-    <input type="button" onclick="window.location.href='/editprofile';" name="" value="Edit Profile">
+    <?php if (isset($_GET['user_id']) && $_GET['user_id'] == $_SESSION[SESSION_KEY_USER_ID]){
+     ?>
+    <button id="EditProfile" onclick="window.location.href='/edit';">Edit Profile</button>
+    <?php }?>
 </section>
 
 <section>

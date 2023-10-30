@@ -3,6 +3,10 @@ function profilePage()
 {
     global $target_dir_img;
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
+    if (isset($_GET['user_id']) && $_GET['user_id'] !== $user_id || $_SESSION[SESSION_KEY_ADMIN] === 0) {
+        redirect('/profile');
+    }
+
     if (isset($_POST['edituser'])) {
         customStatement(
             'UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id',
@@ -26,7 +30,7 @@ function profilePage()
             }
         }
     }
-?>
+    ?>
     <contentsection>
         <h1> Edit Profile</h1>
         <form method="post" enctype="multipart/form-data" class="setprofilepicture">
@@ -64,7 +68,7 @@ function profilePage()
             <input type="submit" value="Submit" name="edituser">
         </form>
     </contentsection>
-<?php
+    <?php
 }
 function hobbiesPage()
 {
@@ -113,6 +117,7 @@ function hobbiesPage()
     </contentsection>
 <?php
 }
+
 function getUserInfo()
 {
     global $conn;
