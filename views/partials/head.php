@@ -19,6 +19,11 @@
         <link rel="stylesheet" href="/views/public/styles/homepage.css">
     <?php } else if (getSanitizedUri() === '/editprofile') { ?>
         <link rel="stylesheet" href="/views/public/styles/editprofilepage.css">
+        <script src="/views/public/script/editprofile.js"></script>
+        <?php if (isset($_GET['tab']) && $_GET['tab'] === 'hobbies') { ?>
+            <script src="/views/public/script/editprofilehobbies.js"></script>
+        <?php
+        } ?>
     <?php } else if (getSanitizedUri() === '/profile') { ?>
         <link rel="stylesheet" href="/views/public/styles/profilepage.css">
     <?php } else if (getSanitizedUri() === '/login' || getSanitizedUri() === '/register' || getSanitizedUri() === '/forgot' || getSanitizedUri() === '/reset') { ?>

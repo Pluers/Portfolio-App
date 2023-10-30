@@ -4,8 +4,10 @@ function profilePage()
     global $target_dir_img;
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
     if (isset($_POST['edituser'])) {
-        customStatement('UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id',
-            [':user_id' => $user_id,':first_name'=> $_POST['first_name'],':last_name'=> $_POST['last_name'],':email'=> $_POST['email']]);
+        customStatement(
+            'UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id',
+            [':user_id' => $user_id, ':first_name' => $_POST['first_name'], ':last_name' => $_POST['last_name'], ':email' => $_POST['email']]
+        );
     }
     // check if profile picture exists
     if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
@@ -19,7 +21,7 @@ function profilePage()
         $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
         if (in_array($imageFileType, $extensions_arr)) {
-            if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)) {
+            if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
                 $_SESSION['profile_picture'] = "profile_picture_" . $user_id . ".jpg";
             }
         }
@@ -28,10 +30,14 @@ function profilePage()
     <contentsection>
         <h1> Edit Profile</h1>
         <form method="post" enctype="multipart/form-data" class="setprofilepicture">
-            <img src="/views/public/images/<?= $profileimg ?>" />
-            <label for="fileToUpload">
+            <images>
+                <img src="/views/public/images/<?= $profileimg ?>" />
+                <span class="material-symbols-rounded"> </span>
+                <img src="/views/public/images/<?= $profileimg ?>" name="newProfileImg" />
+            </images>
+            <label for="imgToUpload" class="uploadImage">
                 <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" />
+                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
                 <span>Select Image
                     <span class="material-symbols-rounded">
                         add_photo_alternate
@@ -65,7 +71,9 @@ function hobbiesPage()
     $hobbies = customStatement("SELECT * FROM hobbies");
 ?>
     <contentsection>
-        <form action="" method="post" id="hobbies">
+        <h1>Add Hobbies</h1>
+        <!-- hobby selector -->
+        <form method="post" id="hobbies">
             <select name="hobbies" id="hobbySelection">
                 <option value="0" name='default' selected disabled>Select a hobby</option>
                 <?php
@@ -75,49 +83,34 @@ function hobbiesPage()
                 ?>
                 <option value="create_new_hobby">Create new hobby</option>
             </select>
-            <input type="submit" value="Add hobby" name="add_hobby_to_profile" disabled></input>
+            <input type="submit" value="Add hobby" name="add_hobby_to_profile">
         </form>
-        <form action="">
-            <label for="fileToUpload">
+        <!-- upload image to hobby -->
+        <form method="post" class="uploadImage">
+            <label for="imgToUpload">
                 <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" />
+                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
                 <span>Select Image
                     <span class="material-symbols-rounded">
                         add_photo_alternate
                     </span>
                 </span>
             </label>
-            <input type="submit">
+            <input type="submit" name="uploadImgSubmit" />
         </form>
-        <form action="" method="post" id="createHobbyForm" style="display: none;">
-            <input type=" text" placeholder="Enter new hobby name" name="create_hobby_name">
+        <!-- create new hobby -->
+        <form method="post" id="createHobbyForm" style="display: none;">
+            <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
             <input type="submit" value="Create hobby" name="create_hobby">
         </form>
 
         <hobbygrid>
+            <!-- display the hobbies that the user has selected -->
             <hobbyarticle>
                 <img src="" alt="">
             </hobbyarticle>
         </hobbygrid>
     </contentsection>
-    <script>
-        let hobbiesSelect = document.getElementById('hobbySelection');
-        let createHobbySection = document.getElementById('createHobbyForm');
-        let addHobbyButton = document.querySelector("input[name='add_hobby_to_profile']");
-        let createHobbyButton = document.querySelector("input[name='create_hobby']");
-        hobbiesSelect.addEventListener('change', () => {
-            if (hobbiesSelect.value === "0") {
-                addHobbyButton.disabled = true;
-            } else if (hobbiesSelect.value === 'create_new_hobby') {
-                createHobbySection.style.display = 'flex';
-                addHobbyButton.style.display = 'none';
-            } else {
-                createHobbySection.style.display = 'none';
-                addHobbyButton.style.display = 'flex';
-                addHobbyButton.disabled = false;
-            }
-        });
-    </script>
 <?php
 }
 function getUserInfo()
@@ -129,8 +122,6 @@ function getUserInfo()
     $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user_info) {
         return $user_info;
-    } else {
-        // handle the case where no rows are returned by the SQL statement
     }
 }
 
@@ -163,7 +154,7 @@ if (isset($_POST['edituser'])) {
     $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
     if (in_array($imageFileType, $extensions_arr)) {
-        if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)) {
+        if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
             $_SESSION['profile_picture'] = "profile_picture_" . $user_id . ".jpg";
         }
     }
