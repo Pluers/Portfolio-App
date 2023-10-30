@@ -5,14 +5,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/forgot_password.view.php';
     return;
 }
-
-$databaseInfo = retrieveConfigurationSettingsFromIni('database');
-$conn = new Connection(
-    $databaseInfo['servername'],
-    $databaseInfo['dbname'],
-    $databaseInfo['username'],
-    $databaseInfo['drowssap']
-);
+global $conn;
 
 // post de email.
 $email = strtolower($_POST['email']);

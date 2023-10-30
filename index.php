@@ -22,7 +22,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/query_builder.php';
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
 global $conn;
 
-
 // zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '';
 

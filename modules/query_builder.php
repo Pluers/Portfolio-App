@@ -1,7 +1,7 @@
 <?php
 // Prepare the sql statement
 
-function customStatement($sql, $params = [])
+function customStatement($sql, $params=[])
 {
     global $conn;
 

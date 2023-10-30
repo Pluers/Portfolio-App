@@ -1,13 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-$databaseInfo = retrieveConfigurationSettingsFromIni('database');
-$conn = new Connection(
-    $databaseInfo['servername'],
-    $databaseInfo['dbname'],
-    $databaseInfo['username'],
-    $databaseInfo['drowssap']
-);
+global $conn;
 
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     $token = $_GET['token'];

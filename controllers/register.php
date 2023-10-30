@@ -5,14 +5,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/register.view.php';
     return;
 }
-
-$databaseInfo = retrieveConfigurationSettingsFromIni('database');
-$conn = new Connection(
-    $databaseInfo['servername'],
-    $databaseInfo['dbname'],
-    $databaseInfo['username'],
-    $databaseInfo['drowssap']
-);
+global $conn;
 
 $firstname = ucfirst(strtolower($_POST['firstname']));
 $lastname = ucfirst(strtolower($_POST['lastname']));

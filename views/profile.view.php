@@ -6,7 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 <section>
     <div>
         <img src="/views/public/images/<?= $profileimg ?>">
-        <h1> <?= getUserInfo()['first_name'] . " " . getUserInfo()['last_name'] ?></h1>
+        <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
     <input type="button" onclick="window.location.href='/editprofile';" name="" value="Edit Profile">
 </section>

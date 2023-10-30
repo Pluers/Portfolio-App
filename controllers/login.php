@@ -6,14 +6,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     return;
 }
 
-// POST
-$databaseInfo = retrieveConfigurationSettingsFromIni('database');
-$conn = new Connection(
-    $databaseInfo['servername'],
-    $databaseInfo['dbname'],
-    $databaseInfo['username'],
-    $databaseInfo['drowssap']
-);
+global $conn;
 
 $email = strtolower($_POST['email']);
 $password = $_POST['password'];
