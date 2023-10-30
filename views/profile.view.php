@@ -2,6 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+$active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
 ?>
 <section>
     <div>
@@ -10,11 +11,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     </div>
     <input type="button" onclick="window.location.href='/editprofile';" name="" value="Edit Profile">
 </section>
-<section>
-    <?php
-    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
-    ?>
 
+<section>
     <nav>
         <ul>
 
@@ -62,18 +60,5 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     } elseif ($active_tab === 'educations') {
     }
     ?>
-
-
-
-
-
 </section>
-
-
-
-
-
-
-
-
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php'; ?>
