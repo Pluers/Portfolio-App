@@ -7,7 +7,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
 ?>
 <section>
     <div>
-        <img src="/views/public/images/<?= $profileimg ?>">
+        <img src="/views/public/images/<?= $profileImage ?>">
         <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
     <?php if (isset($_GET['user_id']) && $_GET['user_id'] == $_SESSION[SESSION_KEY_USER_ID]) {

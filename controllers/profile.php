@@ -60,7 +60,7 @@ $stmt->bindParam(':users_id', $user_id);
 $stmt->execute();
 $user = $stmt->fetch();
 
-if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
+if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
     $profileimg = "profile_picture_" . $user_id . ".jpg";
 } else {
     $profileimg = "default.png";

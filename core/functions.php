@@ -31,6 +31,21 @@ function getSanitizedStr($string)
 {
     return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
 }
+
+function getUserInfo()
+{
+    global $conn;
+    $user_id = $_SESSION[SESSION_KEY_USER_ID];
+    $stmt = $conn->prepare('SELECT * FROM users WHERE users_id = :user_id');
+    $stmt->execute([':user_id' => $user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user === false) {
+        throw new LogicException('The provided user does not exist: ' . $user_id);
+    }
+
+    return $user;
+}
+
 // een constant is een variable die je niet aan kan passen.
 const SESSION_KEY_USER_ID = 'user_id';
 const SESSION_KEY_ADMIN = 'admin';
