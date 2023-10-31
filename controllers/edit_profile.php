@@ -112,15 +112,22 @@ function hobbiesPage()
         <hobbygrid>
             <!-- display the hobbies that the user has selected -->
             <?php
-            foreach ($user_hobbies['hobby_name'] as $user_hobby) {
+            $printed_hobbies = [];
+
+            foreach ($user_hobbies as $user_hobby) {
+                if (!in_array($user_hobby['hobby_name'], $printed_hobbies)) {
             ?>
-                <hobbyarticle>
-                    <img src="/views/public/images/hobby_<?= $user_hobby['hobby_name'] ?>.jpg" alt="">
-                    <p><?= $user_hobby['hobby_name'] ?></p>
-                </hobbyarticle>
+                    <hobbyarticle>
+                        <img src="/views/public/images/hobby_<?= $user_hobby['hobby_name'] ?>.jpg" alt="">
+                        <p><?= $user_hobby['hobby_name'] ?></p>
+                    </hobbyarticle>
             <?php
+                    // Add this hobby to the printed hobbies array
+                    $printed_hobbies[] = $user_hobby['hobby_name'];
+                }
             }
             ?>
+
         </hobbygrid>
     </contentsection>
 <?php
@@ -142,7 +149,7 @@ function getUserInfo()
 // variables 
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
 $gethobbies = customStatement("SELECT * FROM hobbies");
-$user_hobbies = customStatement("SELECT * FROM hobbies JOIN user_hobbies WHERE user_hobbies.users_id = :user_id", [':user_id' => $user_id]);
+$user_hobbies = customStatement("SELECT * FROM user_hobbies JOIN hobbies WHERE user_hobbies.users_id = :user_id", [':user_id' => $user_id]);
 $hobby_name = isset($_POST['create_hobby_name']) ? $_POST['create_hobby_name'] : "default";
 
 // check if profile picture exists
