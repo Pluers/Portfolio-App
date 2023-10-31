@@ -63,7 +63,7 @@ function profilePage()
 
 function hobbiesPage()
 {
-    global $target_dir_img, $hobbies, $hobbyimg, $hobby_name, $user_hobbies;
+    global $target_dir_img, $gethobbies, $hobbyimg, $hobby_name, $user_hobbies;
 
     if (isset($_POST['create_hobby'])) {
         $target_file = $target_dir_img . "hobby_" . $hobby_name . ".jpg";
@@ -72,7 +72,7 @@ function hobbiesPage()
 
         if (in_array($imageFileType, $extensions_arr)) {
             if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
-                $hobbyimg = "hobby_" . $hobby_name . ".jpg";
+                move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file);
             }
         }
     }
@@ -84,7 +84,7 @@ function hobbiesPage()
             <select name="hobbiesList" id="hobbySelection">
                 <option value="0" name='default' selected disabled>Select a hobby</option>
                 <?php
-                foreach ($hobbies as $hobby) {
+                foreach ($gethobbies as $hobby) {
                     echo "<option value='" . $hobby['hobbies_id'] . "' name='selected_hobby'>" . $hobby['hobby_name'] . "</option>";
                 }
                 ?>
@@ -107,21 +107,27 @@ function hobbiesPage()
             <!-- input text -->
             <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
             <input type="submit" value="Create hobby" name="create_hobby">
-
         </form>
 
         <hobbygrid>
             <!-- display the hobbies that the user has selected -->
             <?php
+            $printed_hobbies = [];
+
             foreach ($user_hobbies as $user_hobby) {
+                if (!in_array($user_hobby['hobby_name'], $printed_hobbies)) {
             ?>
-                <hobbyarticle>
-                    <img src="/views/public/images/hobby_<?= $user_hobby['hobby_name'] ?>.jpg" alt="">
-                    <p><?= $user_hobby['hobby_name'] ?></p>
-                </hobbyarticle>
+                    <hobbyarticle>
+                        <img src="/views/public/images/hobby_<?= $user_hobby['hobby_name'] ?>.jpg" alt="">
+                        <p><?= $user_hobby['hobby_name'] ?></p>
+                    </hobbyarticle>
             <?php
+                    // Add this hobby to the printed hobbies array
+                    $printed_hobbies[] = $user_hobby['hobby_name'];
+                }
             }
             ?>
+
         </hobbygrid>
     </contentsection>
 <?php
@@ -142,8 +148,8 @@ function getUserInfo()
 
 // variables 
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
-$hobbies = customStatement("SELECT * FROM hobbies");
-$user_hobbies = customStatement("SELECT * FROM hobbies JOIN user_hobbies WHERE user_hobbies.users_id = :user_id", [':user_id' => $user_id]);
+$gethobbies = customStatement("SELECT * FROM hobbies");
+$user_hobbies = customStatement("SELECT * FROM user_hobbies JOIN hobbies WHERE user_hobbies.users_id = :user_id", [':user_id' => $user_id]);
 $hobby_name = isset($_POST['create_hobby_name']) ? $_POST['create_hobby_name'] : "default";
 
 // check if profile picture exists
@@ -160,12 +166,12 @@ if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
 if (isset($_POST['edituser'])) {
     customStatement('UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id', [':user_id' => $user_id, ':first_name' => $_POST['first_name'], ':last_name' => $_POST['last_name'], ':email' => $_POST['email']]);
 } else if (isset($_POST["add_hobby_to_profile"])) {
-    $hobby_id = (int)$_POST['hobbies'];
+    $hobby_id = (int)$_POST['hobbiesList'];
     $stmt = $conn->prepare("SELECT * FROM user_hobbies WHERE users_id = :user_id AND hobbies_id = :hobby_id");
     $stmt->execute([':user_id' => $user_id, ':hobby_id' => $hobby_id]);
     if (!$stmt->fetch()) {
+        customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
         if (!empty($stmt->fetchAll())) {
-            customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
         }
     }
 } else if (isset($_POST["create_hobby"])) {
