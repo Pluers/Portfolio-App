@@ -12,7 +12,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
     </div>
     <?php if (isset($_GET['user_id']) && $_GET['user_id'] == $_SESSION[SESSION_KEY_USER_ID]) {
     ?>
-        <input type="button" onclick="window.location.href='/editprofile';" name="" value="Edit Profile">
+        <input type="button" onclick="window.location.href='/editprofile'" name="" value="Edit Profile">
     <?php } ?>
 </section>
 
