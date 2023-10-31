@@ -1,137 +1,4 @@
 <?php
-function profilePage()
-{
-    global $target_dir_img, $user_id, $profileimg;
-
-    if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {
-        if (isset($_GET['user_id']) && $_GET['user_id'] !== $_GET[SESSION_KEY_USER_ID]) {
-            redirect('/profile');
-        }
-    }
-
-    if (isset($_POST['uploadpfp'])) {
-        $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-        if (in_array($imageFileType, $extensions_arr)) {
-            if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
-                $_SESSION['profile_picture'] = "profile_picture_" . $user_id . ".jpg";
-            }
-        }
-    }
-?>
-    <contentsection>
-        <h1> Edit Profile</h1>
-        <form method="post" enctype="multipart/form-data" class="setprofilepicture">
-            <images>
-                <img src="/views/public/images/<?= $profileimg ?>" />
-                <span class="material-symbols-rounded"> </span>
-                <img src="/views/public/images/<?= $profileimg ?>" name="newProfileImg" />
-            </images>
-            <label for="imgToUpload" class="uploadImage">
-                <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
-                <span>Select Image
-                    <span class="material-symbols-rounded">
-                        add_photo_alternate
-                    </span>
-                </span>
-            </label>
-            <input type="submit" value="Upload" name="uploadpfp">
-        </form>
-        <form method="post" class="editprofile">
-            <label for="first_name">First name:</label>
-            <input type="text" placeholder="First Name" name="first_name" value="<?= getUserInfo()["first_name"] ?>">
-            <label for="last_name">Last name:</label>
-            <input type="text" placeholder="Last Name" name="last_name" value="<?= getUserInfo()["last_name"] ?>">
-            <label for="email">Email:</label>
-            <input type="text" Placeholder="Email" name="email" value="<?= getUserInfo()["email"] ?>" required>
-            <label for="change_password">Password: </label>
-            <a href="/forgot" target="_blank">Change Password
-                <span class="material-symbols-rounded">
-                    open_in_new
-                </span>
-            </a>
-            <label for="description">Description / Biography:</label>
-            <textarea name="description" id="" rows="4" name="description" placeholder="Empty description"><?= getUserInfo()["description"] ?></textarea>
-            <input type="submit" value="Submit" name="edituser">
-        </form>
-    </contentsection>
-<?php
-}
-
-function hobbiesPage()
-{
-    global $target_dir_img, $gethobbies, $hobbyimg, $hobby_name, $user_hobbies;
-
-    if (isset($_POST['create_hobby'])) {
-        $target_file = $target_dir_img . "hobby_" . $hobby_name . ".jpg";
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $extensions_arr = array("jpg", "jpeg", "png", "gif");
-
-        if (in_array($imageFileType, $extensions_arr)) {
-            if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
-                move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file);
-            }
-        }
-    }
-?>
-    <contentsection>
-        <h1>Add Hobbies</h1>
-        <!-- hobby selector -->
-        <form method="post" id="hobbiesForm">
-            <select name="hobbiesList" id="hobbySelection">
-                <option value="0" name='default' selected disabled>Select a hobby</option>
-                <?php
-                foreach ($gethobbies as $hobby) {
-                    echo "<option value='" . $hobby['hobbies_id'] . "' name='selected_hobby'>" . $hobby['hobby_name'] . "</option>";
-                }
-                ?>
-                <option value="create_new_hobby">Create new hobby</option>
-            </select>
-            <input type="submit" value="Add hobby" name="add_hobby_to_profile">
-        </form>
-
-        <!-- create new hobby -->
-        <form method="post" id="createHobbyForm" enctype="multipart/form-data" style="display: none;">
-            <label for="imgToUpload" class="uploadImage">
-                <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
-                <span>Select Image
-                    <span class="material-symbols-rounded">
-                        add_photo_alternate
-                    </span>
-                </span>
-            </label>
-            <!-- input text -->
-            <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
-            <input type="submit" value="Create hobby" name="create_hobby">
-        </form>
-
-        <hobbygrid>
-            <!-- display the hobbies that the user has selected -->
-            <?php
-            $printed_hobbies = [];
-
-            foreach ($user_hobbies as $user_hobby) {
-                if (!in_array($user_hobby['hobby_name'], $printed_hobbies)) {
-            ?>
-                    <hobbyarticle>
-                        <img src="/views/public/images/hobby_<?= $user_hobby['hobby_name'] ?>.jpg" alt="">
-                        <p><?= $user_hobby['hobby_name'] ?></p>
-                    </hobbyarticle>
-            <?php
-                    // Add this hobby to the printed hobbies array
-                    $printed_hobbies[] = $user_hobby['hobby_name'];
-                }
-            }
-            ?>
-
-        </hobbygrid>
-    </contentsection>
-<?php
-}
 
 // functie om de user informatie op te halen.
 function getUserInfo()
@@ -146,7 +13,14 @@ function getUserInfo()
     }
 }
 
+if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {
+    if (isset($_GET['user_id']) && $_GET['user_id'] !== $_GET[SESSION_KEY_USER_ID]) {
+        redirect('/profile');
+    }
+}
+
 // variables 
+global $target_dir_img, $gethobbies, $hobbyimg, $hobby_name, $user_hobbies, $user_id, $profileim;
 $user_id = $_SESSION[SESSION_KEY_USER_ID];
 $gethobbies = customStatement("SELECT * FROM hobbies");
 $user_hobbies = customStatement("SELECT * FROM user_hobbies JOIN hobbies WHERE user_hobbies.users_id = :user_id", [':user_id' => $user_id]);
@@ -170,13 +44,32 @@ if (isset($_POST['edituser'])) {
     $stmt = $conn->prepare("SELECT * FROM user_hobbies WHERE users_id = :user_id AND hobbies_id = :hobby_id");
     $stmt->execute([':user_id' => $user_id, ':hobby_id' => $hobby_id]);
     if (!$stmt->fetch()) {
-        customStatement("INSERT IGNORE INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id)", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
+        customStatement("INSERT INTO user_hobbies (users_id, hobbies_id) VALUES (:user_id, :hobby_id) ON DUPLICATE KEY UPDATE users_id = :user_id, hobbies_id = :hobby_id", [':user_id' => $user_id, ':hobby_id' => $hobby_id]);
         if (!empty($stmt->fetchAll())) {
         }
     }
 } else if (isset($_POST["create_hobby"])) {
     // maak hobby aan en zet het in de rij van de hobbies die je kan selecteren
     customStatement("INSERT IGNORE INTO hobbies (hobby_name) VALUE (:hobby_name)", [':hobby_name' => ucfirst($_POST['create_hobby_name'])]);
+    $target_file = $target_dir_img . "hobby_" . $hobby_name . ".jpg";
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    if (in_array($imageFileType, $extensions_arr)) {
+        if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
+            move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file);
+        }
+    }
+} else if (isset($_POST['uploadpfp'])) {
+    $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    if (in_array($imageFileType, $extensions_arr)) {
+        if (move_uploaded_file($_FILES['imgToUpload']['tmp_name'], $target_file)) {
+            $_SESSION['profile_picture'] = "profile_picture_" . $user_id . ".jpg";
+        }
+    }
 }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/views/editprofile.view.php';
