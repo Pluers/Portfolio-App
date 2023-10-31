@@ -10,4 +10,4 @@ if (in_array($imageFileType, $extensions_arr, true)) {
     }
 }
 
-redirect('/editprofile?tab=profile');
+redirect('/editprofile?tab=profile&user_id='.$user_id);

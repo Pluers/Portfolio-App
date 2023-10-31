@@ -2,12 +2,8 @@
 
 global $targetDirImage, $profileImage;
 
-$user_id = $_SESSION[SESSION_KEY_USER_ID];
-
-if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {
-    if (isset($_GET['user_id']) && $_GET['user_id'] !== $_GET[SESSION_KEY_USER_ID]) {
-        redirect('/profile');
-    }
+if (isCurrentUserAllowedToEditUser() === false) {
+    redirect('/profile');
 }
 
 if (
@@ -30,4 +26,4 @@ customStatement(
     ]
 );
 
-redirect('/editprofile?tab=profile');
+redirect('/editprofile?tab=profile&user_id='.$user_id);

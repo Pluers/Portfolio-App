@@ -9,11 +9,15 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 
     <?php
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
+    $extraParams = [];
+    if(!empty($_GET['user_id'])) {
+        $extraParams['user_id'] = $_GET['user_id'];
+    }
     ?>
     <nav>
         <ul>
             <li>
-                <a href="?tab=profile" <?php echo $active_tab === 'profile' ? 'class="active"' : ''; ?>>
+                <a href="?<?= http_build_query(array_merge(['tab' => 'profile'], $extraParams)); ?>" <?php echo $active_tab === 'profile' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         manage_accounts
                     </span>
@@ -21,7 +25,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </a>
             </li>
             <li>
-                <a href="?tab=hobbies" <?= $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
+                <a href="?<?= http_build_query(array_merge(['tab' => 'hobbies'], $extraParams)); ?>" <?= $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         sports_and_outdoors
                     </span>
@@ -29,7 +33,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </a>
             </li>
             <li>
-                <a href="?tab=jobs" <?php echo $active_tab === 'jobs' ? 'class="active"' : ''; ?>>
+                <a href="?<?= http_build_query(array_merge(['tab' => 'jobs'], $extraParams)); ?>" <?php echo $active_tab === 'jobs' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         work
                     </span>
@@ -37,7 +41,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </a>
             </li>
             <li>
-                <a href="?tab=educations" <?php echo $active_tab === 'educations' ? 'class="active"' : ''; ?>>
+                <a href="?<?= http_build_query(array_merge(['tab' => 'educations'], $extraParams)); ?>" <?php echo $active_tab === 'educations' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         school
                     </span>
@@ -46,7 +50,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             </li>
         </ul>
     </nav>
-    <?php if($_GET['tab'] === 'profile') { ?>
+    <?php if($active_tab === 'profile') { ?>
         <contentsection>
             <h1> Edit Profile</h1>
             <form method="post" enctype="multipart/form-data" class="setprofilepicture">
@@ -84,7 +88,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <input type="submit" value="Submit" name="edituser">
             </form>
         </contentsection>
-    <?php } else if($_GET['tab'] === 'hobbies') { ?>
+    <?php } else if($active_tab === 'hobbies') { ?>
         <contentsection>
             <h1>Add Hobbies</h1>
             <!-- hobby selector -->
@@ -122,7 +126,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
                 <hobbyarticle>
-                    <img src="/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg" alt="">
+                    <img src="/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg" alt="">
                     <p><?= $userHobby['hobby_name'] ?></p>
                 </hobbyarticle>
                 <?php } ?>

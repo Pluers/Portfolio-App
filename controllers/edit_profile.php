@@ -2,13 +2,17 @@
 
 global $conn;
 
-$user_id = $_SESSION[SESSION_KEY_USER_ID];
+if (!empty($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+} else {
+    $user_id = $_SESSION[SESSION_KEY_USER_ID];
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $getHobbies = customStatement('SELECT * FROM hobbies');
     $userHobbies = customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
     $hobbyName = $_POST['create_hobby_name'] ?? 'default';
-    $user = getUserInfo();
+    $user = getUserInfo($user_id);
     // check if profile picture exists
     if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
         $profileImage = "profile_picture_" . $user_id . ".jpg";
