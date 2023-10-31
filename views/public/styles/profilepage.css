@@ -54,21 +54,11 @@ img {
     height: 10rem;
     width: 10rem;
     border-radius: 100px;
-} 
+}
 
 /* MOBILE */
 @media screen and (min-width: 0) {
 
-    
-
-
-  
-
-    
-
-   
-
-    
 
     main content section,
     main content section form {
@@ -142,15 +132,11 @@ img {
 /* DESKTOP */
 @media screen and (min-width: 1200px) {
 
-   
-    a {
-        font-size: 24px;
-    }
-
 
     main content section {
         padding: 0 1rem 1rem 1rem;
     }
+
     main content section:nth-child(4) {
         gap: 12px;
         grid-template-columns: auto auto;
@@ -186,5 +172,3 @@ img {
         grid-column: 1 / span 2;
     }
 }
-
-
