@@ -1,7 +1,7 @@
 <?php
+global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-global $conn;
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/login.view.php';
     return;
@@ -10,7 +10,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
 $email = strtolower($_POST['email']);
 $password = $_POST['password'];
 
-// is there any record of this user & password combination?
+// er wordt hier gekeken of deze informatie combinatie bestaat.
 $sql = 'SELECT drowssap, users_id, isAdmin FROM users WHERE email = :email';
 $stmt = $conn->prepare($sql);
 // sql injection prevention https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/

@@ -1,7 +1,7 @@
 <?php
+global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-global $conn;
 
 function aboutPage()
 {
@@ -19,7 +19,7 @@ function hobbiesPage()
     <contentsection>
         <p>
             <?php
-            $result = customStatement("SELECT hobbies.hobby_name FROM user_hobbies JOIN hobbies ON user_hobbies.users_id = :users_id", [':users_id' => $_SESSION['user_id']]);
+            $result = customStatement('SELECT hobbies.hobby_name FROM user_hobbies JOIN hobbies ON user_hobbies.users_id = :users_id', [':users_id' => $_SESSION['user_id']]);
             if (is_array($result)) {
                 foreach ($result as $key) {
                     echo $key['hobby_name'] . "<br>";
@@ -37,7 +37,7 @@ function hobbiesPage()
 function getUserInfo()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM users WHERE users_id = :user_id");
+    $stmt = $conn->prepare('SELECT * FROM users WHERE users_id = :user_id');
     $stmt->execute([':user_id' => $_SESSION['user_id']]);
     $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user_info) {
@@ -53,6 +53,7 @@ if (isset($_GET['user_id'])) {
 } else {
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
 }
+
 $sql = 'SELECT * FROM users WHERE users_id = :users_id';
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':users_id', $user_id);
