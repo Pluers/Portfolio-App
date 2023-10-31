@@ -2,6 +2,7 @@
 // start session
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
 
 // VARIABLES
 $databaseInfo = retrieveConfigurationSettingsFromIni('database');
@@ -12,11 +13,8 @@ $username = $databaseInfo['username'];
 $password = $databaseInfo['drowssap'];
 $dbname = $databaseInfo['dbname'];
 $devmode = $settingsInfo['developer_mode'];
-$dbenabled = $settingsInfo['database_enabled'];
 $loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]) || $devmode = true ? $settingsInfo['logged_in'] : "";
-$target_dir_img = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
-
-$dbenabled ? require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php' : '';
+$targetDirImage = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/query_builder.php';
 
 $conn = (new Connection($servername, $dbname, $username, $password))->conn;
