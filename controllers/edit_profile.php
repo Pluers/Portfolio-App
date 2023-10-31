@@ -3,6 +3,12 @@ function profilePage()
 {
     global $target_dir_img, $user_id, $profileimg;
 
+    if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {
+        if (isset($_GET['user_id']) && $_GET['user_id'] !== $_GET[SESSION_KEY_USER_ID]) {
+            redirect('/profile');
+        }
+    }
+
     if (isset($_POST['uploadpfp'])) {
         $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
