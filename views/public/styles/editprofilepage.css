@@ -14,18 +14,24 @@
         padding-bottom: 2rem;
     }
 
-    .setprofilepicture label {
+    .uploadImage {
         padding: 10px;
         text-align: center;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        align-self: center;
     }
 
-    .setprofilepicture span {
+    .uploadImage span {
         display: flex;
-        margin: auto;
+        margin: 0 auto;
         gap: 10px;
+        justify-content: center;
+    }
+
+    .uploadImage span span {
+        margin: 0;
     }
 
     .setprofilepicture img {
@@ -138,6 +144,22 @@
         border-radius: var(--borRad);
     }
 
+    images span.material-symbols-rounded,
+    images img[name=newProfileImg] {
+        display: none;
+    }
+
+    images {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    images span.material-symbols-rounded::before {
+        content: "arrow_downward_alt";
+    }
+
     contentsection {
         width: 100%;
     }
@@ -148,7 +170,19 @@
 @media screen and (min-width: 426px) {}
 
 /* DESKTOP */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 769px) {
+    images {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    images span.material-symbols-rounded::before {
+        content: "arrow_right_alt";
+    }
+}
+
+/* DESKTOP+ */
+@media screen and (min-width: 1441px) {
 
     .setprofilepicture {
         display: grid;
@@ -175,6 +209,7 @@
         padding: 10px 16px;
         width: 60%;
         height: 3rem;
+        grid-column: 1 / span 2;
     }
 
     .setprofilepicture input[type='submit']:hover {
@@ -187,6 +222,7 @@
         grid-template-columns: auto 1fr;
         gap: 2rem;
         width: 80%;
+        align-items: center;
     }
 
     .editprofile input[type='submit'] {
@@ -201,10 +237,6 @@
         text-align: unset;
         justify-content: unset;
         font-size: var(--desktopFontSize);
-    }
-
-    a {
-        font-size: 24px;
     }
 
     input[type='text'] {

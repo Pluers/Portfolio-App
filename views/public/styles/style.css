@@ -46,6 +46,15 @@
         margin: 10px;
     }
 
+    input[type='text'] {
+        font-size: var(--mobileFontSize);
+        background: var(--complimentaryColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: 100%;
+    }
+
     /* styling of buttons */
     input[type="submit"],
     input[type="button"] {

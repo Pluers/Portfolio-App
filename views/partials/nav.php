@@ -14,7 +14,7 @@
                 </span>
                 <p>About</p>
             </a>
-            <a href="/profile">
+            <a href="/profile?user_id=<?= $_SESSION[SESSION_KEY_USER_ID] ?>">
                 <span class="material-symbols-rounded">
                     person
                 </span>
