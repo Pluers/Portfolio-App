@@ -21,7 +21,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
         <ul>
 
             <li>
-                <a href="?user_id=<?= $userIdIsset ?>&tab=about" <?php echo $active_tab === 'about' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $userIdIsset ?>&tab=about" <?= $active_tab === 'about' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         person_book
                     </span>
@@ -29,7 +29,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
                 </a>
             </li>
             <li>
-                <a href="?user_id=<?= $userIdIsset ?>&tab=hobbies" <?php echo $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $userIdIsset ?>&tab=hobbies" <?=$active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         sports_and_outdoors
                     </span>
@@ -37,7 +37,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
                 </a>
             </li>
             <li>
-                <a href="?user_id=<?= $userIdIsset ?>&tab=jobs" <?php echo $active_tab === 'jobs' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $userIdIsset ?>&tab=jobs" <?= $active_tab === 'jobs' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         work
                     </span>
@@ -45,7 +45,7 @@ $userIdIsset = isset($_GET['user_id']) ? $_GET['user_id'] : '';
                 </a>
             </li>
             <li>
-                <a href="?user_id=<?= $userIdIsset ?>&tab=educations" <?php echo $active_tab === 'educations' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $userIdIsset ?>&tab=educations" <?= $active_tab === 'educations' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         school
                     </span>

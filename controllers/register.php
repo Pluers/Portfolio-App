@@ -1,11 +1,12 @@
 <?php
+global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/register.view.php';
     return;
 }
-global $conn;
+
 
 $firstname = ucfirst(strtolower($_POST['firstname']));
 $lastname = ucfirst(strtolower($_POST['lastname']));

@@ -6,19 +6,20 @@ function profilePage()
     if (isset($_GET['user_id']) && $_GET['user_id'] !== $user_id || $_SESSION[SESSION_KEY_ADMIN] === 0) {
         redirect('/profile');
     }
-
+    // hier wordt alle informatie over de user geupdate.
     if (isset($_POST['edituser'])) {
         customStatement(
             'UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE users_id = :user_id',
             [':user_id' => $user_id, ':first_name' => $_POST['first_name'], ':last_name' => $_POST['last_name'], ':email' => $_POST['email']]
         );
     }
-    // check if profile picture exists
+    // check of de profiel foto bestaat
     if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
         $profileimg = "profile_picture_" . $user_id . ".jpg";
     } else {
         $profileimg = "default.png";
     }
+    // uploaden van profiel foto
     if (isset($_POST['uploadpfp'])) {
         $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -35,13 +36,13 @@ function profilePage()
         <h1> Edit Profile</h1>
         <form method="post" enctype="multipart/form-data" class="setprofilepicture">
             <images>
-                <img src="/views/public/images/<?= $profileimg ?>" />
+                <img src="/views/public/images/<?= $profileimg ?>"/>
                 <span class="material-symbols-rounded"> </span>
-                <img src="/views/public/images/<?= $profileimg ?>" name="newProfileImg" />
+                <img src="/views/public/images/<?= $profileimg ?>" name="newProfileImg"/>
             </images>
             <label for="imgToUpload" class="uploadImage">
                 <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
+                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*"/>
                 <span>Select Image
                     <span class="material-symbols-rounded">
                         add_photo_alternate
@@ -64,16 +65,18 @@ function profilePage()
                 </span>
             </a>
             <label for="description">Description / Biography:</label>
-            <textarea name="description" id="" rows="4" name="description" placeholder="Empty description"><?= getUserInfo()["description"] ?></textarea>
+            <textarea name="description" id="" rows="4" name="description"
+                      placeholder="Empty description"><?= getUserInfo()["description"] ?></textarea>
             <input type="submit" value="Submit" name="edituser">
         </form>
     </contentsection>
     <?php
 }
+
 function hobbiesPage()
 {
-    $hobbies = customStatement("SELECT * FROM hobbies");
-?>
+    $hobbies = customStatement('SELECT * FROM hobbies');
+    ?>
     <contentsection>
         <h1>Add Hobbies</h1>
         <!-- hobby selector -->
@@ -93,14 +96,14 @@ function hobbiesPage()
         <form method="post" class="uploadImage">
             <label for="imgToUpload">
                 <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
+                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*"/>
                 <span>Select Image
                     <span class="material-symbols-rounded">
                         add_photo_alternate
                     </span>
                 </span>
             </label>
-            <input type="submit" name="uploadImgSubmit" />
+            <input type="submit" name="uploadImgSubmit"/>
         </form>
         <!-- create new hobby -->
         <form method="post" id="createHobbyForm" style="display: none;">
@@ -115,9 +118,10 @@ function hobbiesPage()
             </hobbyarticle>
         </hobbygrid>
     </contentsection>
-<?php
+    <?php
 }
 
+// functie om de user informatie op te halen.
 function getUserInfo()
 {
     global $conn;

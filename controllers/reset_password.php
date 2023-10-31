@@ -1,8 +1,9 @@
 <?php
+global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-global $conn;
 
+//
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     $token = $_GET['token'];
     $sql = 'SELECT email, reset_token_expires_at FROM users WHERE reset_token = :reset_token';
@@ -21,7 +22,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/reset_password.view.php';
     return;
 }
-
+// er wordt hier gekeken naar de tijd die meegegeven is met de reset token. op het moment dat de tijd verlopen is krijg je een token expired error.
 $sql = 'SELECT reset_token_expires_at FROM users WHERE reset_token = :reset_token';
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':reset_token', $_POST['reset_token']);
@@ -31,11 +32,11 @@ if (isset($expiresAt) && (strtotime($expiresAt) < time())) {
     echo "Token has expired.";
     return;
 }
-
+// hier wordt het nieuwe wachtwoord gehashed.
 $password = $_POST['password'];
 $passwordHashed = password_hash($password, PASSWORD_ARGON2I);
 $sql = 'UPDATE users SET drowssap = :password, reset_token = null WHERE reset_token = :reset_token';
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':password', $passwordHashed);
 $stmt->bindParam(':reset_token', $_POST['reset_token']);
 $stmt->execute();
