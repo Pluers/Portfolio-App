@@ -42,5 +42,4 @@ if (isset($_POST['edituser'])) {
     return;
 }
 
-redirect('editprofile?tab='.$_GET['tab']);
-
+redirect('editprofile?tab=' . $_GET['tab']);

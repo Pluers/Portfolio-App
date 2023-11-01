@@ -19,7 +19,7 @@ if (isset($_POST['create_hobby']) && !empty($_FILES['imgToUpload']['name'])) {
 try {
     $conn->beginTransaction();
     // maak hobby aan en zet het in de rij van de hobbies die je kan selecteren
-    customStatement('INSERT INTO hobbies (hobby_name, hobby_description) VALUE (:hobby_name, :hobby_desc)', [':hobby_name' => ucfirst($_POST['create_hobby_name']), ':hobby_desc' => $_POST['create_hobby_description']]);
+    customStatement('INSERT INTO hobbies (hobby_name, hobby_description) VALUE (:hobby_name, :hobby_desc)', [':hobby_name' => ucfirst($_POST['create_hobby_name']), ':hobby_desc' => ucfirst($_POST['create_hobby_description'])]);
     $hobby = customStatement('SELECT * FROM hobbies ORDER BY hobbies_id DESC LIMIT 1')[0];
     customStatement('INSERT INTO user_hobbies (users_id, hobbies_id) VALUE (:user_id, :hobbies_id)', [':hobbies_id' => $hobby['hobbies_id'], ':user_id' => $user_id]);
     $conn->commit();

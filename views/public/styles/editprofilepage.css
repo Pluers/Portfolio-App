@@ -160,14 +160,62 @@
         content: "arrow_downward_alt";
     }
 
+    hobbygrid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
     hobbyarticle {
-        display: grid;
-        grid-template-columns: auto auto;
-        background: var(--complimentaryColor);
+        position: relative;
+        display: flex;
+        height: fit-content;
+        width: 30%;
+        flex-direction: column;
+        padding: 2rem;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: var(--borRad);
+    }
+
+    hobbyarticle::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--borRad);
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    hobbyarticle:hover::after {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    hobbyarticle:hover p {
+        color: rgba(0, 0, 0, 0);
+        opacity: 0;
+    }
+
+    hobbyarticle p,
+    hobbyarticle h2 {
+        transition: all 0.3s ease;
+        color: var(--neutralColor);
+        text-shadow: 1px 1px var(--accentColor);
+        z-index: 1;
     }
 
     hobbyarticle img {
         height: 10rem;
+        width: 10rem;
+        object-fit: cover;
     }
 
     contentsection {

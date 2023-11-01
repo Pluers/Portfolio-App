@@ -120,15 +120,14 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </label>
                 <!-- input text -->
                 <input type="text" placeholder="Enter new hobby name" name="create_hobby_name" required>
-                <textarea name="description" id="" rows="4" name="description" placeholder="Empty description (You cannot change this after the hobby is uploaded)" name="create_hobby_description" required></textarea>
+                <textarea id="" rows="4" name="create_hobby_description" placeholder="Empty description (You cannot change this after the hobby is uploaded)" required></textarea>
                 <input type="submit" value="Create hobby" name="create_hobby">
             </form>
             <hobbygrid>
                 <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
-                    <hobbyarticle>
-                        <img src="/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg" alt="">
-                        <p><?= $userHobby['hobby_name'] ?></p>
+                    <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg')">
+                        <h2><?= $userHobby['hobby_name'] ?></h2>
                         <p><?= $userHobby['hobby_description'] ?></p>
                     </hobbyarticle>
                 <?php } ?>
