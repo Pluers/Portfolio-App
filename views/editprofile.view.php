@@ -111,7 +111,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             <form method="post" id="createHobbyForm" enctype="multipart/form-data" style="display: none;">
                 <label for="imgToUpload" class="uploadImage">
                     <!-- hidden file input that gets replaced by the span -->
-                    <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
+                    <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" required />
                     <span>Select Image
                         <span class="material-symbols-rounded">
                             add_photo_alternate
@@ -119,7 +119,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     </span>
                 </label>
                 <!-- input text -->
-                <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
+                <input type="text" placeholder="Enter new hobby name" name="create_hobby_name" required>
+                <textarea name="description" id="" rows="4" name="description" placeholder="Empty description (You cannot change this after the hobby is uploaded)" name="create_hobby_description" required></textarea>
                 <input type="submit" value="Create hobby" name="create_hobby">
             </form>
             <hobbygrid>
@@ -128,6 +129,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     <hobbyarticle>
                         <img src="/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg" alt="">
                         <p><?= $userHobby['hobby_name'] ?></p>
+                        <p><?= $userHobby['hobby_description'] ?></p>
                     </hobbyarticle>
                 <?php } ?>
             </hobbygrid>

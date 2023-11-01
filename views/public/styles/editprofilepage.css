@@ -160,6 +160,16 @@
         content: "arrow_downward_alt";
     }
 
+    hobbyarticle {
+        display: grid;
+        grid-template-columns: auto auto;
+        background: var(--complimentaryColor);
+    }
+
+    hobbyarticle img {
+        height: 10rem;
+    }
+
     contentsection {
         width: 100%;
     }
