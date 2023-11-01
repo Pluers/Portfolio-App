@@ -14,7 +14,8 @@ if (isset($_POST['create_hobby']) && !empty($_FILES['imgToUpload']['name'])) {
             throw new Error('File uploading did not succeed');
         }
     }
-} else if (isset($_POST['deleteHobbyUser'])) {
+}
+if (isset($_POST['deleteHobbyUser'])) {
     $hobbyName = $_POST['deleteHobbyUser'];
     // var_dump();
     customStatement(

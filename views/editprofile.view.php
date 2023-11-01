@@ -104,10 +104,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     ?>
                     <option value="create_new_hobby">Create new hobby</option>
                 </select>
-                <form method="POST" onsubmit="return confirm('Are you sure you want to delete this hobby?')">
-                    <input type="hidden" name="hobby_name" value="<?= $userHobby['hobby_name'] ?>">
-                    <input type="submit" name="deleteHobby" value="Delete Hobby">
-                </form>
+                <input type="submit" value="Delete Hobby" name="delete_hobby">
                 <input type="submit" value="Add hobby" name="add_hobby_to_profile">
             </form>
 
@@ -127,6 +124,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <textarea id="" rows="4" name="create_hobby_description" placeholder="Empty description (You cannot change this after the hobby is uploaded)" required></textarea>
                 <input type="submit" value="Create hobby" name="create_hobby">
             </form>
+
             <hobbygrid>
                 <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>

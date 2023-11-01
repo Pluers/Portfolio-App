@@ -34,6 +34,9 @@ if (isset($_POST['edituser'])) {
 } else if (isset($_POST['uploadpfp'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/upload_profile_picture.php';
     return;
+} else if (isset($_POST["delete_hobby"])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/delete_hobby.php';
+    return;
 } else if (isset($_POST["add_hobby_to_profile"])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/link_hobby_user.php';
     return;
