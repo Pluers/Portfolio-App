@@ -1,7 +1,6 @@
 <main>
     <sidebar>
         <nav>
-            <!-- REDO as input selection -->
             <a href="/">
                 <span class="material-symbols-rounded">
                     home

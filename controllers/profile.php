@@ -9,6 +9,7 @@ if (!empty($_GET['user_id'])) {
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
 }
 
+// haal user id op
 $sql = 'SELECT * FROM users WHERE users_id = :users_id';
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':users_id', $user_id);
@@ -22,4 +23,3 @@ if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
 }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/views/profile.view.php';
-?>

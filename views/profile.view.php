@@ -9,15 +9,16 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
         <img src="/views/public/images/<?= $profileImage ?>">
         <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
-    <?php if(isCurrentUserAllowedToEditUser()) {
+    <!-- voor url dat de $_GETs niet overlappen -->
+    <?php if (isCurrentUserAllowedToEditUser()) {
         $extraParams = [];
         if (!empty($_GET['user_id'])) {
             $extraParams['user_id'] = $_GET['user_id'];
         }
-        if(!empty($_GET['tab'])) {
+        if (!empty($_GET['tab'])) {
             $extraParams['tab'] = $_GET['tab'];
         }
-        ?>
+    ?>
         <input type="button" onclick="window.location.href='/editprofile?<?= http_build_query($extraParams); ?>'" name="" value="Edit Profile">
     <?php } ?>
 </section>
@@ -34,7 +35,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
                 </a>
             </li>
             <li>
-                <a href="?user_id=<?= $user_id ?>&tab=hobbies" <?=$active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $user_id ?>&tab=hobbies" <?= $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         sports_and_outdoors
                     </span>
@@ -61,6 +62,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     </nav>
 
     <?php
+    // print de html voor de pagina met de naam van de tab
     if ($active_tab === 'about') { ?>
         <contentsection>
             <p>
