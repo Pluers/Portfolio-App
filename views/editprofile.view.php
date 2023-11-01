@@ -10,7 +10,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <?php
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
     $extraParams = [];
-    if(!empty($_GET['user_id'])) {
+    if (!empty($_GET['user_id'])) {
         $extraParams['user_id'] = $_GET['user_id'];
     }
     ?>
@@ -50,7 +50,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             </li>
         </ul>
     </nav>
-    <?php if($active_tab === 'profile') { ?>
+    <?php if ($active_tab === 'profile') { ?>
         <contentsection>
             <h1> Edit Profile</h1>
             <form method="post" enctype="multipart/form-data" class="setprofilepicture">
@@ -63,32 +63,32 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     <!-- hidden file input that gets replaced by the span -->
                     <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
                     <span>Select Image
-                    <span class="material-symbols-rounded">
-                        add_photo_alternate
+                        <span class="material-symbols-rounded">
+                            add_photo_alternate
+                        </span>
                     </span>
-                </span>
                 </label>
                 <input type="submit" value="Upload" name="uploadpfp">
             </form>
             <form method="post" class="editprofile">
                 <label for="first_name">First name:</label>
-                <input type="text" placeholder="First Name" name="first_name" value="<?= $user["first_name"] ?>"/>
+                <input type="text" placeholder="First Name" name="first_name" value="<?= $user["first_name"] ?>" required />
                 <label for="last_name">Last name:</label>
-                <input type="text" placeholder="Last Name" name="last_name" value="<?= $user["last_name"] ?>"/>
+                <input type="text" placeholder="Last Name" name="last_name" value="<?= $user["last_name"] ?>" required />
                 <label for="email">Email:</label>
-                <input type="text" Placeholder="Email" name="email" value="<?= $user["email"] ?>" required/>
+                <input type="text" Placeholder="Email" name="email" value="<?= $user["email"] ?>" required />
                 <label for="change_password">Password: </label>
                 <a href="/forgot" target="_blank">Change Password
                     <span class="material-symbols-rounded">
-                    open_in_new
-                </span>
+                        open_in_new
+                    </span>
                 </a>
                 <label for="description">Description / Biography:</label>
                 <textarea name="description" id="" rows="4" name="description" placeholder="Empty description"><?= $user["description"] ?></textarea>
                 <input type="submit" value="Submit" name="edituser">
             </form>
         </contentsection>
-    <?php } else if($active_tab === 'hobbies') { ?>
+    <?php } else if ($active_tab === 'hobbies') { ?>
         <contentsection>
             <h1>Add Hobbies</h1>
             <!-- hobby selector -->
@@ -113,10 +113,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     <!-- hidden file input that gets replaced by the span -->
                     <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
                     <span>Select Image
-                    <span class="material-symbols-rounded">
-                        add_photo_alternate
+                        <span class="material-symbols-rounded">
+                            add_photo_alternate
+                        </span>
                     </span>
-                </span>
                 </label>
                 <!-- input text -->
                 <input type="text" placeholder="Enter new hobby name" name="create_hobby_name">
@@ -125,10 +125,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             <hobbygrid>
                 <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
-                <hobbyarticle>
-                    <img src="/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg" alt="">
-                    <p><?= $userHobby['hobby_name'] ?></p>
-                </hobbyarticle>
+                    <hobbyarticle>
+                        <img src="/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg" alt="">
+                        <p><?= $userHobby['hobby_name'] ?></p>
+                    </hobbyarticle>
                 <?php } ?>
             </hobbygrid>
         </contentsection>
