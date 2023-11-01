@@ -104,7 +104,12 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     ?>
                     <option value="create_new_hobby">Create new hobby</option>
                 </select>
-                <input type="submit" value="Delete Hobby" name="delete_hobby">
+                <label for="delete_hobby" class="uploadImage">
+                    <input type="submit" value="Delete Hobby" name="delete_hobby" onclick="return confirm('Are you sure you want to delete this hobby?')" style="display: none;">
+                    <span class="material-symbols-rounded" onclick="document.querySelector('input[name=delete_hobby]').click();">
+                        delete
+                    </span>
+                </label>
                 <input type="submit" value="Add hobby" name="add_hobby_to_profile">
             </form>
 
@@ -128,10 +133,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             <hobbygrid>
                 <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
-                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this hobby?')">
+                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this hobby from your profile?');">
                         <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
-                        <button type="submit" style="background: none; border: none; padding: 0; margin: 0;">
-                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= str_replace(' ', '_', $userHobby['hobby_name']) ?>.jpg')">
+                        <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
+                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg')">
                                 <h2><?= $userHobby['hobby_name'] ?></h2>
                                 <p><?= $userHobby['hobby_description'] ?></p>
                             </hobbyarticle>

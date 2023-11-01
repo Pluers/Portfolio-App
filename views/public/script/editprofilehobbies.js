@@ -20,5 +20,4 @@ window.onload = () => {
                 addHobbyButton.disabled = false;
         }
     });
-
 }
