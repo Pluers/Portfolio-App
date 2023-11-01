@@ -15,18 +15,29 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- link the styles from separate pages -->
-    <?php if (getSanitizedUri() === '/dashboard') { ?>
-        <link rel="stylesheet" href="/views/public/styles/homepage.css">
-    <?php } else if (getSanitizedUri() === '/editprofile') { ?>
-        <link rel="stylesheet" href="/views/public/styles/editprofilepage.css">
-        <script src="/views/public/script/editprofile.js"></script>
-        <?php if (isset($_GET['tab']) && $_GET['tab'] === 'hobbies') { ?>
-            <script src="/views/public/script/editprofilehobbies.js"></script>
-        <?php
-        } ?>
-    <?php } else if (getSanitizedUri() === '/profile') { ?>
-        <link rel="stylesheet" href="/views/public/styles/profilepage.css">
-    <?php } else if (getSanitizedUri() === '/login' || getSanitizedUri() === '/register' || getSanitizedUri() === '/forgot' || getSanitizedUri() === '/reset') { ?>
-        <link rel="stylesheet" href="/views/public/styles/unauthorized.css" />
-    <?php } ?>
+    <?php
+    $uri = getSanitizedUri();
+    switch ($uri) {
+        case '/dashboard':
+        case '/search':
+            echo '<link rel="stylesheet" href="/views/public/styles/homepage.css">';
+            break;
+        case '/editprofile':
+            echo '<link rel="stylesheet" href="/views/public/styles/editprofilepage.css">';
+            echo '<script src="/views/public/script/editprofile.js"></script>';
+            if (isset($_GET['tab']) && $_GET['tab'] === 'hobbies') {
+                echo '<script src="/views/public/script/editprofilehobbies.js"></script>';
+            }
+            break;
+        case '/profile':
+            echo '<link rel="stylesheet" href="/views/public/styles/profilepage.css">';
+            break;
+        case '/login':
+        case '/register':
+        case '/forgot':
+        case '/reset':
+            echo '<link rel="stylesheet" href="/views/public/styles/unauthorized.css">';
+            break;
+    }
+    ?>
 </head>
