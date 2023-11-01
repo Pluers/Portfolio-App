@@ -218,6 +218,15 @@
         object-fit: cover;
     }
 
+    form#hobbiesForm {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    form#hobbiesForm input[name="add_hobby_to_profile"] {
+        grid-column: 1 / span 2;
+    }
+
     contentsection {
         width: 100%;
     }

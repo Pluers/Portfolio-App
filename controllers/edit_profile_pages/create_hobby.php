@@ -14,6 +14,20 @@ if (isset($_POST['create_hobby']) && !empty($_FILES['imgToUpload']['name'])) {
             throw new Error('File uploading did not succeed');
         }
     }
+} else if (isset($_POST['deleteHobbyUser'])) {
+    $hobbyName = $_POST['deleteHobbyUser'];
+    // var_dump();
+    customStatement(
+        'DELETE user_hobbies FROM user_hobbies 
+                            JOIN hobbies ON user_hobbies.hobby_id = hobbies.id 
+                            WHERE user_hobbies.users_id = :user_id AND hobbies.hobby_name = :hobby_name',
+        [':user_id' => $user_id, ':hobby_name' => $hobbyName]
+    );
+} else if (isset($_POST['deleteHobby'])) {
+    customStatement(
+        'DELETE FROM hobbies WHERE hobbies_id = :hobbies_id',
+        [':hobbies_id' => (int)$_POST['hobbiesList']]
+    );
 }
 
 try {
