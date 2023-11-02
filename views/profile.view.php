@@ -71,18 +71,20 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
         </contentsection>
     <?php } elseif ($active_tab === 'hobbies') { ?>
         <contentsection>
-            <p>
-                <?php
-                $result = customStatement('SELECT hobbies.hobby_name FROM user_hobbies JOIN hobbies ON user_hobbies.hobbies_id = hobbies.hobbies_id WHERE users_id = :users_id', [':users_id' => $user_id]);
-                if ($result !== false) {
-                    foreach ($result as $key) {
-                        echo $key['hobby_name'] . "<br>";
-                    }
-                } else {
-                    echo "No hobbies found.";
-                }
-                ?>
-            </p>
+            <hobbygrid>
+                <!-- display the hobbies that the user has selected -->
+                <?php foreach ($userHobbies as $userHobby) { ?>
+                    <form method="post">
+                        <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
+                        <button type="button" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
+                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg')">
+                                <h2><?= $userHobby['hobby_name'] ?></h2>
+                                <p><?= $userHobby['hobby_description'] ?></p>
+                            </hobbyarticle>
+                        </button>
+                    </form>
+                <?php } ?>
+            </hobbygrid>
         </contentsection>
     <?php } elseif ($active_tab === 'jobs') {
     } elseif ($active_tab === 'educations') {
