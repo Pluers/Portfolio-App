@@ -21,7 +21,7 @@ CREATE TABLE
     IF NOT EXISTS hobbies (
         hobbies_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
         hobby_name VARCHAR(255) NOT NULL UNIQUE,
-        hobby_description VARCHAR(255) NOT NULL UNIQUE
+        hobby_description VARCHAR(255)
     );
 
 CREATE TABLE
