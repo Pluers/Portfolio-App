@@ -25,4 +25,9 @@ if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
     $profileImage = "default.png";
 }
 
+if (isset($_POST['deleteUser'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/delete_user.php';
+    return;
+}
+
 require $_SERVER['DOCUMENT_ROOT'] . '/views/profile.view.php';

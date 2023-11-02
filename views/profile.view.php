@@ -19,7 +19,10 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
             $extraParams['tab'] = $_GET['tab'];
         }
     ?>
-        <input type="button" onclick="window.location.href='/editprofile?<?= http_build_query($extraParams); ?>'" name="" value="Edit Profile">
+        <form method="post">
+            <input type="submit" onclick="return confirm('Are you sure you want to delete your profile? (This cannot be undone!');" value=" Delete account" name="deleteUser">
+            <input type="button" onclick="window.location.href='/editprofile?<?= http_build_query($extraParams); ?>'" name="" value="Edit Profile">
+        </form>
     <?php } ?>
 </section>
 

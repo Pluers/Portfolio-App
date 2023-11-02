@@ -377,7 +377,6 @@
         background-position: center center;
         background-size: cover;
         border-radius: var(--borRad);
-        width: 28rem;
     }
 
     form button hobbyarticle::after {
