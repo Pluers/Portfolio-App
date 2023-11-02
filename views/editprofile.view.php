@@ -10,9 +10,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
     <?php
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
     $extraParams = [];
-    if(!empty($_GET['user_id'])) {
-        $extraParams['user_id'] = $_GET['user_id'];
-    }
+    $extraParams['user_id'] = $user_id;
+
+
     ?>
     <nav>
         <ul>
@@ -132,7 +132,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <?php } ?>
             </hobbygrid>
         </contentsection>
-
     <?php } ?>
 </section>
 

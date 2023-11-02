@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $userHobbies = customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
     $hobbyName = $_POST['create_hobby_name'] ?? 'default';
     $user = getUserInfo($user_id);
-    // check if profile picture exists
+    // check of de profiel foto bestaat.
     if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
         $profileImage = "profile_picture_" . $user_id . ".jpg";
     } else if (file_exists($targetDirImage . "hobby_" . $hobbyName . ".jpg")) {
@@ -27,18 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     return;
 }
 
-// check the forms and do sql querys
+// check de forms en doe sql querys.
 if (isset($_POST['edituser'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/edit_user.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/edit_user.php';
     return;
 } else if (isset($_POST['uploadpfp'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/upload_profile_picture.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/upload_profile_picture.php';
     return;
 } else if (isset($_POST["add_hobby_to_profile"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/link_hobby_user.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/link_hobby_user.php';
     return;
 } else if (isset($_POST["create_hobby"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/create_hobby.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/create_hobby.php';
     return;
 }
 

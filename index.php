@@ -23,7 +23,6 @@ global $conn;
 // zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '';
 
-
 //routes voor paginas
 $routes = [
     '/dashboard' => 'controllers/dashboard.php',
@@ -34,7 +33,7 @@ $routes = [
     '/search' => 'controllers/search.php'
 ];
 
-//routes voor paginas die te maken hebben met authenticatie
+// routes voor paginas die te maken hebben met authenticatie.
 $unAuthorizedRoutes = [
     '/login' => 'controllers/login.php',
     '/register' => 'controllers/register.php',
@@ -42,7 +41,7 @@ $unAuthorizedRoutes = [
     '/reset' => 'controllers/reset_password.php',
 ];
 
-// als er niks achter de / staat
+// als je niet ingelogd bent en je wilt via de url toch langs de login proberen te komen wordt je geredirect naar de /login.
 if (getSanitizedUri() === '/') {
     if ($loggedIn) {
         redirect('/dashboard');
@@ -50,7 +49,7 @@ if (getSanitizedUri() === '/') {
         redirect('/login');
     }
 }
-
+//
 if (array_key_exists(getSanitizedUri(), $routes)) {
     // check voor de normale paginas
     if (!$loggedIn) {
