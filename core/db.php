@@ -1,5 +1,6 @@
 <?php
 
+// database connection
 class Connection
 {
     public PDO $conn;

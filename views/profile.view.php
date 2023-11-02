@@ -9,15 +9,16 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
         <img src="/views/public/images/<?= $profileImage ?>">
         <h1> <?= $user['first_name'] . " " . $user['last_name'] ?></h1>
     </div>
-    <?php if(isCurrentUserAllowedToEditUser()) {
+    <!-- voor url dat de $_GETs niet overlappen -->
+    <?php if (isCurrentUserAllowedToEditUser()) {
         $extraParams = [];
         if (!empty($_GET['user_id'])) {
             $extraParams['user_id'] = $_GET['user_id'];
         }
-        if(!empty($_GET['tab'])) {
+        if (!empty($_GET['tab'])) {
             $extraParams['tab'] = $_GET['tab'];
         }
-        ?>
+    ?>
         <input type="button" onclick="window.location.href='/editprofile?<?= http_build_query($extraParams); ?>'" name="" value="Edit Profile">
     <?php } ?>
 </section>
@@ -34,7 +35,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
                 </a>
             </li>
             <li>
-                <a href="?user_id=<?= $user_id ?>&tab=hobbies" <?=$active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
+                <a href="?user_id=<?= $user_id ?>&tab=hobbies" <?= $active_tab === 'hobbies' ? 'class="active"' : ''; ?>>
                     <span class="material-symbols-rounded">
                         sports_and_outdoors
                     </span>
@@ -61,6 +62,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     </nav>
 
     <?php
+    // print de html voor de pagina met de naam van de tab
     if ($active_tab === 'about') { ?>
         <contentsection>
             <p>
@@ -69,18 +71,20 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
         </contentsection>
     <?php } elseif ($active_tab === 'hobbies') { ?>
         <contentsection>
-            <p>
-                <?php
-                $result = customStatement('SELECT hobbies.hobby_name FROM user_hobbies JOIN hobbies ON user_hobbies.hobbies_id = hobbies.hobbies_id WHERE users_id = :users_id', [':users_id' => $user_id]);
-                if ($result !== false) {
-                    foreach ($result as $key) {
-                        echo $key['hobby_name'] . "<br>";
-                    }
-                } else {
-                    echo "No hobbies found.";
-                }
-                ?>
-            </p>
+            <hobbygrid>
+                <!-- display the hobbies that the user has selected -->
+                <?php foreach ($userHobbies as $userHobby) { ?>
+                    <form method="post">
+                        <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
+                        <button type="button" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
+                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg')">
+                                <h2><?= $userHobby['hobby_name'] ?></h2>
+                                <p><?= $userHobby['hobby_description'] ?></p>
+                            </hobbyarticle>
+                        </button>
+                    </form>
+                <?php } ?>
+            </hobbygrid>
         </contentsection>
     <?php } elseif ($active_tab === 'jobs') {
     } elseif ($active_tab === 'educations') {

@@ -33,23 +33,6 @@ content section:first-child {
 
 }
 
-
-
-
-
-/* person name and profile picture in a flex to be postioned right beside each other */
-main content section div {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-}
-
-/* alter anything about the "edit profile button"*/
-main content section button {
-    height: 3rem;
-    width: 6rem;
-}
-
 img {
     height: 10rem;
     width: 10rem;
@@ -59,9 +42,7 @@ img {
 /* MOBILE */
 @media screen and (min-width: 0) {
 
-
-    main content section,
-    main content section form {
+    main content section {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -113,18 +94,6 @@ img {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* TABLET */
 @media screen and (min-width: 426px) {}
 
@@ -132,28 +101,27 @@ img {
 /* DESKTOP */
 @media screen and (min-width: 1200px) {
 
-
-    main content section {
-        padding: 0 1rem 1rem 1rem;
+    main content {
+        align-items: center;
     }
 
-    main content section:nth-child(4) {
-        gap: 12px;
-        grid-template-columns: auto auto;
+    main content section {
+        width: 80%;
     }
 
     main content section:first-child {
         flex-direction: row;
+        width: 100%;
     }
 
     main content section div {
-
         flex-direction: row;
+        display: flex;
+        gap: 10px;
     }
 
     main content section nav {
         padding: 0 2rem;
-        width: 80%;
     }
 
     main content section nav ul {
