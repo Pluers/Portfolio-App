@@ -339,9 +339,15 @@
         flex-direction: column;
     }
 
-    /* left and right spacing for the content */
     main content section {
-        padding: 0 1rem;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    main content section a {
+        text-decoration: none;
     }
 
     main content section contentsection {
@@ -563,6 +569,11 @@
         height: calc(100vh - 6rem);
         width: 100%;
         box-shadow: unset;
+    }
+
+    /* left and right spacing for the content */
+    main content section {
+        padding: 0 1rem;
     }
 
     main sidebar {
