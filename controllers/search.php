@@ -3,6 +3,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/search.view.php';
 function search()
 {
     if (!empty($_GET['q'])) {
+        // zorg dat je geen speciale charaters kan gebruiken
         $term = getSanitizedStr($_GET['q']);
 
         // Combined query: Get users based on first name, last name, education, job experiences, and hobbies
@@ -27,3 +28,4 @@ ORDER BY users.first_name ASC',
         return $usersFromSearch;
     }
 }
+

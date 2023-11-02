@@ -21,7 +21,7 @@ $token_hash = hash("sha256", $token);
 $expire = date("Y-m-d H:i:s", time() + 60 * 5);
 // hier wordt gekeken of de email exist.
 $sql = 'SELECT email FROM users WHERE email = :email';
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 $result = $stmt->fetch();
@@ -32,7 +32,7 @@ if ($result === false) {
 * en wordt je geredirect naar dezelfde pagina + er wordt een token meegegeven.
 */
 $sql = 'UPDATE users SET reset_token = :reset_token, reset_token_expires_at = :reset_token_expires_at WHERE email = :email';
-$stmt = $conn->conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':reset_token', $token_hash);
 $stmt->bindParam(':reset_token_expires_at', $expire);

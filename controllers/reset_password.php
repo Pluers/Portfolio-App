@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     $token = $_GET['token'];
     $sql = 'SELECT email, reset_token_expires_at FROM users WHERE reset_token = :reset_token';
-    $stmt = $conn->conn->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->bindParam(':reset_token', $token);
     $stmt->execute();
     $result = $stmt->fetch();
