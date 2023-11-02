@@ -35,9 +35,11 @@ function removeDuplicates($array, $key)
                     <a href="/profile?user_id=<?= $result['users_id'] ?>">
                         <article>
                             <img src="<?= file_exists($targetDirImage . 'profile_picture_' . $result['users_id'] . '.jpg') ? '/views/public/images/profile_picture_' . $result['users_id'] . '.jpg' : '/views/public/images/default.png' ?>">
-                            <h1><?= $result['first_name'] . " " . $result['last_name'] ?></h1>
+                            <h1>
+                                <?= $devmode ? (!empty($user['username']) ? "username: " . $user['username'] . " | " : "") . $result['first_name'] . " " . $result['last_name'] . " <b>isAdmin: " . $result['isAdmin'] . "</b>" : $result['first_name'] . " " . $result['last_name']; ?>
+                            </h1>
                             <p>
-                                <!-- print bio of user -->
+                                <?= $result['description']; ?>
                             </p>
                         </article>
                     </a>
