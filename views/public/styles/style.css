@@ -339,9 +339,91 @@
         flex-direction: column;
     }
 
-    /* left and right spacing for the content */
     main content section {
-        padding: 0 1rem;
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    main content section a {
+        text-decoration: none;
+    }
+
+    main content section contentsection {
+        width: 100%;
+    }
+
+    main content section contentsection hobbygrid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    main content section contentsection hobbygrid form {
+        width: 28rem;
+        min-width: unset;
+    }
+
+    form button hobbyarticle {
+        position: relative;
+        display: flex;
+        height: fit-content;
+        flex-direction: column;
+        padding: 2rem;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: var(--borRad);
+        width: 28rem;
+    }
+
+    form button hobbyarticle::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--borRad);
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    form button hobbyarticle:hover::after {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    form button hobbyarticle:hover p {
+        color: rgba(0, 0, 0, 0);
+        opacity: 0;
+    }
+
+    form button hobbyarticle p,
+    form button hobbyarticle h2 {
+        transition: all 0.3s ease;
+        color: var(--neutralColor);
+        text-shadow: 1px 1px var(--accentColor);
+        z-index: 1;
+    }
+
+    form button hobbyarticle img {
+        height: 10rem;
+        width: 10rem;
+        object-fit: cover;
+    }
+
+    form#hobbiesForm {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    form#hobbiesForm input[name="add_hobby_to_profile"] {
+        grid-column: 1 / span 2;
     }
 
     footer {
@@ -349,6 +431,7 @@
         padding: 0;
         text-align: center;
         margin-top: auto;
+        width: 100%;
     }
 
     footer p {
@@ -486,6 +569,11 @@
         height: calc(100vh - 6rem);
         width: 100%;
         box-shadow: unset;
+    }
+
+    /* left and right spacing for the content */
+    main content section {
+        padding: 0 1rem;
     }
 
     main sidebar {
