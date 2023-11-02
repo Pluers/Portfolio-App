@@ -28,24 +28,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 // check de forms en doe sql querys.
-if (isset($_POST['edituser'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/profile/edit_user.php';
-    return;
-} else if (isset($_POST['uploadpfp'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/profile/upload_profile_picture.php';
-    return;
-} else if (isset($_POST["delete_hobby"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/delete_hobby.php';
-    return;
-} else if (isset($_POST["delete_hobby_user"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/delete_hobby_user.php';
-    return;
-} else if (isset($_POST["add_hobby_to_profile"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/link_hobby_user.php';
-    return;
-} else if (isset($_POST["create_hobby"])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/create_hobby.php';
-    return;
+// net als in de routes
+$formToFileMap = [
+    'edituser' => '/controllers/edit_profile_pages/profile/edit_user.php',
+    'uploadpfp' => '/controllers/edit_profile_pages/profile/upload_profile_picture.php',
+    'delete_hobby' => '/controllers/edit_profile_pages/hobbies/delete_hobby.php',
+    'delete_hobby_user' => '/controllers/edit_profile_pages/hobbies/delete_hobby_user.php',
+    'add_hobby_to_profile' => '/controllers/edit_profile_pages/hobbies/link_hobby_user.php',
+    'create_hobby' => '/controllers/edit_profile_pages/hobbies/create_hobby.php',
+];
+
+foreach ($formToFileMap as $form => $file) {
+    if (isset($_POST[$form])) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . $file;
+        return;
+    }
 }
 
 redirect('editprofile?tab=' . $_GET['tab']);

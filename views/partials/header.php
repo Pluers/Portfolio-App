@@ -9,55 +9,33 @@
                 </span>
                 <p>Log out</p>
             </a>
-            <dropdown>
-                <button>
-                    Hobbies
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <?php
-                    $hobbies = customStatement('SELECT hobby_name FROM hobbies');
-                    foreach ($hobbies as $hobby) {
-                        echo "<a href='#'>" . $hobby['hobby_name'] . "</a>";
-                    }
-                    ?>
-                </dropdownlist>
-            </dropdown>
-            <dropdown>
-                <button>
-                    Educations
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <?php
-                    $educations = customStatement('SELECT education_name FROM educations');
-                    foreach ($educations as $education) {
-                        echo "<a href='#'>" . $education['education_name'] . "</a>";
-                    }
-                    ?>
-                </dropdownlist>
-            </dropdown>
-            <dropdown>
-                <button>
-                    Job Experiences
-                    <span class="material-symbols-rounded">
-                        arrow_drop_down
-                    </span>
-                </button>
-                <dropdownlist>
-                    <?php
-                    $jobexperiences = customStatement('SELECT company_name, job_title FROM jobexperiences');
-                    foreach ($jobexperiences as $jobexperience) {
-                        echo "<a href='#'>" . $jobexperience['company_name'] . " - " . $jobexperience['job_title'] . "</a>";
-                    }
-                    ?>
-                </dropdownlist>
-            </dropdown>
             <?php
+            function createDropdown($title, $query, $fields)
+            {
+                $items = customStatement($query);
+                echo '<dropdown>
+                    <button>
+                        ' . $title . '
+                        <span class="material-symbols-rounded">
+                            arrow_drop_down
+                        </span>
+                    </button>
+                    <dropdownlist>';
+                foreach ($items as $item) {
+                    $text = '';
+                    foreach ($fields as $field) {
+                        $text .= $item[$field] . ' ';
+                    }
+                    echo "<a href='#'>" . trim($text) . "</a>";
+                }
+                echo '</dropdownlist>
+                </dropdown>';
+            }
+
+            createDropdown('Hobbies', 'SELECT hobby_name FROM hobbies', ['hobby_name']);
+            createDropdown('Educations', 'SELECT education_name FROM educations', ['education_name']);
+            createDropdown('Job Experiences', 'SELECT company_name, job_title FROM jobexperiences', ['company_name', 'job_title']);
+
             if (isset($_SESSION[SESSION_KEY_USER_ID]) && $devmode) {
                 echo "Current user id: " . $_SESSION[SESSION_KEY_USER_ID];
             }
@@ -73,3 +51,4 @@
             </form>
         </nav>
     </header>
+</body>

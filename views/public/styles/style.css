@@ -20,6 +20,14 @@
         color: var(--accentColor);
     }
 
+    #notfound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
     /* remove default scrollbar */
     header *,
     main sidebar *,
@@ -369,7 +377,7 @@
     form button hobbyarticle {
         position: relative;
         display: flex;
-        height: fit-content;
+        height: 12rem;
         flex-direction: column;
         padding: 2rem;
         align-items: center;
@@ -377,6 +385,7 @@
         background-position: center center;
         background-size: cover;
         border-radius: var(--borRad);
+        justify-content: center;
     }
 
     form button hobbyarticle::after {
