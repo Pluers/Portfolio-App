@@ -478,6 +478,10 @@
         font-size: var(--desktopFontSize);
     }
 
+    h1 {
+        font-size: 2rem;
+    }
+
     body {
         background: var(--neutralColor);
         grid-template-rows: var(--headerHeight) auto;
