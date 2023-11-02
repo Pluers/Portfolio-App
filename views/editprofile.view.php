@@ -146,6 +146,77 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             </hobbygrid>
         </contentsection>
 
+    <?php } else if ($active_tab === 'educations') { ?>
+        <contentsection>
+            <h1>Add Educations</h1>
+
+            <!-- create new hobby -->
+            <form method="post" id="createHobbyForm" enctype="multipart/form-data">
+                <!-- input text -->
+                <input type="text" placeholder="Enter education name" name="education_name" required>
+                <select name="" id="" required>
+                    <option value="" selected disabled>Select a degree</option>
+                    <optgroup label="Primair onderwijs (po)">
+                        <option value="suboption1">Regulier basisonderwijs</option>
+                        <option value="suboption2">Speciaal basisonderwijs (sbo)</option>
+                        <option value="suboption2">Speciaal onderwijs (so)</option>
+                        <option value="suboption2">Voortgezet speciaal onderwijs (vso)</option>
+                    </optgroup>
+                    <optgroup label="Voortgezet onderwijs (vo)">
+                        <option value="suboption1">Praktijkonderwijs (pro)</option>
+                        <option value="suboption1">Vmbo Basisberoepsgerichte leerweg (vmbo-bb of vmbo-basis)</option>
+                        <option value="suboption1">Vmbo Kaderberoepsgerichte leerweg (vmbo-kb of vmbo-kader)</option>
+                        <option value="suboption1">Vmbo Gemengde leerweg (vmbo-g of vmbo-gl)</option>
+                        <option value="suboption1">Vmbo Theoretische leerweg (vmbo-t of vmbo-tl)</option>
+                        <option value="suboption1">Lwoo</option>
+                        <option value="suboption1">Havo</option>
+                        <option value="suboption1">Vwo</option>
+                        <option value="suboption1">Tweetalig onderwijs (tto)</option>
+                    </optgroup>
+                    <optgroup label="Middelbaar beroepsonderwijs (mbo)">
+                        <option value="suboption1">Mbo niveau 1</option>
+                        <option value="suboption1">Mbo niveau 2</option>
+                        <option value="suboption1">Mbo niveau 3</option>
+                        <option value="suboption2">Mbo niveau 4</option>
+                        <option value="suboption2">Vavo</option>
+                    </optgroup>
+                    <optgroup label="Hoger beroepsonderwijs (hbo)">
+                        <option value="suboption1">Associate degree</option>
+                        <option value="suboption2">Hbo-bachelor/professionele bachelor</option>
+                        <option value="suboption2">Hbo-master/professionele master</option>
+                    </optgroup>
+                    <optgroup label="Wetenschappelijk onderwijs (wo)">
+                        <option value="suboption1">Universitaire bachelor</option>
+                        <option value="suboption2">Universitaire master</option>
+                    </optgroup>
+                    <option value="suboption2">PhD</option>
+                </select>
+                <input type="text" placeholder="Enter school name of the education" name="education_school_name" required>
+                <label for="edu_start">start date</label>
+                <input type="datetime-local" name="edu_start" id="edu_start" placeholder="start date">
+                <label for="edu_end">end date</label>
+                <input type="datetime-local" name="edu_end" id="edu_end" placeholder="end date">
+                <label for="isGraduated">Has graduated</label>
+                <input type="checkbox" name="isGraduated" id="isGraduated">
+                <input type="submit" value="Create education" name="create_education">
+            </form>
+
+            <p style="text-align:center; color: red; font-weight: bold;">This form is not working yet</p>
+            <hobbygrid>
+                <!-- display the hobbies that the user has selected -->
+                <?php foreach ($userHobbies as $userHobby) { ?>
+                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this hobby from your profile?');">
+                        <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
+                        <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
+                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg')">
+                                <h2><?= $userHobby['hobby_name'] ?></h2>
+                                <p><?= $userHobby['hobby_description'] ?></p>
+                            </hobbyarticle>
+                        </button>
+                    </form>
+                <?php } ?>
+            </hobbygrid>
+        </contentsection>
     <?php } ?>
 </section>
 

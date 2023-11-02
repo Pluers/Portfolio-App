@@ -46,6 +46,12 @@ if (isset($_POST['edituser'])) {
 } else if (isset($_POST["create_hobby"])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/hobbies/create_hobby.php';
     return;
+} else if (isset($_POST["create_education"])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/educations/create_education.php';
+    return;
+} else if (isset($_POST["delete_education"])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/edit_profile_pages/educations/delete_education.php';
+    return;
 }
 
 redirect('editprofile?tab=' . $_GET['tab']);

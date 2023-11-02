@@ -57,10 +57,11 @@ CREATE TABLE
     IF NOT EXISTS educations (
         educations_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
         education_name VARCHAR(64) NOT NULL,
-        degree INT,
+        degree varchar(64) NOT NULL,
         school VARCHAR(64) NOT NULL,
         edu_start TIMESTAMP,
         edu_end TIMESTAMP,
+        isGraduated BOOLEAN DEFAULT FALSE NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
