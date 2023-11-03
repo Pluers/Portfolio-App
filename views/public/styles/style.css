@@ -480,6 +480,7 @@
 
     /* styling of buttons */
     input[type="submit"],
+    input[type="text"],
     input[type="email"],
     input[type="button"],
     input[type="number"],

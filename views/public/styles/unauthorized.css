@@ -8,8 +8,7 @@
 
     .container {
         display: flex;
-        background-color: var(--complimentaryColor);
-        padding: 2rem 3rem;
+        padding: 1rem;
         border-radius: 10px;
         justify-content: center;
         width: fit-content;
@@ -35,6 +34,11 @@
         flex-direction: column;
     }
 
+    .input-field input {
+        background-color: var(--complimentaryColor);
+        color: var(--neutralColor);
+    }
+
     /* The alert message box */
     .alert {
         padding: 1rem;
@@ -45,6 +49,7 @@
         border-radius: var(--borRad);
         text-align: center;
     }
+
 }
 
 /* DESKTOP */
