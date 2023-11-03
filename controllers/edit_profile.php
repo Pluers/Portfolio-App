@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $formToFileMap = [
     'edituser' => '/controllers/edit_profile_pages/profile/edit_user.php',
     'uploadpfp' => '/controllers/edit_profile_pages/profile/upload_profile_picture.php',
+    'create_hobby' => '/controllers/edit_profile_pages/hobbies/create_hobby.php',
     'delete_hobby' => '/controllers/edit_profile_pages/hobbies/delete_hobby.php',
     'delete_hobby_user' => '/controllers/edit_profile_pages/hobbies/delete_hobby_user.php',
     'add_hobby_to_profile' => '/controllers/edit_profile_pages/hobbies/link_hobby_user.php',
