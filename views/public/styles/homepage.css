@@ -9,6 +9,7 @@
         flex-direction: column;
         gap: 6px;
         align-items: center;
+        justify-content: space-between;
     }
 
     article img {
@@ -24,9 +25,10 @@
     article h1,
     article p {
         text-align: left;
-        overflow: hidden;
+        overflow-y: hidden;
         text-overflow: ellipsis;
         white-space: wrap;
+        max-height: 4rem;
     }
 }
 

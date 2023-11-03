@@ -1,4 +1,8 @@
-<?php if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         That email does not exist!
     </div>
@@ -7,20 +11,19 @@
     <div class="alert">
         Your token has expired!
     </div>
-<?php }
-require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
-?>
-<div class="container">
+<?php } ?>
+<section>
 
-    <form action="/forgot" method="post">
-        <div class="form-info">
-            <div class="title">Forgot password</div>
+    <div class="container">
+        <form action="/forgot" method="post">
+            <div class="form-info">
+                <h2>Forgot password</h2>
 
-            <div class="input-field">
-                <label for="email">Email adress</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                </div>
             </div>
-        </div>
-        <input class="button" type="submit" value="Reset password" />
-    </form>
-</div>
+            <input class="button" type="submit" value="Reset password" />
+        </form>
+    </div>
+</section>

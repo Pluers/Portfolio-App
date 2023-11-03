@@ -18,7 +18,7 @@ class Connection
                 $sql = "CREATE SCHEMA IF NOT EXISTS $dbname DEFAULT CHARACTER SET utf8";
                 $conn->exec($sql);
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $drowssap);
-                $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/modules/script.sql', FALSE, NULL);
+                $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/core/script.sql', FALSE, NULL);
                 $conn->exec($file);
                 $this->conn = $conn;
             } else {

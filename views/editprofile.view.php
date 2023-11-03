@@ -126,19 +126,24 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 </label>
                 <!-- input text -->
                 <input type="text" placeholder="Enter new hobby name" name="create_hobby_name" required>
-                <textarea id="" rows="4" name="create_hobby_description" placeholder="Empty description (You cannot change this after the hobby is uploaded)" required></textarea>
+                <textarea id="" rows="4" name="create_hobby_description" placeholder="Enter a description (You cannot change this after the hobby is uploaded)" required></textarea>
                 <input type="submit" value="Create hobby" name="create_hobby">
             </form>
 
+            <!-- display de hobbies die de user heeft gekoppeld aan zijn profiel -->
             <hobbygrid>
-                <!-- display the hobbies that the user has selected -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
                     <form method="post" onsubmit="return confirm('Are you sure you want to delete this hobby from your profile?');">
                         <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
                         <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
-                            <hobbyarticle style="background-image: url('/views/public/images/hobby_<?= $userHobby['hobby_name'] ?>.jpg')">
+                            <?php
+                            $imagePath = '/views/public/images/hobby_' . $userHobby['hobby_name'] . '.jpg';
+                            $defaultImagePath = '/views/public/images/default_hobby.jpg';
+                            $finalImagePath = file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath) ? $imagePath : $defaultImagePath;
+                            ?>
+                            <hobbyarticle style="background-image: url('<?= $finalImagePath ?>')">
                                 <h2><?= $userHobby['hobby_name'] ?></h2>
-                                <p><?= $userHobby['hobby_description'] ?></p>
+                                <p><?= strlen($userHobby['hobby_description']) > 128 ? substr($userHobby['hobby_description'], 0, 128) . '...' : $userHobby['hobby_description'] ?></p>
                             </hobbyarticle>
                         </button>
                     </form>
