@@ -36,18 +36,15 @@
 /* DESKTOP */
 @media screen and (min-width: 769px) {
     main content section {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
         gap: 2rem;
-        flex-direction: row;
-        margin: 0 2rem 2rem 2rem;
-        justify-content: space-evenly;
+        margin-bottom: 2rem;
     }
 
     article {
         height: 100%;
-        flex: 0 0 20rem;
-        width: min-content;
+        width: 100%;
     }
 
     article img {
