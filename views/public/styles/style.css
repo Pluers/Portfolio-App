@@ -11,7 +11,7 @@
         --complimentaryAccentColor: #8b7e6a;
         --headerHeight: 64px;
         --sidebarHeight: 4rem;
-        --mobileFontSize: 2rem;
+        --mobileFontSize: 1.5rem;
         --desktopFontSize: 1rem;
     }
 
@@ -52,6 +52,15 @@
         text-align: center;
         font-size: 3rem;
         margin: 10px;
+    }
+
+    input[type="email"] {
+        font-size: var(--mobileFontSize);
+        background: var(--neutralColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: 100%;
     }
 
     input[type='text'] {
@@ -469,6 +478,7 @@
 
     /* styling of buttons */
     input[type="submit"],
+    input[type="email"],
     input[type="button"] {
         font-size: var(--desktopFontSize);
     }
