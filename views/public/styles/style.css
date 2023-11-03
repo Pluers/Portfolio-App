@@ -16,16 +16,18 @@
     }
 
     ::-webkit-scrollbar {
-        width: 1rem;
+        height: 0;
     }
 
     ::-webkit-scrollbar-track {
-        background: var(--neutralColor);
+        /* display: none; */
+        background: transparent;
     }
 
     ::-webkit-scrollbar-thumb {
         background: var(--complimentaryColor);
         border-radius: var(--borRad);
+        width: 1rem;
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -563,6 +565,7 @@
     header nav dropdown dropdownlist {
         border-radius: var(--borRad);
         box-shadow: unset;
+        max-height: 16rem;
     }
 
     header nav dropdown dropdownlist a {
