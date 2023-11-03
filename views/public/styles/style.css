@@ -54,7 +54,9 @@
         margin: 10px;
     }
 
-    input[type="email"] {
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
         font-size: var(--mobileFontSize);
         background: var(--neutralColor);
         border: none;
@@ -479,7 +481,9 @@
     /* styling of buttons */
     input[type="submit"],
     input[type="email"],
-    input[type="button"] {
+    input[type="button"],
+    input[type="number"],
+    input[type="password"] {
         font-size: var(--desktopFontSize);
     }
 

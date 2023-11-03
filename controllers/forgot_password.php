@@ -42,7 +42,4 @@ $stmt->execute([
 ]);
 
 $link = '/reset?token=' . $token_hash;
-if (retrieveConfigurationSettingsFromIni('settings')['mail'] === false) {
-    redirect($link);
-    return;
-}
+redirect($link);

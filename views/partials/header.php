@@ -2,14 +2,15 @@
     <header>
         <input type="checkbox" name="">
         <nav>
-            <!-- logout knop voor mobile -->
-            <a href="/logout">
-                <span class="material-symbols-rounded">
-                    logout
-                </span>
-                <p>Log out</p>
-            </a>
-            <?php
+            <?php if ($loggedIn) { ?>
+                <!-- logout knop voor mobile -->
+                <a href="/logout">
+                    <span class="material-symbols-rounded">
+                        logout
+                    </span>
+                    <p>Log out</p>
+                </a>
+            <?php }
             function createDropdown($title, $query, $fields)
             {
                 $items = customStatement($query);
