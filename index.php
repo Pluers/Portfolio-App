@@ -13,10 +13,18 @@ $loggedIn = isset($_SESSION[SESSION_KEY_USER_ID]) || $devmode = true ? $settings
 $targetDirImage = $_SERVER['DOCUMENT_ROOT'] . "/views/public/images/";
 
 $conn = (new Connection($databaseInfo['servername'], $databaseInfo['dbname'], $databaseInfo['username'], $databaseInfo['drowssap']))->conn;
-global $conn;
 
 // zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '';
+
+// als je niet ingelogd bent en je wilt via de url toch langs de login proberen te komen wordt je geredirect naar de /login.
+if (getSanitizedUri() === '/') {
+    if ($loggedIn) {
+        redirect('/dashboard');
+    } else {
+        redirect('/login');
+    }
+}
 
 //routes voor paginas
 $routes = [
@@ -32,14 +40,7 @@ $routes = [
     '/reset' => ['path' => 'controllers/reset_password.php', 'auth' => false],
 ];
 
-// als je niet ingelogd bent en je wilt via de url toch langs de login proberen te komen wordt je geredirect naar de /login.
-if (getSanitizedUri() === '/') {
-    if ($loggedIn) {
-        redirect('/dashboard');
-    } else {
-        redirect('/login');
-    }
-}
+
 
 if (array_key_exists(getSanitizedUri(), $routes)) {
     $route = $routes[getSanitizedUri()];

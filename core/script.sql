@@ -68,8 +68,6 @@ CREATE TABLE
 CREATE TABLE
     IF NOT EXISTS user_education (users_id INT, educations_id INT);
 
--- misschien weglaten?
-
 CREATE TABLE
     IF NOT EXISTS subjects (
         subjects_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -94,6 +92,7 @@ VALUES (
         'Admin',
         '',
         'Dit is een admin account',
+        --admin
         '$argon2i$v=19$m=65536,t=4,p=1$VXo5ekRnWjNjMVc5T1FqeQ$T1na0ngG4fOILtapKbiv5dT9lFhDux/vQ3QE+NeqOWw',
         1
     );
@@ -111,7 +110,29 @@ VALUES (
         'User',
         '',
         'Dit is een user account',
+        --user
         '$argon2i$v=19$m=65536,t=4,p=1$NEF6R3FuSjRFUkYzSEo4RQ$TGOUC2057pOTjxstOWELcCzOMLanJWpYkZDJaSCEOfs'
+    ), (
+        'Rickb@mail.com',
+        'Rick',
+        'Blaas',
+        'Dit is het account van Rick Blaas',
+        --rickb
+        '$argon2i$v=19$m=65536,t=4,p=1$Ri9tZnVYdEdBRU9naE8ydA$4PpYVS2jcZ7BW7nsk3LrAe2cO8JdFsc2hdK2hNOmFGY'
+    ), (
+        'Ricks@mail.com',
+        'Rick',
+        'Slierendregt',
+        'Dit is het account van Rick Slierendregt',
+        --ricks
+        '$argon2i$v=19$m=65536,t=4,p=1$U2lEa2JFTXd0eXcwSEZsRg$hghQRk9npJPMfeQB6VWJ+kCrR1/7+m43xB4GSmVUkH4'
+    ), (
+        'Djimairo@mail.com',
+        'Djimairo',
+        'Fluijt',
+        'Dit is het account van Djimairo Fluijt',
+        --djimairo
+        '$argon2i$v=19$m=65536,t=4,p=1$dmZkUTVwTGpGd3NESngvZQ$+x8WcLbgLEXp1UHfz2rLfD+03sX7WiRlHq31PZ349m0'
     );
 
 INSERT INTO
@@ -133,8 +154,6 @@ VALUES (
         4,
         'Windesheim'
     );
-
--- for testing purposes
 
 INSERT INTO
     jobexperiences (company_name, job_title)
