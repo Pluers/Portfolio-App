@@ -36,7 +36,6 @@
 
     .input-field input {
         background-color: var(--complimentaryColor);
-        color: var(--neutralColor);
     }
 
     /* The alert message box */
