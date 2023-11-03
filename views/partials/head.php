@@ -27,6 +27,8 @@
             echo '<script src="/views/public/script/editprofile.js"></script>';
             if (isset($_GET['tab']) && $_GET['tab'] === 'hobbies') {
                 echo '<script src="/views/public/script/editprofilehobbies.js"></script>';
+            } elseif (isset($_GET['tab']) && $_GET['tab'] === 'jobs') {
+                echo '<script src="/views/public/script/editprofilejobexperience.js"></script>';
             }
             break;
         case '/profile':

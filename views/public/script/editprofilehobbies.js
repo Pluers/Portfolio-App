@@ -3,7 +3,7 @@ window.onload = () => {
     const createHobbySection = document.getElementById('createHobbyForm');
     const addHobbyButton = document.querySelector("input[name=add_hobby_to_profile]");
     const createHobbyButton = document.querySelector("input[name=create_hobby]");
-    const importImage = document.querySelector("form[name=import_image]");
+    //const importImage = document.querySelector("form[name=import_image]");
 
     hobbiesSelect.addEventListener('change', () => {
         switch (hobbiesSelect.value) {

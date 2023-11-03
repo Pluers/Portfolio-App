@@ -4,7 +4,6 @@
 function customStatement($sql, $params=[])
 {
     global $conn;
-
     try {
         $stmt = $conn->prepare($sql);
         $stmt->execute($params);

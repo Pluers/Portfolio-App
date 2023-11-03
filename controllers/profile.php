@@ -9,8 +9,8 @@ if (!empty($_GET['user_id'])) {
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
 }
 
-$userHobbies =
-    customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
+$userHobbies = customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
+$userJobexperiences = customStatement('SELECT * FROM user_jobexperiences JOIN jobexperiences on jobexperiences.jobexperiences_id = user_jobexperiences.jobexperiences_id WHERE user_jobexperiences.users_id = :user_id', [':user_id' => $user_id]);
 
 // haal user id op
 $sql = 'SELECT * FROM users WHERE users_id = :users_id';

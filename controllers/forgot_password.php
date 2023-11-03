@@ -43,4 +43,3 @@ if (retrieveConfigurationSettingsFromIni('settings')['mail'] === false) {
     redirect($link);
     return;
 }
-

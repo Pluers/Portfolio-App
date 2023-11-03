@@ -86,7 +86,24 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
                 <?php } ?>
             </hobbygrid>
         </contentsection>
-    <?php } elseif ($active_tab === 'jobs') {
+    <?php } elseif ($active_tab === 'jobs') { ?>
+            <contentsection>
+            <hobbygrid>
+                <!-- display the hobbies that the user has selected -->
+                <?php foreach ($userJobexperiences as $userJobexperience) { ?>
+                    <form method="post">
+                        <input type="hidden" name="deleteHobbyUser" value="<?= $userJobexperience['company_name'] ?>">
+                        <button type="button" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
+                            <hobbyarticle style="background-image: url('/views/public/images/job_<?=  str_replace(' ', '_', $userJobexperience['company_name']) ?>.jpg')">
+                                <h2><?= $userJobexperience['company_name'] ?></h2>
+                                <p><?= $userJobexperience['job_title'] ?></p>
+                            </hobbyarticle>
+                        </button>
+                    </form>
+                <?php } ?>
+            </hobbygrid>
+        </contentsection>
+        <?php
     } elseif ($active_tab === 'educations') {
     }
     ?>
