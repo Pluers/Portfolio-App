@@ -49,13 +49,29 @@ function getUserInfo($userId = null)
     return $user;
 }
 
-function isCurrentUserAllowedToEditUser() {
+function isCurrentUserAllowedToEditUser()
+{
     if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {
         if (!empty($_GET['user_id']) && (int) $_GET['user_id'] !== $_SESSION[SESSION_KEY_USER_ID]) {
             return false;
         }
     }
     return true;
+}
+
+
+// run een custom sql statement
+function customStatement($sql, $params = [])
+{
+    global $conn;
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
 }
 
 // een constant is een variable die je niet aan kan passen.

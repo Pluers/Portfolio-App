@@ -2,6 +2,7 @@
 global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
+
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     require $_SERVER['DOCUMENT_ROOT'] . '/views/unauthorised/login.view.php';
     return;
@@ -14,9 +15,9 @@ $password = $_POST['password'];
 $sql = 'SELECT drowssap, users_id, isAdmin FROM users WHERE email = :email';
 $stmt = $conn->prepare($sql);
 // sql injection prevention https://www.acunetix.com/blog/articles/prevent-sql-injection-vulnerabilities-in-php-applications/
-$stmt->bindParam(':email', $email);
-$stmt->execute();
+$stmt->execute([':email' => $email]);
 $result = $stmt->fetch();
+
 if ($result === false) {
     redirect('/login?error=1'); // gebruiker onbekend
 }

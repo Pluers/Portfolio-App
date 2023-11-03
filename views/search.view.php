@@ -19,40 +19,40 @@ function removeDuplicates($array, $key)
     return $temp_array;
 }
 ?>
-<content>
-    <section>
-        <?php
-        $results = search();
-        if (!empty($results)) {
-            $hasResults = false;
-            // remove duplicates
-            $results = removeDuplicates($results, 'users_id');
-            foreach ($results as $result) {
-                // check if there are results
-                if (!empty($result)) {
-                    $hasResults = true;
-        ?>
-                    <a href="/profile?user_id=<?= $result['users_id'] ?>">
-                        <article>
-                            <img src="<?= file_exists($targetDirImage . 'profile_picture_' . $result['users_id'] . '.jpg') ? '/views/public/images/profile_picture_' . $result['users_id'] . '.jpg' : '/views/public/images/default.png' ?>">
-                            <h1><?= $result['first_name'] . " " . $result['last_name'] ?></h1>
-                            <p>
-                                <!-- print bio of user -->
-                            </p>
-                        </article>
-                    </a>
-        <?php
-                }
+<section>
+    <?php
+    $results = search();
+    if (!empty($results)) {
+        $hasResults = false;
+        // remove duplicates
+        $results = removeDuplicates($results, 'users_id');
+        foreach ($results as $result) {
+            // check if there are results
+            if (!empty($result)) {
+                $hasResults = true;
+    ?>
+                <a href="/profile?user_id=<?= $result['users_id'] ?>">
+                    <article>
+                        <img src="<?= file_exists($targetDirImage . 'profile_picture_' . $result['users_id'] . '.jpg') ? '/views/public/images/profile_picture_' . $result['users_id'] . '.jpg' : '/views/public/images/default.png' ?>">
+                        <h1>
+                            <?= $devmode ? (!empty($user['username']) ? "username: " . $user['username'] . " | " : "") . $result['first_name'] . " " . $result['last_name'] . " <b>isAdmin: " . $result['isAdmin'] . "</b>" : $result['first_name'] . " " . $result['last_name']; ?>
+                        </h1>
+                        <p>
+                            <?= $result['description']; ?>
+                        </p>
+                    </article>
+                </a>
+    <?php
             }
-            if (!$hasResults) {
-                echo "No Results";
-            }
-        } else {
+        }
+        if (!$hasResults) {
             echo "No Results";
         }
-        ?>
-    </section>
-</content>
+    } else {
+        echo "No Results";
+    }
+    ?>
+</section>
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php';

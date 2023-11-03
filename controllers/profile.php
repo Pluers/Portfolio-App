@@ -9,21 +9,17 @@ if (!empty($_GET['user_id'])) {
     $user_id = $_SESSION[SESSION_KEY_USER_ID];
 }
 
-$userHobbies =
-    customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
+$userHobbies = customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
+$userJobexperiences = customStatement('SELECT * FROM user_jobexperiences JOIN jobexperiences on jobexperiences.jobexperiences_id = user_jobexperiences.jobexperiences_id WHERE user_jobexperiences.users_id = :user_id', [':user_id' => $user_id]);
 
 // haal user id op
 $sql = 'SELECT * FROM users WHERE users_id = :users_id';
 $stmt = $conn->prepare($sql);
-$stmt->bindParam(':users_id', $user_id);
-$stmt->execute();
+$stmt->execute([':users_id' => $user_id]);
 $user = $stmt->fetch();
 
-if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
-    $profileImage = "profile_picture_" . $user_id . ".jpg";
-} else {
-    $profileImage = "default.png";
-}
+$profileImagePath = $targetDirImage . "profile_picture_" . $user_id . ".jpg";
+$profileImage = file_exists($profileImagePath) ? "profile_picture_" . $user_id . ".jpg" : "default.png";
 
 if (isset($_POST['deleteUser'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/delete_user.php';

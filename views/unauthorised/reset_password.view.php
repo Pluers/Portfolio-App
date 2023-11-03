@@ -1,11 +1,13 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 ?>
 <div class="container">
 
     <form action="/reset" method="post">
         <div class="form-info">
-            <div class="title">Reset password</div>
+            <h2>Reset password</h2>
 
             <input type="hidden" name="reset_token" value="<?= $_GET['token']; ?>" />
 
