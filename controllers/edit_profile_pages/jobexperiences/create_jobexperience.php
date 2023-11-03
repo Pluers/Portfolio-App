@@ -1,7 +1,7 @@
 <?php
 
 global /** @var PDO $conn */
-$conn, $targetDirImage, $getHobbies, $hobbyimg, $userHobbies;
+$conn, $targetDirImage, $getJobexperiences, $userJobexperiences;
 
 if (isset($_POST['create_jobexperience']) && !empty($_FILES['imgToUpload']['name'])) {
     $targetFile = $targetDirImage . "job_" . str_replace(' ', '_', strtolower($_POST['create_jobexperience_name'])) . ".jpg";

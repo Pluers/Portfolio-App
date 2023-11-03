@@ -3,15 +3,14 @@
 global $conn;
 
 $jobexperience_id = (int) $_POST['jobexperience_id'];
-// haalt alles op uit de user_hobbies tabel.
+// haalt alles op uit de user_jobexperiences tabel.
 $stmt = $conn->prepare('SELECT * FROM user_jobexperiences WHERE users_id = :users_id AND jobexperiences_id = :jobexperiences_id');
 $stmt->execute([':users_id' => $user_id, 'jobexperiences_id' => $jobexperience_id]);
-// gaat alleen inserten als de combinatie van de user en de hobby uniek.
+// gaat alleen inserten als de combinatie van de user en de jobexperience uniek.
 if ($stmt->fetch() === false) {
     $result = customStatement('INSERT INTO user_jobexperiences (users_id, jobexperiences_id) VALUES (:users_id, :jobexperiences_id)', [':users_id' => $user_id, ':jobexperiences_id' => $jobexperience_id]);
     if ($result === false) {
-        throw new Exception('Doet het niet');
-        // er moet hier nog even een error message geplaatst worden.
+        throw new Exception('Kon de jobexperience niet linken met jouw profiel, probeer het later nog een keer of neem contact op met de eigenaar van de website');
     }
 }
 
