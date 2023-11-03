@@ -191,6 +191,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
             </label>
             <!-- input text -->
             <input type="text" placeholder="Enter new jobexperience name" name="create_jobexperience_name" required>
+            <input type="text" placeholder="Enter your job title" name="create_job_title">
             <input type="submit" value="Create jobexperience" name="create_jobexperience">
         </form>
 
@@ -199,10 +200,15 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <form method="post" onsubmit="return confirm('Are you sure you want to delete this jobexperience from your profile?');">
                     <input type="hidden" name="jobexperience_id" value="<?= $userJobexperience['jobexperiences_id'] ?>">
                     <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_jobexperience_user">
-                        <hobbyarticle style="background-image: url('/views/public/images/job_<?= str_replace(' ', '_', $userJobexperience['company_name']) ?>.jpg')">
-                            <h2><?= $userJobexperience['company_name'] ?></h2>
+                        <?php
+                        $imagePath = '/views/public/images/job_' . str_replace(' ', '_', $userJobexperience['company_name']) . '.jpg';
+                        $defaultImagePath = '/views/public/images/default_hobby.jpg';
+                        $finalImagePath = file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath) ? $imagePath : $defaultImagePath;
+                        ?>
+                        <hobbyarticle style="background-image: url('<?= $finalImagePath ?>')">
+                            <h2><?= $userJobexperience['company_name'], "<br>". $userJobexperience['job_title'] ?></h2>
+                     </hobbyarticle>
 
-                        </hobbyarticle>
                     </button>
                 </form>
             <?php }?>
