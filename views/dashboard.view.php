@@ -20,13 +20,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                         <?= $user['description']; ?>
                     </p>
                 </div>
-
             </article>
         </a>
     <?php
-
     }
     ?>
 </section>
-
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php'; ?>
