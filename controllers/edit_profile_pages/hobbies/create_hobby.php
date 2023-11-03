@@ -1,12 +1,13 @@
 <?php
 
-global /** @var PDO $conn */
-$conn,$targetDirImage, $getHobbies, $hobbyimg, $userHobbies;
+global
+    /** @var PDO $conn */
+    $conn, $targetDirImage, $getHobbies, $hobbyimg, $userHobbies;
 
 /** hier wordt ervoor gezorgd dat de images die bij de hobby worden meegegeven op worden geslagen als hobby_"hobbynaam"
  * de filename wordt automatisch geregeld door de str_replace, die zorgt ervoor dat de spatie wordt vervangen met "_".
  * er wordt ook nog gekeken naar wat voor soort file het is. als het file type overeenkomt met de array mag hij geupload worden.
-*/
+ */
 if (isset($_POST['create_hobby']) && !empty($_FILES['imgToUpload']['name'])) {
     $targetFile = $targetDirImage . "hobby_" . str_replace(' ', '_', strtolower($_POST['create_hobby_name'])) . ".jpg";
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));

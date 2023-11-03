@@ -85,13 +85,15 @@ INSERT INTO
         email,
         first_name,
         last_name,
+        description,
         drowssap,
         isAdmin
     )
 VALUES (
-        'example1@example.net',
+        'admin@admin.admin',
         'Admin',
         '',
+        'Dit is een admin account',
         '$argon2i$v=19$m=65536,t=4,p=1$VXo5ekRnWjNjMVc5T1FqeQ$T1na0ngG4fOILtapKbiv5dT9lFhDux/vQ3QE+NeqOWw',
         1
     );
@@ -101,16 +103,28 @@ INSERT INTO
         email,
         first_name,
         last_name,
+        description,
         drowssap
     )
 VALUES (
-        'example2@example.net',
+        'user@user.user',
         'User',
         '',
+        'Dit is een user account',
         '$argon2i$v=19$m=65536,t=4,p=1$NEF6R3FuSjRFUkYzSEo4RQ$TGOUC2057pOTjxstOWELcCzOMLanJWpYkZDJaSCEOfs'
     );
 
-INSERT INTO hobbies (hobbies_id, hobby_name) VALUES (1, 'Gamen');
+INSERT INTO
+    hobbies (
+        hobbies_id,
+        hobby_name,
+        hobby_description
+    )
+VALUES (
+        1,
+        'Gamen',
+        'Een manier van entertainment door videospellen te spelen. Alleen of met anderen'
+    );
 
 INSERT INTO
     educations (education_name, degree, school)

@@ -10,9 +10,9 @@ $stmt->execute([':users_id' => $user_id, ':hobby_id' => $hobby_id]);
 if ($stmt->fetch() === false) {
     $result = customStatement('INSERT INTO user_hobbies (users_id, hobbies_id) VALUES (:users_id, :hobby_id)', [':users_id' => $user_id, ':hobby_id' => $hobby_id]);
     if ($result === false) {
-        throw new Exception('Doet het niet');
+        throw new Exception('Kon de hobby niet linken met jouw profiel, probeer het later nog een keer of neem contact op met de eigenaar van de website');
         // er moet hier nog even een error message geplaatst worden.
     }
 }
 
-redirect('/editprofile?tab=hobbies&user_id='.$user_id);
+redirect('/editprofile?tab=hobbies&user_id=' . $user_id);

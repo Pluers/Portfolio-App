@@ -11,13 +11,21 @@
         --complimentaryAccentColor: #8b7e6a;
         --headerHeight: 64px;
         --sidebarHeight: 4rem;
-        --mobileFontSize: 2rem;
+        --mobileFontSize: 1.5rem;
         --desktopFontSize: 1rem;
     }
 
     * {
         box-sizing: border-box;
         color: var(--accentColor);
+    }
+
+    #notfound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
 
     /* remove default scrollbar */
@@ -44,6 +52,17 @@
         text-align: center;
         font-size: 3rem;
         margin: 10px;
+    }
+
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
+        font-size: var(--mobileFontSize);
+        background: var(--neutralColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: 100%;
     }
 
     input[type='text'] {
@@ -371,7 +390,7 @@
     form button hobbyarticle {
         position: relative;
         display: flex;
-        height: fit-content;
+        height: 12rem;
         flex-direction: column;
         padding: 2rem;
         align-items: center;
@@ -379,7 +398,7 @@
         background-position: center center;
         background-size: cover;
         border-radius: var(--borRad);
-        width: 28rem;
+        justify-content: center;
     }
 
     form button hobbyarticle::after {
@@ -463,7 +482,11 @@
 
     /* styling of buttons */
     input[type="submit"],
-    input[type="button"] {
+    input[type="text"],
+    input[type="email"],
+    input[type="button"],
+    input[type="number"],
+    input[type="password"] {
         font-size: var(--desktopFontSize);
     }
 
@@ -478,6 +501,10 @@
 
     textarea {
         font-size: var(--desktopFontSize);
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 
     body {

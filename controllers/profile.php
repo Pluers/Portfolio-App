@@ -15,14 +15,15 @@ $userJobexperiences = customStatement('SELECT * FROM user_jobexperiences JOIN jo
 // haal user id op
 $sql = 'SELECT * FROM users WHERE users_id = :users_id';
 $stmt = $conn->prepare($sql);
-$stmt->bindParam(':users_id', $user_id);
-$stmt->execute();
+$stmt->execute([':users_id' => $user_id]);
 $user = $stmt->fetch();
 
-if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
-    $profileImage = "profile_picture_" . $user_id . ".jpg";
-} else {
-    $profileImage = "default.png";
+$profileImagePath = $targetDirImage . "profile_picture_" . $user_id . ".jpg";
+$profileImage = file_exists($profileImagePath) ? "profile_picture_" . $user_id . ".jpg" : "default.png";
+
+if (isset($_POST['deleteUser'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/delete_user.php';
+    return;
 }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/views/profile.view.php';

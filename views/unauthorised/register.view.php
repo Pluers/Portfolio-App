@@ -1,16 +1,17 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+
 if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
     <div class="alert">
         Emailaddress is already in use.
     </div>
-<?php }
-
-require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
-?>
+<?php } ?>
 <div class="container">
     <form action="/register" method="post">
         <div class="form-info">
-            <div class="title">register</div>
+            <h2>Register</h2>
 
             <div class="input-field">
                 <label for="firstname">First name</label>
@@ -33,9 +34,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
             </div>
 
         </div>
-        <input class="button" type="submit" value="Register" />
+        <input type="submit" value="Register" />
     </form>
 </div>
-<?php
-require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/footer.php';
-?>
