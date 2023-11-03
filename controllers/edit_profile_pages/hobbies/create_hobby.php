@@ -20,6 +20,7 @@ if (isset($_POST['create_hobby']) && !empty($_FILES['imgToUpload']['name'])) {
     }
 }
 
+
 try {
     $conn->beginTransaction();
     // maakt hobby aan en zet het in de rij van de hobbies die je kan selecteren
