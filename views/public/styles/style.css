@@ -28,6 +28,11 @@
         height: 100vh;
     }
 
+    .highlight {
+        text-shadow: 0 0 green;
+        border-radius: var(--borRad);
+    }
+
     /* remove default scrollbar */
     header *,
     main sidebar *,

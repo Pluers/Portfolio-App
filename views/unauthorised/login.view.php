@@ -2,16 +2,20 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
-if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
-    <div class="alert">
-        The email and password do not match.
-    </div>
+if (isset($_GET['error'])) {
+    $error = (int)$_GET['error'];
+    if ($error === 1) { ?>
+        <div class="alert">
+            The email and password do not match.
+        </div>
+    <?php }
+    if ($error === 2) { ?>
+        <div class="alert">
+            You must be authorized to view this page!
+        </div>
 <?php }
-if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
-    <div class="alert">
-        You must be authorized to view this page!
-    </div>
-<?php } ?>
+}
+?>
 
 <div class="container">
 
@@ -29,7 +33,13 @@ if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
             </div>
         </div>
         <input type="submit" value="Login" />
-        <a href="/forgot" type="submit" value="forgot_password">forgot password</a>
-        <a href="/register" type="submit" value="Register">register here</a>
+        <a href="/forgot" type="submit" value="forgot_password">Forgot password</a>
+        <?php
+        if ((isset($_GET['error']) && $error === 1)) {
+            echo "<a href='/register' type='submit' value='Register' class='highlight'>Don't have an account yet? Register here</a>";
+        } else {
+            echo "<a href='/register' type='submit' value='Register'>Register here</a>";
+        }
+        ?>
     </form>
 </div>
