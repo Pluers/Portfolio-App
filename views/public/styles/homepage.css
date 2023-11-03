@@ -20,15 +20,15 @@
 
     article div {
         width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 
     article h1,
     article p {
-        text-align: left;
-        overflow-y: hidden;
-        text-overflow: ellipsis;
-        white-space: wrap;
-        max-height: 4rem;
+        text-align: center;
     }
 }
 
@@ -42,7 +42,7 @@
     }
 
     article {
-        height: 28rem;
+        height: 100%;
         width: 20rem;
     }
 
