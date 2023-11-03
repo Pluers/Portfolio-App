@@ -15,6 +15,28 @@
         --desktopFontSize: 1rem;
     }
 
+    ::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--neutralColor);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--complimentaryColor);
+        border-radius: var(--borRad);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accentColor);
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none;
+        /* This will hide the buttons */
+    }
+
     * {
         box-sizing: border-box;
         color: var(--accentColor);
