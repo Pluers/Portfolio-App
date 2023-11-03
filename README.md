@@ -1,12 +1,5 @@
 # Portfolio App
 
-## Table of contents
-1.  The project goal
-2. Introduction 
-3. Technology
-4. The start of our project
-5. Sources 
-
 ### The project's goal
 The goal of the project is to create a working website where you are able to upload your own Portfolio and find other users portfolio's And for the three contributors to learn more about programming.
 
