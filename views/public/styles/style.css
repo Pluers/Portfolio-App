@@ -403,18 +403,16 @@
     }
 
     main content section contentsection hobbygrid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         justify-content: space-evenly;
+        gap: 1rem;
     }
 
     main content section contentsection hobbygrid form {
-        width: 28rem;
+        width: 100%;
         min-width: unset;
     }
-
-
 
     form button hobbyarticle {
         position: relative;
