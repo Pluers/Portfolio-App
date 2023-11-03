@@ -44,6 +44,8 @@ $formToFileMap = [
     'add_jobexperience_to_profile' => '/controllers/edit_profile_pages/jobexperiences/link_jobexperience_user.php',
     'delete_jobexperience' => '/controllers/edit_profile_pages/jobexperiences/delete_jobexperience.php',
     'delete_jobexperience_user' => '/controllers/edit_profile_pages/jobexperiences/delete_jobexperience_user.php',
+    'create_education' => '/controllers/edit_profile_pages/educations/create_education.php',
+    'delete_education' => '/controllers/edit_profile_pages/educations/delete_education.php',
 ];
 
 foreach ($formToFileMap as $form => $file) {
