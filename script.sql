@@ -78,6 +78,8 @@ CREATE TABLE
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
+-- Vanaf hier komen errors door de comments, als je de database dropt en de website aanzet, zou de website de database zelf aan gaan maken en de comments negeren waardoor het wel goed gaat
+
 INSERT INTO
     users (
         email,
