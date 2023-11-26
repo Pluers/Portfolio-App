@@ -3,13 +3,15 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 
+// zodat er geen dubbele profielen worden weergegeven
 function removeDuplicates($array, $key)
 {
-    $temp_array = array();
+    $temp_array = [];
     $i = 0;
-    $key_array = array();
+    $key_array = [];
 
     foreach ($array as $val) {
+        // check of een profiel in beide arrays zitten
         if (!in_array($val[$key], $key_array)) {
             $key_array[$i] = $val[$key];
             $temp_array[$i] = $val;
@@ -24,10 +26,10 @@ function removeDuplicates($array, $key)
     $results = search();
     if (!empty($results)) {
         $hasResults = false;
-        // remove duplicates
+        // haal de dubbele profielen weg
         $results = removeDuplicates($results, 'users_id');
         foreach ($results as $result) {
-            // check if there are results
+            // check of er resultaten zijn
             if (!empty($result)) {
                 $hasResults = true;
     ?>

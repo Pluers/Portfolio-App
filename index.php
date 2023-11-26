@@ -16,15 +16,6 @@ $conn = (new Connection($databaseInfo['servername'], $databaseInfo['dbname'], $d
 // zet de searchquery naar wat er in de input field staat of in de url als het niet leeg is, als het leeg is laat het dan leeg
 isset($_GET['q']) ? $searchq = $_GET['q'] : $searchq = '';
 
-// als je niet ingelogd bent en je wilt via de url toch langs de login proberen te komen wordt je geredirect naar de /login.
-if (getSanitizedUri() === '/') {
-    if ($loggedIn) {
-        redirect('/dashboard');
-    } else {
-        redirect('/login');
-    }
-}
-
 //routes voor paginas
 $routes = [
     '/dashboard' => ['path' => 'controllers/dashboard.php', 'auth' => true],
@@ -39,11 +30,18 @@ $routes = [
     '/reset' => ['path' => 'controllers/reset_password.php', 'auth' => false],
 ];
 
-
+// als je niet ingelogd bent en je wilt via de url toch langs de login proberen te komen wordt je geredirect naar de /login.
+if (getSanitizedUri() === '/') {
+    if ($loggedIn) {
+        redirect('/dashboard');
+    } else {
+        redirect('/login');
+    }
+}
 
 if (array_key_exists(getSanitizedUri(), $routes)) {
     $route = $routes[getSanitizedUri()];
-    // check voor de normale paginas
+    // check voor de normale paginas en redirect met error al niet is ingelogd
     if ($route['auth'] && !$loggedIn) {
         redirect('/login?error=2');
         return;

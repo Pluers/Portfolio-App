@@ -3,6 +3,7 @@ window.onload = () => {
     const createJobexperienceSection = document.getElementById('createJobexperienceForm');
     const addJobexperienceButton = document.querySelector("input[name=add_jobexperience_to_profile]");
 
+    // als er in de select list, voor de optie is gekozen om een nieuwe jobexperience te maken, dan laat de create jobexperience section zien
     jobexperienceSelect.addEventListener('change', () => {
         // check of de create new hobby is geselecteerd in de jobexperience select
         const isCreateNewJobexperience = jobexperienceSelect.value === "create_new_jobexperience";

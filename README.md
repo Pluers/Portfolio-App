@@ -1,13 +1,24 @@
 # Portfolio App
 
-### The project's goal
-The goal of the project is to create a working website where you are able to upload your own Portfolio and find other users portfolio's And for the three contributors to learn more about programming.
+### Het doel van het project
 
-### Introduction
-Would you like a website where you could sign up and create your own portfolio or look for people who are actively searching for a job then our portfolio App is just the place for you. 
-Now about why we as developers wanted to make such a website. We created this website together to learn about new programming languages as a starting point to our school course. This was also an asignment given by our school.
+Het doel van dit project is om een werkende website te creëren waar je je eigen portfolio kunt uploaden en de portfolio's van andere gebruikers kunt vinden. Daarnaast willen de drie deelnemers meer leren over programmeren.
 
-### Technology 
-Our website is created with these languages
-1. html/CSS/JS for the front end
-2. PHP/JS/mysql for the back end functionalities
+### Introductie
+
+Zou je graag een website willen waar je je kunt aanmelden en je eigen portfolio kunt creëren of op zoek kunt gaan naar mensen die actief op zoek zijn naar een baan? Dan is onze portfolio-app precies wat je zoekt.
+Nu over waarom wij als ontwikkelaars zo'n website wilden maken. We hebben deze website samen gemaakt om meer te leren over nieuwe programmeertalen als startpunt voor onze schoolcursus. Dit was ook een opdracht van onze school.
+
+### Onze website is gemaakt met de volgende talen
+
+#### Frontend Talen
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+#### Backend Talen
+
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+

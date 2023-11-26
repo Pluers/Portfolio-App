@@ -1,3 +1,4 @@
+/* BASE CSS FILE */
 /* MOBILE */
 @media screen and (min-width: 0) {
     :root {
@@ -488,9 +489,6 @@
         margin: 0;
     }
 }
-
-/* TABLET */
-@media screen and (min-width: 426px) {}
 
 /* DESKTOP */
 @media screen and (min-width: 769px) {

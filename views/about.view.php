@@ -3,6 +3,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 ?>
+<!-- section omdat dit een deel is van de pagina en niet de hele pagina -->
 <section>
     <h1>Over Ons</h1>
     <p>
