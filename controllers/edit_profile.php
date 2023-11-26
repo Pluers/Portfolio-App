@@ -1,44 +1,55 @@
 <?php
-function getUserInfo()
-{
-    global $conn;
-    $user_id = $_SESSION['user_id'];
-    $stmt = $conn->prepare("SELECT * FROM users WHERE users_id = :user_id");
-    $stmt->execute([':user_id' => $user_id]);
-    $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($user_info) {
-        return $user_info;
-    } else {
-        // handle the case where no rows are returned by the SQL statement
-    }
-}
 
-$_SESSION['user_id'] = 1;
-$user_id = $_SESSION['user_id'];
-if (isset($_POST['edituser'])) {
-    customStatement("UPDATE users SET first_name = '" . $_POST['first_name'] . "', last_name = '" . $_POST['last_name'] . "', email= '" . $_POST['email'] . "' WHERE users_id = :user_id", [':user_id' => $user_id]);
-}
-// check if profile picture exists
-if (file_exists($target_dir_img . "profile_picture_" . $user_id . ".jpg")) {
-    $profileimg = "profile_picture_" . $user_id . ".jpg";
+global $conn;
+
+if (!empty($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
 } else {
-    $profileimg = "default.png";
+    $user_id = $_SESSION[SESSION_KEY_USER_ID];
 }
-if (isset($_POST['uploadpfp'])) {
-    $target_file = $target_dir_img . "profile_picture_" . $user_id . ".jpg";
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
-    if (in_array($imageFileType, $extensions_arr)) {
-        if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file)) {
-            $_SESSION['profile_picture'] = "profile_picture_" . $user_id . ".jpg";
-        }
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $getHobbies = customStatement('SELECT * FROM hobbies');
+    $userHobbies = customStatement('SELECT * FROM user_hobbies JOIN hobbies on user_hobbies.hobbies_id = hobbies.hobbies_id WHERE user_hobbies.users_id = :user_id', [':user_id' => $user_id]);
+    $hobbyName = $_POST['create_hobby_name'] ?? 'default';
+
+    $getJobexperiences = customStatement('SELECT * FROM jobexperiences');
+    $userJobexperiences = customStatement('SELECT * FROM user_jobexperiences JOIN jobexperiences on user_jobexperiences.jobexperiences_id = jobexperiences.jobexperiences_id WHERE user_jobexperiences.users_id = :user_id', [':user_id' => $user_id]);
+    $jobexperienceName = $_POST['create_jobexperience_name'] ?? 'default';
+    $user = getUserInfo($user_id);
+
+    // check of de profiel foto bestaat.
+    if (file_exists($targetDirImage . "profile_picture_" . $user_id . ".jpg")) {
+        $profileImage = "profile_picture_" . $user_id . ".jpg";
+    } else if (file_exists($targetDirImage . "hobby_" . $hobbyName . ".jpg")) {
+        $hobbyimg = "hobby_" . $hobbyName . ".jpg";
+    } else {
+        $hobbyimg = "default_hobby.jpg";
+        $profileImage = "default.png";
+    }
+
+    require $_SERVER['DOCUMENT_ROOT'] . '/views/editprofile.view.php';
+    return;
+}
+
+// net als in de routes
+$formToFileMap = [
+    'edituser' => '/controllers/edit_profile_pages/profile/edit_user.php',
+    'uploadpfp' => '/controllers/edit_profile_pages/profile/upload_profile_picture.php',
+    'create_hobby' => '/controllers/edit_profile_pages/hobbies/create_hobby.php',
+    'delete_hobby' => '/controllers/edit_profile_pages/hobbies/delete_hobby.php',
+    'delete_hobby_user' => '/controllers/edit_profile_pages/hobbies/delete_hobby_user.php',
+    'add_hobby_to_profile' => '/controllers/edit_profile_pages/hobbies/link_hobby_user.php',
+    'create_jobexperience' => '/controllers/edit_profile_pages/jobexperiences/create_jobexperience.php',
+    'add_jobexperience_to_profile' => '/controllers/edit_profile_pages/jobexperiences/link_jobexperience_user.php',
+    'delete_jobexperience' => '/controllers/edit_profile_pages/jobexperiences/delete_jobexperience.php',
+    'delete_jobexperience_user' => '/controllers/edit_profile_pages/jobexperiences/delete_jobexperience_user.php',
+];
+
+foreach ($formToFileMap as $form => $file) {
+    if (isset($_POST[$form])) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . $file;
+        return;
     }
 }
-
-
-
-
-
-
-require $_SERVER['DOCUMENT_ROOT'] . '/views/editprofile.view.php';
+redirect('editprofile?tab=' . $_GET['tab']);

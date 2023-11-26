@@ -1,49 +1,70 @@
-/* wat moet er in de edit profile pagina staan
-- email (input field)
-- wachtwoord (input field)
--voor en achternaam ( input fields onder elkaar)
-- content op je profile (foto's tekst en profielfoto)
-- hobbies (input field met bewerk knop zoals de rest)
-- job experience (groot inout field varchar(255)
-- educations input field */
-
 /* MOBILE */
 @media screen and (min-width: 0) {
 
-    main content section,
-    main content section form {
+    :root {
+        --mobileFontSize: 16px;
+    }
+
+    h1 {
+        margin: 2rem;
+    }
+
+    .setprofilepicture {
+        border-bottom: var(--complimentaryColor) 1px solid;
+        padding-bottom: 2rem;
+    }
+
+    .uploadImage {
+        padding: 10px;
+        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
+        align-self: center;
     }
 
-    main content section form {
-        width: 100%;
+    .uploadImage span {
+        display: flex;
+        margin: 0 auto;
+        gap: 10px;
+        justify-content: center;
     }
 
-    img {
-        width: 22rem;
-        height: 22rem;
+    .uploadImage span span {
+        margin: 0;
+    }
+
+    .setprofilepicture img {
+        width: 16rem;
+        height: 16rem;
         border-radius: 100%;
+        align-self: center;
+    }
+
+    #hobbySelection,
+    #hobbies input,
+    #createHobbyForm input {
+        text-align: center;
+        justify-content: center;
     }
 
     label {
-        font-size: 2rem;
+        font-size: var(--mobileFontSize);
         font-weight: bold;
     }
 
     input[type='text'] {
-        font-size: 5vw;
-        width: 80%;
+        font-size: var(--mobileFontSize);
         background: var(--complimentaryColor);
         border: none;
         padding: 10px;
         border-radius: var(--borRad);
+        width: 100%;
     }
 
     input[type='file'] {
         text-align-last: center;
-        font-size: 1rem;
+        font-size: var(--mobileFontSize);
     }
 
     input[type='file']::-webkit-file-upload-button {
@@ -56,13 +77,89 @@
         border-radius: var(--borRad);
     }
 
-    section form label {
-        padding: 10px;
-        cursor: pointer;
-        text-align: center;
+    input[type='submit'] {
+        font-size: var(--mobileFontSize);
+        padding: 10px 16px;
     }
 
-    /* form label input[type="file"] {} */
+    select {
+        background: var(--complimentaryColor);
+        font-size: var(--mobileFontSize);
+        border: none;
+        border-radius: var(--borRad);
+        padding: 10px;
+    }
+
+    main content section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    main content section form {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        padding: 2rem;
+        flex-direction: column;
+    }
+
+    main content section nav {
+        background: var(--complimentaryColor);
+        padding: 2rem;
+        border-radius: var(--borRad);
+        width: 100%;
+    }
+
+    main content section nav ul {
+        flex-direction: column;
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+        margin: 0;
+    }
+
+
+    main content section nav ul li a {
+        text-decoration: none;
+        padding: 1rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: var(--mobileFontSize);
+    }
+
+    main content section nav ul li a.active span {
+        color: var(--complimentaryColor);
+    }
+
+    main content section nav ul li a.active {
+        background: var(--accentColor);
+        color: var(--complimentaryColor);
+        border-radius: var(--borRad);
+    }
+
+    images span.material-symbols-rounded,
+    images img[name=newProfileImg] {
+        display: none;
+    }
+
+    images {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    images span.material-symbols-rounded::before {
+        content: "arrow_downward_alt";
+    }
+
 }
 
 
@@ -70,22 +167,113 @@
 @media screen and (min-width: 426px) {}
 
 /* DESKTOP */
-@media screen and (min-width: 1200px) {
-    body main content {
+@media screen and (min-width: 769px) {
+    images {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    images span.material-symbols-rounded::before {
+        content: "arrow_right_alt";
+    }
+}
+
+/* DESKTOP+ */
+@media screen and (min-width: 1441px) {
+
+    .setprofilepicture {
         display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        grid-gap: 20px;
+        background: var(--complimentaryColor);
+        padding: 2rem 3rem;
+        border-radius: var(--borRad);
+        justify-items: center;
+    }
+
+    .setprofilepicture img {
+        grid-row: 1 / span 2;
+    }
+
+    .setprofilepicture input[type='submit'] {
+        display: flex;
+        /* margin-bottom: auto; */
+        justify-content: center;
+        font-weight: bold;
+        font-size: var(--desktopFontSize);
+        background: var(--neutralColor);
+        padding: 10px 16px;
+        width: 60%;
+        height: 3rem;
+        grid-column: 1 / span 2;
+    }
+
+    .setprofilepicture input[type='submit']:hover {
+        background: var(--accentColor);
+        color: var(--complimentaryColor);
+    }
+
+    .editprofile {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+        width: 80%;
         align-items: center;
+    }
+
+    .editprofile input[type='submit'] {
+        grid-column: 1 / span 2;
+        font-size: var(--desktopFontSize);
+        padding: 10px;
+    }
+
+    #hobbySelection,
+    #hobbies input,
+    #createHobbyForm input {
+        text-align: unset;
+        justify-content: unset;
+        font-size: var(--desktopFontSize);
+    }
+
+    input[type='text'] {
+        font-size: var(--desktopFontSize);
+        background: var(--complimentaryColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: unset;
+    }
+
+    select {
+        font-size: var(--desktopFontSize);
     }
 
     main content section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 0 1rem 1rem 1rem;
+        width: 80%;
+        margin: 0 auto;
     }
 
-    main content section:first-child {
-        border-right: var(--complimentaryColor) 2px solid;
+    main content section form {
+        min-width: 100%;
     }
 
+    main content section nav {
+        padding: 0 2rem;
+    }
+
+    main content section nav ul {
+        flex-direction: row;
+        gap: unset;
+        margin: 6px 0;
+        justify-content: space-evenly;
+    }
+
+    main content section nav ul li a {
+        text-wrap: nowrap;
+        gap: 6px;
+    }
 
     footer {
         grid-column: 1 / span 2;

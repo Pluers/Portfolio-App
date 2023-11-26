@@ -1,20 +1,13 @@
 <?php
+global $conn;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db.php';
-$databaseInfo = retrieveConfigurationSettingsFromIni('database');
-$conn = new Connection(
-    $databaseInfo['servername'],
-    $databaseInfo['dbname'],
-    $databaseInfo['username'],
-    $databaseInfo['drowssap']
-);
 
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     $token = $_GET['token'];
     $sql = 'SELECT email, reset_token_expires_at FROM users WHERE reset_token = :reset_token';
-    $stmt = $conn->conn->prepare($sql);
-    $stmt->bindParam(':reset_token', $token);
-    $stmt->execute();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([':reset_token' => $token]);
     $result = $stmt->fetch();
     if ($result === false) {
         redirect('/forgot?error=1');
@@ -28,22 +21,24 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET') {
     return;
 }
 
+// er wordt hier gekeken naar de tijd die meegegeven is met de reset token. op het moment dat de tijd verlopen is krijg je een token expired error.
 $sql = 'SELECT reset_token_expires_at FROM users WHERE reset_token = :reset_token';
-$stmt = $conn->conn->prepare($sql);
-$stmt->bindParam(':reset_token', $_POST['reset_token']);
-$stmt->execute();
+$stmt = $conn->prepare($sql);
+$stmt->execute([':reset_token' => $_POST['reset_token']]);
 $expiresAt = $stmt->fetchColumn();
 if (isset($expiresAt) && (strtotime($expiresAt) < time())) {
     echo "Token has expired.";
     return;
 }
 
+// hier wordt het nieuwe wachtwoord gehashed.
 $password = $_POST['password'];
 $passwordHashed = password_hash($password, PASSWORD_ARGON2I);
 $sql = 'UPDATE users SET drowssap = :password, reset_token = null WHERE reset_token = :reset_token';
-$stmt = $conn->conn->prepare($sql);
-$stmt->bindParam(':password', $passwordHashed);
-$stmt->bindParam(':reset_token', $_POST['reset_token']);
-$stmt->execute();
+$stmt = $conn->prepare($sql);
+$stmt->execute([
+    ':password' => $passwordHashed,
+    ':reset_token' => $_POST['reset_token']
+]);
 
 redirect('/login');

@@ -1,7 +1,9 @@
 /* MOBILE */
 @media screen and (min-width: 0) {
     :root {
-        font-family: system-ui;
+        font-family: var(--font-family);
+        font-weight: bold;
+        --font-family: system-ui;
         --borRad: 6px;
         --neutralColor: #ffe9c3;
         --complimentaryColor: #ccba9c;
@@ -9,11 +11,50 @@
         --complimentaryAccentColor: #8b7e6a;
         --headerHeight: 64px;
         --sidebarHeight: 4rem;
+        --mobileFontSize: 1.5rem;
+        --desktopFontSize: 1rem;
+    }
+
+    ::-webkit-scrollbar {
+        height: 0;
+    }
+
+    ::-webkit-scrollbar-track {
+        /* display: none; */
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--complimentaryColor);
+        border-radius: var(--borRad);
+        width: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accentColor);
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none;
+        /* This will hide the buttons */
     }
 
     * {
         box-sizing: border-box;
         color: var(--accentColor);
+    }
+
+    #notfound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .highlight {
+        text-shadow: 0 0 green;
+        border-radius: var(--borRad);
     }
 
     /* remove default scrollbar */
@@ -36,13 +77,74 @@
             'opsz' 24
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 2rem;
+    h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin: 10px;
+    }
+
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
+        font-size: var(--mobileFontSize);
+        background: var(--neutralColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: 100%;
+    }
+
+    input[type='text'] {
+        font-size: var(--mobileFontSize);
+        background: var(--complimentaryColor);
+        border: none;
+        padding: 10px;
+        border-radius: var(--borRad);
+        width: 100%;
+    }
+
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="button"] {
+        font-size: var(--mobileFontSize);
+        background: var(--complimentaryColor);
+        border-radius: var(--borRad);
+        padding: 10px 16px;
+        cursor: pointer;
+        border: 2px solid var(--neutralColor);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    input[type='submit']:hover,
+    input[type="button"]:hover {
+        background: var(--accentColor);
+        color: var(--neutralColor);
+    }
+
+    input[type='submit']:active,
+    input[type="button"]:active {
+        transform: translateY(2px) scale(0.98);
+    }
+
+    input[type="submit"]:disabled,
+    input[type="button"]:disabled {
+        opacity: 50%;
+        cursor: default;
+        color: unset;
+        transform: unset;
+        background: var(--complimentaryColor);
+    }
+
+    textarea {
+        resize: none;
+        width: 100%;
         background: var(--complimentaryColor);
         border: none;
         border-radius: var(--borRad);
-        padding: 10px 16px;
+        font-size: var(--mobileFontSize);
+        font-family: var(--font-family);
+        padding: 10px;
     }
 
     profile img {
@@ -285,9 +387,93 @@
         flex-direction: column;
     }
 
-    /* left and right spacing for the content */
     main content section {
         padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    main content section a {
+        text-decoration: none;
+    }
+
+    main content section contentsection {
+        width: 100%;
+    }
+
+    main content section contentsection hobbygrid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    main content section contentsection hobbygrid form {
+        width: 28rem;
+        min-width: unset;
+    }
+
+
+
+    form button hobbyarticle {
+        position: relative;
+        display: flex;
+        height: 12rem;
+        flex-direction: column;
+        padding: 2rem;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: var(--borRad);
+        justify-content: center;
+    }
+
+    form button hobbyarticle::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--borRad);
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.3);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    form button hobbyarticle:hover::after {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    form button hobbyarticle:hover p {
+        color: rgba(0, 0, 0, 0);
+        opacity: 0;
+    }
+
+    form button hobbyarticle p,
+    form button hobbyarticle h2 {
+        transition: all 0.3s ease;
+        color: var(--neutralColor);
+        text-shadow: 1px 1px var(--accentColor);
+        z-index: 1;
+    }
+
+    form button hobbyarticle img {
+        height: 10rem;
+        width: 10rem;
+        object-fit: cover;
+    }
+
+    form#hobbiesForm {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    form#hobbiesForm input[name="add_hobby_to_profile"] {
+        grid-column: 1 / span 2;
     }
 
     footer {
@@ -295,6 +481,7 @@
         padding: 0;
         text-align: center;
         margin-top: auto;
+        width: 100%;
     }
 
     footer p {
@@ -322,10 +509,14 @@
             'opsz' 24
     }
 
-    /* styling of submit buttons */
-    input[type="submit"] {
-        font-size: 1rem;
-        padding: 0;
+    /* styling of buttons */
+    input[type="submit"],
+    input[type="text"],
+    input[type="email"],
+    input[type="button"],
+    input[type="number"],
+    input[type="password"] {
+        font-size: var(--desktopFontSize);
     }
 
     /* Input field for searchbar */
@@ -335,6 +526,14 @@
         width: unset;
         font-size: 13px;
         padding: unset;
+    }
+
+    textarea {
+        font-size: var(--desktopFontSize);
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 
     body {
@@ -366,6 +565,7 @@
     header nav dropdown dropdownlist {
         border-radius: var(--borRad);
         box-shadow: unset;
+        max-height: 16rem;
     }
 
     header nav dropdown dropdownlist a {
@@ -428,6 +628,11 @@
         height: calc(100vh - 6rem);
         width: 100%;
         box-shadow: unset;
+    }
+
+    /* left and right spacing for the content */
+    main content section {
+        padding: 0 1rem;
     }
 
     main sidebar {
