@@ -33,7 +33,7 @@ function getSanitizedStr($string)
     return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
 }
 
-// haal user saettings op
+// haal user settings op
 function getUserInfo($userId = null)
 {
     global $conn;
