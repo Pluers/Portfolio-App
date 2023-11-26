@@ -2,7 +2,7 @@
 
 ### Het doel van het project
 
-Het doel van dit project is om een werkende website te creëren waar je je eigen portfolio kunt uploaden en de portfolio's van andere gebruikers kunt vinden. Daarnaast willen de drie deelnemers meer leren over programmeren.
+Het doel van dit project is om een werkende website te creëren waar je je eigen portfolio kunt uploaden en de portfolio's van andere gebruikers kunt vinden. Daarnaast willen de drie deelnemers (Djimairo Fluijt, Rick Blaas en Rick Slierendregt) meer leren over programmeren.
 
 ### Introductie
 
