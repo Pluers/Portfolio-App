@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
-
+// error messages
 if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
     <div class="alert">
         Emailaddress is already in use.
@@ -12,7 +12,6 @@ if (isset($_GET['error']) && (int)$_GET['error'] === 2) { ?>
     <form action="/register" method="post">
         <div class="form-info">
             <h2>Register</h2>
-
             <div class="input-field">
                 <label for="firstname">First name</label>
                 <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required />

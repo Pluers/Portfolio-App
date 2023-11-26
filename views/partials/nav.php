@@ -21,6 +21,7 @@
                     <p>Profile</p>
                 </a>
                 <?php if ($devmode) { ?>
+                    <!-- laat login en register knop zien als je in developer mode bent -->
                     <a href="/login">
                         <span class="material-symbols-rounded">
                             login
@@ -35,6 +36,7 @@
                     </a>
                 <?php }
                 if ($loggedIn) { ?>
+                    <!-- loguit knop voor als je ingelogd bent -->
                     <a href="/logout" <?= $devmode ? "style='background:red'" : "" ?>>
                         <span class="material-symbols-rounded">
                             logout
@@ -44,6 +46,7 @@
                     </a>
                 <?php } ?>
             <?php } else { ?>
+                <!-- laat login knop alleen zien als je niet bent inglogd -->
                 <a href="/">
                     <span class="material-symbols-rounded">
                         login
