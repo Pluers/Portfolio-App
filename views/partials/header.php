@@ -33,6 +33,7 @@
                 </dropdown>';
             }
 
+            // dropdown voor hobbies, educations en job experiences
             createDropdown('Hobbies', 'SELECT hobby_name FROM hobbies', ['hobby_name']);
             createDropdown('Educations', 'SELECT education_name FROM educations', ['education_name']);
             createDropdown('Job Experiences', 'SELECT company_name, job_title FROM jobexperiences', ['company_name', 'job_title']);

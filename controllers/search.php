@@ -6,7 +6,7 @@ function search()
     // zorg dat je geen speciale characters kan gebruiken
     $term = isset($_GET['q']) ? getSanitizedStr($_GET['q']) : '';
 
-    // haal alle users op en de users die een hobby hebben die overeen komt met de zoekterm
+    // haal alle users op en de users en de users die een hobby hebben die overeen komen met de zoekterm
     $usersFromSearch = customStatement(
         'SELECT users.* FROM users
 LEFT JOIN user_hobbies on user_hobbies.users_id = users.users_id

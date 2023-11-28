@@ -2,6 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+// error messages
 if (isset($_GET['error'])) {
     $error = (int)$_GET['error'];
     if ($error === 1) { ?>
@@ -18,7 +19,6 @@ if (isset($_GET['error'])) {
 ?>
 
 <div class="container">
-
     <form action="/login" method="post">
         <div class="form-info">
             <h2>Login</h2>

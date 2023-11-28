@@ -1,3 +1,4 @@
+/* styling voor de login en register pagina's */
 /* MOBILE */
 @media screen and (min-width: 0) {
 
@@ -38,7 +39,7 @@
         background-color: var(--complimentaryColor);
     }
 
-    /* The alert message box */
+    /* de alert message box */
     .alert {
         padding: 1rem;
         margin: 0 auto;

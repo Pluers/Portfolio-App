@@ -14,6 +14,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         $extraParams['user_id'] = $_GET['user_id'];
     }
     ?>
+    <!-- een navbar voor de editprofile pagina -->
     <nav>
         <ul>
             <li>
@@ -60,7 +61,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     <img src="/views/public/images/<?= $profileImage ?>" name="newProfileImg" />
                 </images>
                 <label for="imgToUpload" class="uploadImage">
-                    <!-- hidden file input that gets replaced by the span -->
+                    <!-- hidden file input die wordt vervangen door de span -->
                     <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
                     <span>Select Image
                         <span class="material-symbols-rounded">
@@ -78,6 +79,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                 <label for="email">Email:</label>
                 <input type="text" Placeholder="Email" name="email" value="<?= $user["email"] ?>" required />
                 <label for="change_password">Password: </label>
+                <!-- doorgestuurd naar forgot password pagina ipv nieuwe pagina -->
                 <a href="/forgot" target="_blank">Change Password
                     <span class="material-symbols-rounded">
                         open_in_new
@@ -91,12 +93,14 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
 
     <?php } else if ($active_tab === 'hobbies') { ?>
         <contentsection>
+            <!-- hobby toevoegen aan profiel -->
             <h1>Add Hobbies</h1>
             <!-- hobby selector -->
             <form method="post" id="hobbiesForm">
                 <select name="hobbiesList" id="hobbySelection">
                     <option value="0" name='default' selected disabled>Select a hobby</option>
                     <?php
+                    // print alle hobbies die er zijn
                     foreach ($getHobbies as $hobby) {
                         if (!in_array($hobby['hobbies_id'], array_column($userHobbies, 'hobbies_id'))) {
                             echo "<option value='" . $hobby['hobbies_id'] . "' name='selected_hobby'>" . $hobby['hobby_name'] . "</option>";
@@ -105,6 +109,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
                     ?>
                     <option value="create_new_hobby">Create new hobby</option>
                 </select>
+                <!-- hobby uit database verwijderen -->
                 <label for="delete_hobby" class="uploadImage">
                     <input type="submit" value="Delete Hobby" name="delete_hobby" onclick="return confirm('Are you sure you want to delete this hobby?')" style="display: none;">
                     <span class="material-symbols-rounded" onclick="document.querySelector('input[name=delete_hobby]').click();">
@@ -154,66 +159,66 @@ require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
         </contentsection>
 
     <?php } else if ($active_tab === 'jobs') { ?>
-    <contentsection>
-        <h1>Add jobexperiences</h1>
-        <!-- hobby selector -->
-        <form method="post" id="jobexperiencesForm">
-            <select name="jobexperience_id" id="jobexperienceSelection">
-                <option value="0" name='default' selected disabled>Select a jobexperience</option>
-                <?php
-                foreach ($getJobexperiences as $jobexperience) {
-                    if (!in_array($jobexperience['jobexperiences_id'], array_column($userJobexperiences, 'jobexperiences_id'))) {
-                        echo "<option value='" . $jobexperience['jobexperiences_id'] . "' name='selected_jobexperience'>" . $jobexperience['company_name'] . "</option>";
+        <contentsection>
+            <h1>Add jobexperiences</h1>
+            <!-- hobby selector -->
+            <form method="post" id="jobexperiencesForm">
+                <select name="jobexperience_id" id="jobexperienceSelection">
+                    <option value="0" name='default' selected disabled>Select a jobexperience</option>
+                    <?php
+                    foreach ($getJobexperiences as $jobexperience) {
+                        if (!in_array($jobexperience['jobexperiences_id'], array_column($userJobexperiences, 'jobexperiences_id'))) {
+                            echo "<option value='" . $jobexperience['jobexperiences_id'] . "' name='selected_jobexperience'>" . $jobexperience['company_name'] . "</option>";
+                        }
                     }
-                }
-                ?>
-                <option value="create_new_jobexperience">Create new jobexperience</option>
-            </select>
-            <label for="delete_jobexperience" class="uploadImage">
-                <input type="submit" value="Delete jobexperience" name="delete_jobexperience" onclick="return confirm('Are you sure you want to delete this jobexperience?')" style="display: none;">
-                <span class="material-symbols-rounded" onclick="document.querySelector('input[name=delete_jobexperience]').click();">
-                    delete
-                </span>
-            </label>
-            <input type="submit" value="Add jobexperience" name="add_jobexperience_to_profile">
-        </form>
+                    ?>
+                    <option value="create_new_jobexperience">Create new jobexperience</option>
+                </select>
+                <label for="delete_jobexperience" class="uploadImage">
+                    <input type="submit" value="Delete jobexperience" name="delete_jobexperience" onclick="return confirm('Are you sure you want to delete this jobexperience?')" style="display: none;">
+                    <span class="material-symbols-rounded" onclick="document.querySelector('input[name=delete_jobexperience]').click();">
+                        delete
+                    </span>
+                </label>
+                <input type="submit" value="Add jobexperience" name="add_jobexperience_to_profile">
+            </form>
 
-        <!-- create new job experience -->
-        <form method="post" id="createJobexperienceForm" enctype="multipart/form-data" style="display: none;">
-            <label for="imgToUpload" class="uploadImage">
-                <!-- hidden file input that gets replaced by the span -->
-                <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*"/>
-                <span>Select Image
+            <!-- create new job experience -->
+            <form method="post" id="createJobexperienceForm" enctype="multipart/form-data" style="display: none;">
+                <label for="imgToUpload" class="uploadImage">
+                    <!-- hidden file input that gets replaced by the span -->
+                    <input type="file" name="imgToUpload" id="imgToUpload" accept="image/*" />
+                    <span>Select Image
                         <span class="material-symbols-rounded">
                             add_photo_alternate
                         </span>
                     </span>
-            </label>
-            <!-- input text -->
-            <input type="text" placeholder="Enter new jobexperience name" name="create_jobexperience_name" required>
-            <input type="text" placeholder="Enter your job title" name="create_job_title">
-            <input type="submit" value="Create jobexperience" name="create_jobexperience">
-        </form>
+                </label>
+                <!-- input text -->
+                <input type="text" placeholder="Enter new jobexperience name" name="create_jobexperience_name" required>
+                <input type="text" placeholder="Enter your job title" name="create_job_title">
+                <input type="submit" value="Create jobexperience" name="create_jobexperience">
+            </form>
 
-        <jobexperiencegrid>
-            <?php foreach ($userJobexperiences as $userJobexperience) { ?>
-                <form method="post" onsubmit="return confirm('Are you sure you want to delete this jobexperience from your profile?');">
-                    <input type="hidden" name="jobexperience_id" value="<?= $userJobexperience['jobexperiences_id'] ?>">
-                    <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_jobexperience_user">
-                        <?php
-                        $imagePath = '/views/public/images/job_' . str_replace(' ', '_', $userJobexperience['company_name']) . '.jpg';
-                        $defaultImagePath = '/views/public/images/default_hobby.jpg';
-                        $finalImagePath = file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath) ? $imagePath : $defaultImagePath;
-                        ?>
-                        <hobbyarticle style="background-image: url('<?= $finalImagePath ?>')">
-                            <h2><?= $userJobexperience['company_name'], "<br>". $userJobexperience['job_title'] ?></h2>
-                     </hobbyarticle>
+            <jobexperiencegrid>
+                <?php foreach ($userJobexperiences as $userJobexperience) { ?>
+                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this jobexperience from your profile?');">
+                        <input type="hidden" name="jobexperience_id" value="<?= $userJobexperience['jobexperiences_id'] ?>">
+                        <button type="submit" style="background: none; border: none; padding: 0; margin: 0;" name="delete_jobexperience_user">
+                            <?php
+                            $imagePath = '/views/public/images/job_' . str_replace(' ', '_', $userJobexperience['company_name']) . '.jpg';
+                            $defaultImagePath = '/views/public/images/default_hobby.jpg';
+                            $finalImagePath = file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath) ? $imagePath : $defaultImagePath;
+                            ?>
+                            <hobbyarticle style="background-image: url('<?= $finalImagePath ?>')">
+                                <h2><?= $userJobexperience['company_name'], "<br>" . $userJobexperience['job_title'] ?></h2>
+                            </hobbyarticle>
 
-                    </button>
-                </form>
-            <?php }?>
-        </jobexperiencegrid>
-    </contentsection>
+                        </button>
+                    </form>
+                <?php } ?>
+            </jobexperiencegrid>
+        </contentsection>
     <?php } else if ($active_tab === 'educations')  ?>
 </section>
 

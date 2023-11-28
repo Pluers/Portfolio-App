@@ -1,3 +1,4 @@
+/* styling voor de editprofile pagina */
 /* MOBILE */
 @media screen and (min-width: 0) {
 
@@ -106,6 +107,7 @@
         flex-direction: column;
     }
 
+    /* navbar */
     main content section nav {
         background: var(--complimentaryColor);
         padding: 2rem;
@@ -144,6 +146,7 @@
         border-radius: var(--borRad);
     }
 
+    /* preview new profile picture  */
     images span.material-symbols-rounded,
     images img[name=newProfileImg] {
         display: none;
@@ -156,31 +159,16 @@
         align-items: center;
     }
 
+    /* arrow new profile picture */
     images span.material-symbols-rounded::before {
         content: "arrow_downward_alt";
     }
 
 }
 
-
-/* TABLET */
-@media screen and (min-width: 426px) {}
-
 /* DESKTOP */
 @media screen and (min-width: 769px) {
-    images {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    images span.material-symbols-rounded::before {
-        content: "arrow_right_alt";
-    }
-}
-
-/* DESKTOP+ */
-@media screen and (min-width: 1441px) {
-
+    
     .setprofilepicture {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -212,6 +200,15 @@
     .setprofilepicture input[type='submit']:hover {
         background: var(--accentColor);
         color: var(--complimentaryColor);
+    }
+    
+    images {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    images span.material-symbols-rounded::before {
+        content: "arrow_right_alt";
     }
 
     .editprofile {

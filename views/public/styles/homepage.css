@@ -1,5 +1,7 @@
+/* styling voor de home pagina */
 /* MOBILE */
 @media screen and (min-width: 0) {
+    /* user card  */
     article {
         width: 100%;
         padding: 2rem;

@@ -1,3 +1,4 @@
+/* BASE CSS FILE */
 /* MOBILE */
 @media screen and (min-width: 0) {
     :root {
@@ -15,12 +16,12 @@
         --desktopFontSize: 1rem;
     }
 
+    /* scrollbar  */
     ::-webkit-scrollbar {
         height: 0;
     }
 
     ::-webkit-scrollbar-track {
-        /* display: none; */
         background: transparent;
     }
 
@@ -34,9 +35,9 @@
         background: var(--accentColor);
     }
 
+    /* hide de buttons */
     ::-webkit-scrollbar-button {
         display: none;
-        /* This will hide the buttons */
     }
 
     * {
@@ -44,6 +45,7 @@
         color: var(--accentColor);
     }
 
+    /* 404 page  */
     #notfound {
         display: flex;
         flex-direction: column;
@@ -69,6 +71,7 @@
         /* Standard syntax */
     }
 
+    /* google icons */
     .material-symbols-rounded {
         font-variation-settings:
             'FILL' 1,
@@ -103,7 +106,7 @@
         width: 100%;
     }
 
-    /* styling of buttons */
+    /* styling van buttons */
     input[type="submit"],
     input[type="button"] {
         font-size: var(--mobileFontSize);
@@ -187,7 +190,7 @@
         clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
     }
 
-    /* to make the menu move */
+    /* om menu te laten bewegen in mobile burger menu*/
     header input[type="checkbox"]:checked ~ nav {
         z-index: 1;
         transform: translate(0, 0);
@@ -280,11 +283,12 @@
         text-align: center;
     }
 
-    /* remove default outline */
+    /* haal default outline weg */
     input[type=search]:focus {
         outline: none;
     }
 
+    /* vervang x in search input  */
     input[type=search]::-webkit-search-cancel-button {
         -webkit-appearance: none;
         appearance: none;
@@ -362,16 +366,17 @@
         transition: 0.2s ease-in-out;
     }
 
+    /* logout niet displayen omdat die in de dropdown header staan in mobile  */
     main sidebar nav a:nth-child(1n+4) {
         display: none;
     }
 
-    /* remove text for navbar items for mobile*/
+    /* text weg voor navbar items in mobile*/
     main sidebar nav a *:not(span.material-symbols-rounded) {
         display: none;
     }
 
-    /* icon size for both mobile and PC */
+    /* icon size voor mobile and PC */
     main sidebar nav a span.material-symbols-rounded {
         font-size: 2rem;
     }
@@ -389,7 +394,8 @@
 
     main content section {
         padding: 1rem;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
         flex-direction: column;
     }
@@ -489,9 +495,6 @@
     }
 }
 
-/* TABLET */
-@media screen and (min-width: 426px) {}
-
 /* DESKTOP */
 @media screen and (min-width: 769px) {
 
@@ -509,7 +512,7 @@
             'opsz' 24
     }
 
-    /* styling of buttons */
+    /* styling voor buttons */
     input[type="submit"],
     input[type="text"],
     input[type="email"],
@@ -519,7 +522,7 @@
         font-size: var(--desktopFontSize);
     }
 
-    /* Input field for searchbar */
+    /* Input field voor searchbar */
     input[type=search] {
         padding: 0 6px;
         text-align: unset;
@@ -541,7 +544,7 @@
         grid-template-rows: var(--headerHeight) auto;
     }
 
-    /* hide mobile icon */
+    /* haal hamburger menu icoon weg */
     header input:not(nav *) {
         display: none;
     }
@@ -630,7 +633,7 @@
         box-shadow: unset;
     }
 
-    /* left and right spacing for the content */
+    /* links en rechts spacing voor de content */
     main content section {
         padding: 0 1rem;
     }
@@ -679,13 +682,13 @@
         display: flex;
     }
 
-    /* hover state for the navbar buttons */
+    /* hover state voor de navbar buttons */
     main sidebar nav a:hover {
         background: rgba(0, 0, 0, 0.1);
         border-radius: calc(var(--borRad)*2);
     }
 
-    /* make filled icons when hovered over navbar */
+    /* transition naar gevulde icons wanneer je hovert */
     main sidebar nav a:hover .material-symbols-rounded,
     .material-symbols-rounded:hover {
         font-variation-settings:

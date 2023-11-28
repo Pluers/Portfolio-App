@@ -1,5 +1,5 @@
 <?php
-// redirect the request to another location
+// redirect de request naar een andere locatie
 function redirect($url, $permanent = false)
 {
     header('Location: ' . $url, true, $permanent ? 301 : 302);
@@ -7,7 +7,7 @@ function redirect($url, $permanent = false)
     exit();
 }
 
-// retrieves the settings from the env.ini settings
+// haal de settings op van de ini file
 function retrieveConfigurationSettingsFromIni($subject)
 {
     // SERVER['document_root'] is the projectroot.
@@ -20,18 +20,20 @@ function retrieveConfigurationSettingsFromIni($subject)
     return $info[$subject];
 }
 
-// Remove all the parameters from the URI (all the '?' and '&' symbols).
-// and return just /login without the '?error=1'
+// haal de parameters van de URI weg (de '?' en '&' symbolen).
+// return alleen /login zonder de '?error=1'
 function getSanitizedUri(): string
 {
     return explode('?', $_SERVER['REQUEST_URI'])[0];
 }
 
+// haal string op zonder speciale tekens
 function getSanitizedStr($string)
 {
     return $string = preg_replace('/[\'\/~`\!?@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', ' ', $string);
 }
 
+// haal user settings op
 function getUserInfo($userId = null)
 {
     global $conn;
@@ -49,6 +51,7 @@ function getUserInfo($userId = null)
     return $user;
 }
 
+// check voor edituser
 function isCurrentUserAllowedToEditUser()
 {
     if ($_SESSION[SESSION_KEY_ADMIN] === 0 || $_SESSION[SESSION_KEY_ADMIN] === false) {

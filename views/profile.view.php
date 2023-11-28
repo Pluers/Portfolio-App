@@ -2,6 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+// zet de default tab naar about
 $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
 ?>
 <section>
@@ -19,6 +20,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
             $extraParams['tab'] = $_GET['tab'];
         }
     ?>
+        <!-- ontkoppel de hobby van profiel -->
         <form method="post">
             <input type="submit" onclick="return confirm('Are you sure you want to delete your profile? (This cannot be undone!');" value=" Delete account" name="deleteUser">
             <input type="button" onclick="window.location.href='/editprofile?<?= http_build_query($extraParams); ?>'" name="" value="Edit Profile">
@@ -27,6 +29,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
 </section>
 
 <section>
+    <!-- navbar voor de profile view, net als de editprofile -->
     <nav>
         <ul>
             <li>
@@ -65,7 +68,6 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     </nav>
 
     <?php
-    // print de html voor de pagina met de naam van de tab
     if ($active_tab === 'about') { ?>
         <contentsection>
             <p>
@@ -75,7 +77,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
     <?php } elseif ($active_tab === 'hobbies') { ?>
         <contentsection>
             <hobbygrid>
-                <!-- display the hobbies that the user has selected -->
+                <!-- display the hobbies die de user geselecteerd heeft -->
                 <?php foreach ($userHobbies as $userHobby) { ?>
                     <form method="post">
                         <input type="hidden" name="deleteHobbyUser" value="<?= $userHobby['hobby_name'] ?>">
@@ -90,14 +92,14 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
             </hobbygrid>
         </contentsection>
     <?php } elseif ($active_tab === 'jobs') { ?>
-            <contentsection>
+        <contentsection>
             <hobbygrid>
-                <!-- display the hobbies that the user has selected -->
+                <!-- display the jobs die de user geselecteerd heeft -->
                 <?php foreach ($userJobexperiences as $userJobexperience) { ?>
                     <form method="post">
                         <input type="hidden" name="deleteHobbyUser" value="<?= $userJobexperience['company_name'] ?>">
                         <button type="button" style="background: none; border: none; padding: 0; margin: 0;" name="delete_hobby_user">
-                            <hobbyarticle style="background-image: url('/views/public/images/job_<?=  str_replace(' ', '_', $userJobexperience['company_name']) ?>.jpg')">
+                            <hobbyarticle style="background-image: url('/views/public/images/job_<?= str_replace(' ', '_', $userJobexperience['company_name']) ?>.jpg')">
                                 <h2><?= $userJobexperience['company_name'] ?></h2>
                                 <p><?= $userJobexperience['job_title'] ?></p>
                             </hobbyarticle>
@@ -106,8 +108,9 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
                 <?php } ?>
             </hobbygrid>
         </contentsection>
-        <?php
+    <?php
     } elseif ($active_tab === 'educations') {
+        // hier hadden wij helaas geen tijd meer voor
     }
     ?>
 </section>

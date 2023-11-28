@@ -6,17 +6,16 @@
     <title>ProfielPlus</title>
 
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="<?= 'views/public/favicon.png' ?>"/>
+    <link rel="icon" type="image/x-icon" href="<?= 'views/public/favicon.png' ?>" />
 
     <!-- CSS voor alle pagina's -->
-    <link rel="stylesheet" href="/views/public/styles/style.css"/>
+    <link rel="stylesheet" href="/views/public/styles/style.css" />
 
     <!-- Link de icons van Google -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <?php
-    // link de styles aparte pagina's
+    // link de styles voor aparte pagina's
     $uri = getSanitizedUri();
     $uriStyles = [
         '/dashboard' => '/views/public/styles/homepage.css',

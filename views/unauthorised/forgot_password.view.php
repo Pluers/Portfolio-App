@@ -2,6 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/head.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/header.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/views/partials/nav.php';
+// error messages
 if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     <div class="alert">
         That email does not exist!
@@ -13,7 +14,6 @@ if (isset($_GET['error']) && (int)$_GET['error'] === 1) { ?>
     </div>
 <?php } ?>
 <section>
-
     <div class="container">
         <form action="/forgot" method="post">
             <div class="form-info">

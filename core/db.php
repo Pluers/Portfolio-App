@@ -7,19 +7,23 @@ class Connection
 
     function __construct($servername, $dbname, $username, $drowssap)
     {
+
         try {
+            // connect to database
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $drowssap);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->conn = $conn;
         } catch (PDOException $e) {
             if ($e->getCode() == 1049) {
+                // create sql database from script.sql file
                 $conn = new PDO("mysql:host=$servername", $username, $drowssap);
                 $sql = "CREATE SCHEMA IF NOT EXISTS $dbname DEFAULT CHARACTER SET utf8";
                 $conn->exec($sql);
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $drowssap);
                 $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/script.sql', FALSE, NULL);
 
+                // ERROR CHECKS:
                 // Remove comments from the SQL script
                 $file = preg_replace('/--.*(\r?\n|$)/', '', $file);
 
